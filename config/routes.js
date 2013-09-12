@@ -12,19 +12,46 @@ module.exports = function(app, passport, auth) {
   //Setting up the users api
   app.post('/users', users.create);
   
-  app.post('/users/session', passport.authenticate('local', {
-    failureRedirect: '/signin',
-    failureFlash: 'Invalid email or password.'
-  }), users.session);
+  // app.post('/users/session', passport.authenticate('local', {
+  //   failureRedirect: '/signin',
+  //   failureFlash: 'Invalid email or password.'
+  // }), users.session);
 
   app.get('/users/me', users.me);
   app.get('/users/:userId', users.show);
 
-  app.get('/friends',passport.authenticate('facebook', {
-    scope: ['email', 'user_about_me'],
-    failureRedirect: '/signin'
-  }), api.api);
-  
+  app.get('/api/friends', function(req, res) {
+    var token = req.user.facebook.accessToken;
+    var options = {
+      hostname: 'graph.facebook.com',
+      port: 443,
+      path: '/me?fields=id,name,friends.fields(name)&access_token=' + token,
+      method: 'GET'
+    };
+
+
+    var req = https.request(options, function(FBres) {
+      console.log("statusCode: ", FBres.statusCode);
+      console.log("headers: ", FBres.headers);
+      console.log('');
+
+      var FBresults = '';
+
+      FBres.on('data', function(d) {
+        // var FBresults = JSON.parse(d.toString());
+        FBresults = FBresults + d.toString();
+        // res.jsonp(JSON.parse(d.toString()));
+      });
+
+      FBres.on('end', function() {
+        console.log(JSON.parse(FBresults));
+        res.send();
+      });     
+    });
+
+    req.end();
+  });
+
   //Setting the facebook oauth routes
   app.get('/auth/facebook', passport.authenticate('facebook', {
     scope: ['email', 'user_about_me'],

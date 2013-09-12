@@ -23,7 +23,6 @@ module.exports = function(passport) {
         callbackURL: config.facebook.callbackURL
     },
     function(accessToken, refreshToken, profile, done) {
-      // console.log(accessToken);
       User.findOne({
         'facebook.id': profile.id
       }, function(err, user) {
@@ -31,12 +30,15 @@ module.exports = function(passport) {
           return done(err);
         }
         if (!user) {
+          var userProfile = profile._json;
+          userProfile['accessToken'] = accessToken;
+          userProfile['refreshToken'] = refreshToken;
           user = new User({
             name: profile.displayName,
             email: profile.emails[0].value,
             username: profile.username,
             provider: 'facebook',
-            facebook: profile._json
+            facebook: userProfile
           });
           user.save(function(err) {
             if (err) console.log(err);
