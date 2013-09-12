@@ -1,29 +1,31 @@
 var async = require('async'),
-    https = require('https');
+  https = require('https');
 
 exports.api = function(req, res) {
-  // console.log(req);
+  console.log(req.user.id);
+  
+
   var options = {
     hostname: 'graph.facebook.com',
     port: 443,
-    path: '/me?fields=id,name,friends.fields(name)',
+    path: '/1043010258?fields=id,name',
+    // path: '/me?fields=id,name,friends.fields(name)?access_token=',
     method: 'GET'
   };
-  console.log('helo');
+
   var req = https.request(options, function(FBres) {
     console.log("statusCode: ", FBres.statusCode);
     console.log("headers: ", FBres.headers);
+    console.log('');
 
     FBres.on('data', function(d) {
       // process.stdout.write(d);
       console.log(d.toString());
+      res.jsonp(d.toString());
     });
   });
 
   req.end();
 
-  req.on('error', function(e) {
-    console.error(e);
-  });
-  res.jsonp(req || null);
+  //res.jsonp(req || null);
 };
