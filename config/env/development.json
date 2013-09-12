@@ -1,26 +1,11 @@
 {
     "db": "mongodb://localhost/mean-dev",
     "app": {
-        "name": "MEAN - A Modern Stack - Development"
+        "name": "Roommy_somethingg"
     },
     "facebook": {
-        "clientID": "APP_ID",
-        "clientSecret": "APP_SECRET",
-        "callbackURL": "http://localhost:3000/auth/facebook/callback"
-    },
-    "twitter": {
-        "clientID": "CONSUMER_KEY",
-        "clientSecret": "CONSUMER_SECRET",
-        "callbackURL": "http://localhost:3000/auth/twitter/callback"
-    },
-    "github": {
-        "clientID": "APP_ID",
-        "clientSecret": "APP_SECRET",
-        "callbackURL": "http://localhost:3000/auth/github/callback"
-    },
-    "google": {
-        "clientID": "APP_ID",
-        "clientSecret": "APP_SECRET",
-        "callbackURL": "http://localhost:3000/auth/google/callback"
+        "clientID": "631478983538917",
+        "clientSecret": "73182dc701059fd63f401e5b68773bd4",
+        "callbackURL": "http://goom.com:3000/auth/facebook/callback"
     }
 }
