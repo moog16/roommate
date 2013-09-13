@@ -1,5 +1,5 @@
-window.app = angular.module('mean', 
-    ['ngCookies', 'ngResource', 'ui.bootstrap', 'ui.route', 'mean.system', 'mean.articles']);
+window.app = angular.module('rm', 
+    ['ngCookies', 'ngResource', 'ui.bootstrap', 'ui.route', 'rm.system', 'rm.articles']);
 
-angular.module('mean.system', []);
-angular.module('mean.articles', []);
+angular.module('rm.system', []);
+angular.module('rm.articles', []);
