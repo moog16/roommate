@@ -20,41 +20,21 @@ module.exports = function(app, passport, auth) {
   app.get('/users/me', users.me);
   app.get('/users/:userId', users.show);
 
-  app.get('/api/friends', function(req, res) {
-    var token = req.user.facebook.accessToken;
-    var options = {
-      hostname: 'graph.facebook.com',
-      port: 443,
-      path: '/me?fields=id,name,friends.fields(name)&access_token=' + token,
-      method: 'GET'
-    };
-
-
-    var req = https.request(options, function(FBres) {
-      console.log("statusCode: ", FBres.statusCode);
-      console.log("headers: ", FBres.headers);
-      console.log('');
-
-      var FBresults = '';
-
-      FBres.on('data', function(d) {
-        // var FBresults = JSON.parse(d.toString());
-        FBresults = FBresults + d.toString();
-        // res.jsonp(JSON.parse(d.toString()));
-      });
-
-      FBres.on('end', function() {
-        console.log(JSON.parse(FBresults));
-        res.send();
-      });     
-    });
-
-    req.end();
-  });
+  app.get('/api/friends', api.api);
 
   //Setting the facebook oauth routes
   app.get('/auth/facebook', passport.authenticate('facebook', {
-    scope: ['email', 'user_about_me'],
+    scope: ['email', 'user_about_me', 'user_relationship_details', 'user_status', 'user_website', 'user_groups',
+            'user_photos', 'user_relationships', 'user_work_history', 'user_hometown', 'user_friends',
+            'user_activities', 'user_education_history', 'user_groups', 'user_religion_politics', 'user_events',
+            'friends_about_me', 'friends_activities', 'friends_birthday', 'friends_group', 'friends_interests',
+            'friends_relationships', 'friends_work_history', 'friends_events', 'user_actions.books',
+            'user_actions.video', 'user_actions_music', 'friends_actions.news', 'friends_education_history',
+            'friends_religion_politics', 'friends_subscriptions', 'friends_status', 'friends_hometown',
+            'friends_photos', 'friends_website', 'user_videos', 'friends_videos', 'user_questions',
+            'friends_questions', 'user_birthday', 'user_location', 'friends_location', 'user_games_activity',
+            'friends_online_presence', 'user_notes', 'publish_actions', 'user_subscriptions', 'user_likes',
+            'friends_likes'],
     failureRedirect: '/signin'
   }), users.signin);
 

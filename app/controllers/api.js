@@ -1,31 +1,64 @@
 var async = require('async'),
-  https = require('https');
+  https = require('https'),
+  mongoose = require('mongoose'),
+  User = mongoose.model('User');
 
 exports.api = function(req, res) {
-  console.log(req.user.id);
-  
+  var token = req.user.facebook.accessToken;
+  var fields =  ['id,',
+                'name,',
+                'interests.fields(name,id),',
+                'age_range,',
+                'about,',
+                'bio,',
+                'education,',
+                'favorite_athletes,',
+                'favorite_teams,',
+                'hometown,',
+                'gender,',
+                'birthday,',
+                'books,',
+                'relationship_status,',
+                'quotes,',
+                'languages,',
+                'inspirational_people,',
+                'sports,',
+                'music.fields(name,id),',
+                'movies.fields(name,id),',
+                'devices,',
+                'work,',
+                'posts,',
+                'photos,',
+                'albums,',
+                'location'];
 
   var options = {
     hostname: 'graph.facebook.com',
     port: 443,
-    path: '/1043010258?fields=id,name',
-    // path: '/me?fields=id,name,friends.fields(name)?access_token=',
+    path: '/me?fields=' + fields.join('') + '&access_token=' + token,
     method: 'GET'
   };
+
 
   var req = https.request(options, function(FBres) {
     console.log("statusCode: ", FBres.statusCode);
     console.log("headers: ", FBres.headers);
     console.log('');
 
+    var FBresults = '';
+
     FBres.on('data', function(d) {
-      // process.stdout.write(d);
-      console.log(d.toString());
-      res.jsonp(d.toString());
+      // var FBresults = JSON.parse(d.toString());
+      FBresults = FBresults + d.toString();
+      // res.jsonp(JSON.parse(d.toString()));
     });
+
+    FBres.on('end', function() {
+      // var FBdata = JSON.parse(FBresults);
+      // console.log(JSON.parse(FBresults));
+      res.send(FBresults);
+    });     
   });
 
   req.end();
-
-  //res.jsonp(req || null);
 };
