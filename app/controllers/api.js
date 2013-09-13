@@ -1,64 +1,70 @@
-var async = require('async'),
-  https = require('https'),
+var  https = require('https'),
   mongoose = require('mongoose'),
-  User = mongoose.model('User');
+  User = mongoose.model('User'),
+  fields =  ['id,',
+            'name,',
+            'interests.fields(name,id),',
+            'age_range,',
+            'about,',
+            'bio,',
+            'education,',
+            'favorite_athletes,',
+            'favorite_teams,',
+            'hometown,',
+            'gender,',
+            'birthday,',
+            'books,',
+            'relationship_status,',
+            'quotes,',
+            'languages,',
+            'inspirational_people,',
+            'sports,',
+            'music.fields(name,id),',
+            'movies.fields(name,id),',
+            'devices,',
+            'work,',
+            'posts,',
+            'photos,',
+            'albums,',
+            'location'];
 
 exports.api = function(req, res) {
-  var token = req.user.facebook.accessToken;
-  var fields =  ['id,',
-                'name,',
-                'interests.fields(name,id),',
-                'age_range,',
-                'about,',
-                'bio,',
-                'education,',
-                'favorite_athletes,',
-                'favorite_teams,',
-                'hometown,',
-                'gender,',
-                'birthday,',
-                'books,',
-                'relationship_status,',
-                'quotes,',
-                'languages,',
-                'inspirational_people,',
-                'sports,',
-                'music.fields(name,id),',
-                'movies.fields(name,id),',
-                'devices,',
-                'work,',
-                'posts,',
-                'photos,',
-                'albums,',
-                'location'];
-
+  var access_token = req.user.facebook.accessToken;
   var options = {
     hostname: 'graph.facebook.com',
     port: 443,
-    path: '/me?fields=' + fields.join('') + '&access_token=' + token,
+    path: '/me?fields=' + fields.join('') + '&access_token=' + access_token,
     method: 'GET'
   };
 
-
-  var req = https.request(options, function(FBres) {
-    console.log("statusCode: ", FBres.statusCode);
-    console.log("headers: ", FBres.headers);
-    console.log('');
+  var FBreq = https.request(options, function(FBres) {
+    console.log('hello');
+    // console.log("statusCode: ", FBres.statusCode);
+    // console.log("headers: ", FBres.headers);
+    // console.log('');
 
     var FBresults = '';
 
     FBres.on('data', function(d) {
-      // var FBresults = JSON.parse(d.toString());
-      FBresults = FBresults + d.toString();
-      // res.jsonp(JSON.parse(d.toString()));
+      FBresults += d.toString();
     });
 
     FBres.on('end', function() {
-      // var FBdata = JSON.parse(FBresults);
-      // console.log(JSON.parse(FBresults));
+      // User.findOne({
+      //   'facebook.id': req.user.facebook.id
+      // }, function(err, user) {
+      //   if(err) {
+      //     throw err;
+      //   } else {
+      //     var keys = Object.keys(FBresults);
+      //     for(key in keys) {
+      //       user.facebook[key] = FBresults[key];
+      //     }
+      //   }
+      // })
       res.send(FBresults);
-    });     
+    });
   });
 
-  req.end();
+  FBreq.end();
 };
