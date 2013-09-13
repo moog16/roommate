@@ -40,7 +40,7 @@ module.exports = function(app, passport, auth) {
   app.get('/users/me', users.me);
   app.get('/users/:userId', users.show);
 
-  app.get('/api/userInfo', api.api);
+  // app.get('/api/userInfo', api.api);
 
   //Setting the facebook oauth routes
   app.get('/auth/facebook', passport.authenticate('facebook', {
@@ -60,7 +60,7 @@ module.exports = function(app, passport, auth) {
 
   app.get('/auth/facebook/callback', passport.authenticate('facebook', {
     failureRedirect: '/signin'
-  }), api.api);
+  }), users.authCallback); 
 
   //Finish with setting up the userId param
   app.param('userId', users.user);

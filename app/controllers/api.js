@@ -28,21 +28,16 @@ var  https = require('https'),
             'albums,',
             'location'];
 
-exports.api = function(req, res) {
-  var access_token = req.user.facebook.accessToken;
+exports.api = function(accessToken, refreshToken, profile, done) {
+  // var access_token = req.user.facebook.accessToken;
   var options = {
     hostname: 'graph.facebook.com',
     port: 443,
-    path: '/me?fields=' + fields.join('') + '&access_token=' + access_token,
+    path: '/me?fields=' + fields.join('') + '&access_token=' + accessToken,
     method: 'GET'
   };
 
   var FBreq = https.request(options, function(FBres) {
-    console.log('hello');
-    // console.log("statusCode: ", FBres.statusCode);
-    // console.log("headers: ", FBres.headers);
-    // console.log('');
-
     var FBresults = '';
 
     FBres.on('data', function(d) {
@@ -50,19 +45,24 @@ exports.api = function(req, res) {
     });
 
     FBres.on('end', function() {
-      // User.findOne({
-      //   'facebook.id': req.user.facebook.id
-      // }, function(err, user) {
-      //   if(err) {
-      //     throw err;
-      //   } else {
-      //     var keys = Object.keys(FBresults);
-      //     for(key in keys) {
-      //       user.facebook[key] = FBresults[key];
-      //     }
-      //   }
-      // })
-      res.send(FBresults);
+      User.findOne({
+        'facebook.id': profile.id
+      }, function(err, user) {
+        if(err) {
+          throw err;
+        } else {
+          FBresults = JSON.parse(FBresults);
+          var keys = Object.keys(FBresults);
+          for(key in keys) {
+            console.log(keys[key]);
+            user.facebook[keys[key]] = FBresults[keys[key]];
+            // console.log(keys[key], ': \n',user.facebook[keys[key]]);
+          }
+          user.save(function(err) {
+            if(err) throw err;
+          })
+        }
+      })
     });
   });
 

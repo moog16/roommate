@@ -1,7 +1,8 @@
-var mongoose = require('mongoose'),
-  FacebookStrategy = require('passport-facebook').Strategy,
-  User = mongoose.model('User')
-  config = require('./config');
+var FacebookStrategy = require('passport-facebook').Strategy,
+  insert = require('../app/controllers/insert.js'),
+  config = require('./config'),
+  mongoose = require('mongoose'),
+  User = mongoose.model('User');
 
 module.exports = function(passport) {
   passport.serializeUser(function(user, done) {
@@ -22,31 +23,7 @@ module.exports = function(passport) {
         callbackURL: config.facebook.callbackURL
     },
     function(accessToken, refreshToken, profile, done) {
-      User.findOne({
-        'facebook.id': profile.id
-      }, function(err, user) {
-        if (err) {
-          return done(err);
-        }
-        if (!user) {
-          var userProfile = profile._json;
-          userProfile['accessToken'] = accessToken;
-          userProfile['refreshToken'] = refreshToken;
-          user = new User({
-            name: profile.displayName,
-            email: profile.emails[0].value,
-            username: profile.username,
-            provider: 'facebook',
-            facebook: userProfile
-          });
-          user.save(function(err) {
-            if (err) console.log(err);
-            return done(err, user);
-          });
-        } else {
-          return done(err, user);
-        }
-      });
+      insert.user(accessToken, refreshToken, profile, done);
     }
   ));
 };
