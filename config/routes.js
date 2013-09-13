@@ -1,6 +1,5 @@
 var async = require('async'),
-    api   = require('../app/controllers/api.js');
-    users = require('../app/controllers/users.js');
+    users = require('../app/controllers/users.js'),
     https = require('https');
 
 module.exports = function(app, passport, auth) {
@@ -39,8 +38,6 @@ module.exports = function(app, passport, auth) {
 
   app.get('/users/me', users.me);
   app.get('/users/:userId', users.show);
-
-  // app.get('/api/userInfo', api.api);
 
   //Setting the facebook oauth routes
   app.get('/auth/facebook', passport.authenticate('facebook', {

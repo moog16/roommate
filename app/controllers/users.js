@@ -80,6 +80,7 @@ exports.show = function(req, res) {
  * Send User
  */
 exports.me = function(req, res) {
+  console.log(req);
   res.jsonp(req.user || null);
 };
 
