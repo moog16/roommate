@@ -4,8 +4,6 @@
         "name": "Roommy_somethingg"
     },
     "facebook": {
-        "clientID": "631478983538917",
-        "clientSecret": "73182dc701059fd63f401e5b68773bd4",
         "callbackURL": "http://goom.com:3000/auth/facebook/callback"
     }
 }
