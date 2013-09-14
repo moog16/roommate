@@ -1,5 +1,7 @@
 var async = require('async'),
     users = require('../app/controllers/users.js'),
+    getUser = require('../app/controllers/getUser.js'),
+    find = require('../app/controllers/find.js'),
     https = require('https');
 
 module.exports = function(app, passport, auth) {
@@ -12,7 +14,7 @@ module.exports = function(app, passport, auth) {
   });
 
   app.options('*', function(req, res){
-    res.send(200); 
+    res.send(200);
   });
 
   app.get('/signin', users.signin);
@@ -39,6 +41,8 @@ module.exports = function(app, passport, auth) {
   app.get('/users/me', users.me);
   app.get('/users/:userId', users.show);
 
+  app.get('/api/userInfo', getUser.info);
+
   //Setting the facebook oauth routes
   app.get('/auth/facebook', passport.authenticate('facebook', {
     scope: ['email', 'user_about_me', 'user_relationship_details', 'user_status', 'user_website', 'user_groups',
@@ -57,7 +61,7 @@ module.exports = function(app, passport, auth) {
 
   app.get('/auth/facebook/callback', passport.authenticate('facebook', {
     failureRedirect: '/signin'
-  }), users.authCallback); 
+  }), find.roommates); 
 
   //Finish with setting up the userId param
   app.param('userId', users.user);

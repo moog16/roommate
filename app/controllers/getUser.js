@@ -10,13 +10,12 @@ exports.info = function(req, res) {
     } else if(!user) {
       res.redirect('/signup');
     } else {
-      //serve the data
       res.send(user.facebook);
     }
   });
 };
 
-//update if the date is old
+// TODO: update if the date is old
 // var ISODateString = function(d){
 //   var pad = function(n){
 //     return n<10 ? '0'+n : n;
