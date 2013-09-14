@@ -18,8 +18,8 @@ module.exports = function(passport) {
   });
 
   passport.use(new FacebookStrategy({
-        clientID: config.facebook.clientID,
-        clientSecret: config.facebook.clientSecret,
+        clientID: process.env.FACEBOOK_ROOMMATES_APIKEY,
+        clientSecret: process.env.FACEBOOK_ROOMMATES_APPSECRET,
         callbackURL: config.facebook.callbackURL
     },
     function(accessToken, refreshToken, profile, done) {
