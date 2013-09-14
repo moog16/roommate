@@ -13,20 +13,24 @@ var mongoose = require('mongoose'),
           'hometown,',
           'gender,',
           'birthday,',
-          'books,',
+          'books.fields(name,id,link,picture.type(large)),',
           'relationship_status,',
           'quotes,',
           'languages,',
           'inspirational_people,',
           'sports,',
-          'music.fields(name,id),',
-          'movies.fields(name,id),',
+          'music.fields(name,id,link,picture.type(large)),',
+          'movies.fields(name,id,link,picture.type(large)),',
           'devices,',
           'work,',
           'posts,',
           'photos,',
           'albums,',
-          'location'];
+          'location,',
+          'events.fields(name,picture.type(large)),',
+          'cover,',
+          'religion,',
+          'sports'];
   
 exports.user = function(accessToken, refreshToken, profile, done) {
   var options = {
@@ -64,14 +68,13 @@ exports.user = function(accessToken, refreshToken, profile, done) {
 
         FBres.on('end', function() {
           if(err) {
-            throw err;
+            console.log(err);
           } else {
             FBresults = JSON.parse(FBresults);
             var keys = Object.keys(FBresults);
             for(key in keys) {
               console.log(keys[key]);
               user.facebook[keys[key]] = FBresults[keys[key]];
-              // console.log(keys[key], ': \n',user.facebook[keys[key]]);
             }
             user.save(function(err) {
               if (err) console.log(err);

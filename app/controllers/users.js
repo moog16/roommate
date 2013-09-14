@@ -2,19 +2,12 @@ var mongoose = require('mongoose'),
   User = mongoose.model('User');
 
 /**
- * Auth callback
- */
-exports.authCallback = function(req, res) {
-  res.redirect('/');  //do I need this?
-};
-
-/**
  * Show login form
  */
 exports.signin = function(req, res) {
   res.render('users/signin', {
     title: 'Signin',
-    message: req.flash('error')
+    message: req.flash('error12312313')
   });
 };
 

@@ -1,4 +1,13 @@
 <section ng-controller="ProfileController">
-  {{userInfo}}
-  {{temporary}}
+
+  <div id="profileMovies" ng-repeat="movie in userInfo.movies.data">
+    <div class="multimedia">
+      <a href="{{movie.link}}"><img src="{{movie.picture.data.url}}"/></a>
+    </div>
+  </div>
+  <div id="profileMusic" ng-repeat="music in userInfo.music.data">
+    <div class="multimedia">
+      <a href="{{music.link}}"><img src="{{music.picture.data.url}}"/></a>
+    </div>
+  </div>
 </section>
