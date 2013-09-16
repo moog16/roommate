@@ -1,15 +1,8 @@
-/**
- * Module dependencies.
- */
 var express = require('express'),
     fs = require('fs'),
     passport = require('passport'),
     logger = require('mean-logger');
 
-/**
- * Main application entry file.
- * Please note that the order of loading is important.
- */
 
 //Load configurations
 //if test env, load example file
@@ -48,3 +41,4 @@ logger.init(app, passport, mongoose);
 
 //expose app
 exports = module.exports = app;
+// require('./app/controllers/testusers.js')();

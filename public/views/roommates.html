@@ -1,0 +1,15 @@
+<section ng-controller="RoommatesController">
+  <h1>Find Your Roommate Now!</h1>
+
+  <ul id="roommates">
+    <li ng-repeat="roommate in roommates" roommate-view class="roommate" ng-class="{ active : roommate.isActive }">
+      <img ng-src="{{ roommate.facebook.picture.data.url }}" class="roommateProfilePic" />
+      <h4>{{ roommate.facebook.name }}</h4>
+    </li>
+  </ul>
+
+  <button class="btn btn-danger likeNope" ng-click="showNextRoommate()" roommate-view>Nope</button>
+
+  <button class="btn btn-success likeNope" ng-click="showNextRoommate()" roommate-view>Like</button>
+
+</section>

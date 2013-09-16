@@ -1,5 +1,3 @@
-var mongoose = require('mongoose'),
-  User = mongoose.model('User');
 
 exports.roommates = function(req, res) {
   //find users based on req.user query params
