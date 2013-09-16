@@ -20,6 +20,9 @@ window.app.config(['$routeProvider',
     .when('/userProfile', {
       templateUrl: 'views/userProfile.html'
     })
+    .when('/roommates', {
+      templateUrl: 'views/roommates.html'
+    })
     .otherwise({
       redirectTo: '/'
     });

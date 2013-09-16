@@ -1,3 +1,33 @@
+.coverProfile {
+  width: 50%;
+  margin: auto;
+}
+
+#profileMovies, #profileMusic {
+  margin: auto;
+  height: 200px;
+  width: 100%;
+  
+  overflow: auto;
+  overflow-y: hidden;
+}
+
 .multimedia {
-  height: 270px;
+  margin: 10px;
+  height: 100px;
+  width: 270px;
+  
+  overflow: hidden;
+
+  float: left;
+}
+
+.multimedia img {
+  margin: auto;
+  display: inline;
+  vertical-align: center;
+}
+
+.mediaTitle {
+  z-index: 1;
 }

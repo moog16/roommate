@@ -1,13 +1,25 @@
 <section ng-controller="ProfileController">
+  <img src="{{userInfo.cover.source}}" class="coverProfile" alt="You have no Cover"/>
+  <img src="{{userInfo.picture.data.url}}" />
+  <div>
 
-  <div id="profileMovies" ng-repeat="movie in userInfo.movies.data">
-    <div class="multimedia">
-      <a href="{{movie.link}}"><img src="{{movie.picture.data.url}}"/></a>
-    </div>
   </div>
-  <div id="profileMusic" ng-repeat="music in userInfo.music.data">
-    <div class="multimedia">
-      <a href="{{music.link}}"><img src="{{music.picture.data.url}}"/></a>
+
+  <div id="profileMovies">
+    <div ng-repeat="movie in userInfo.movies.data">
+      <div class="multimedia">
+        <a href="{{movie.link}}"><img src="{{movie.picture.data.url}}" /></a>
+      </div>
+      <h4 class="mediaTitle">{{movie.name}}</h4>
+    </div>
+  </div>  
+
+  <div id="profileMusic">
+    <div ng-repeat="music in userInfo.music.data">
+      <div class="multimedia">
+        <a href="{{music.link}}"><img src="{{music.picture.data.url}}" /></a>
+      </div>
+      <h4 class="mediaTitle">{{music.name}}</h4>
     </div>
   </div>
 </section>

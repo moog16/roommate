@@ -1,6 +1,7 @@
 var async = require('async'),
     users = require('../app/controllers/users.js'),
-    getUser = require('../app/controllers/getUser.js'),
+    getUser = require('../app/controllers/api/getUser.js'),
+    getRoommate = require('../app/controllers/api/getRoommate.js'),
     find = require('../app/controllers/find.js'),
     https = require('https');
 
@@ -42,6 +43,8 @@ module.exports = function(app, passport, auth) {
   app.get('/users/:userId', users.show);
 
   app.get('/api/userInfo', getUser.info);
+
+  app.get('/api/getRoommate', getRoommate.info);
 
   //Setting the facebook oauth routes
   app.get('/auth/facebook', passport.authenticate('facebook', {
