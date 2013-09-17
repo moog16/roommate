@@ -18,6 +18,7 @@ module.exports = function(app, passport) {
         level: 9
     }));
 
+    //Setting the fav icon and static folder
     app.use(express.favicon());
     app.use(express.static(config.root + '/public'));
 
@@ -55,9 +56,12 @@ module.exports = function(app, passport) {
 
         //dynamic helpers
         app.use(helpers(config.app.name));
+
+        //use passport session
         app.use(passport.initialize());
         app.use(passport.session());
 
+        //routes should be at the last
         app.use(app.router);
 
         //Assume "not found" in the error msgs is a 404. this is somewhat silly, but valid, you can do whatever you like, set properties, use instanceof etc.

@@ -1,4 +1,4 @@
-angular.module('rm.articles', [])
+angular.module('rm.articles.controller', [])
 .controller('ArticlesController', 
   ['$scope', '$routeParams', '$location', 'Global', 'Articles', 
       function ($scope, $routeParams, $location, Global, Articles) {
