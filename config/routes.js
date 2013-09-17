@@ -2,7 +2,6 @@ var async = require('async'),
     users = require('../app/controllers/users.js'),
     getUser = require('../app/controllers/api/getUser.js'),
     getRoommate = require('../app/controllers/api/getRoommate.js'),
-    find = require('../app/controllers/find.js'),
     https = require('https');
 
 module.exports = function(app, passport, auth) {
@@ -64,7 +63,7 @@ module.exports = function(app, passport, auth) {
 
   app.get('/auth/facebook/callback', passport.authenticate('facebook', {
     failureRedirect: '/signin'
-  }), find.roommates); 
+  }), users.session); 
 
   //Finish with setting up the userId param
   app.param('userId', users.user);
