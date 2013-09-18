@@ -3,6 +3,7 @@ var async = require('async'),
     getUser = require('../app/controllers/api/getUser.js'),
     getRoommate = require('../app/controllers/api/getRoommate.js'),
     getQuestions = require('../app/controllers/api/getQuestions.js'),
+    setUserQA = require('../app/controllers/api/setUserQA.js'),
     https = require('https');
 
 module.exports = function(app, passport, auth) {
@@ -33,11 +34,12 @@ module.exports = function(app, passport, auth) {
   app.get('/users/me', users.me);
   app.get('/users/:userId', users.show);
 
+  // api interface routes
   app.get('/api/userInfo', getUser.info);
-
   app.get('/api/getQuestions', getQuestions.andAnswers);
-
   app.get('/api/getRoommate', getRoommate.info);
+
+  app.post('/api/setUserQA', setUserQA);
 
   //Setting the facebook oauth routes
   app.get('/auth/facebook', passport.authenticate('facebook', {

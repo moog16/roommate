@@ -35,13 +35,19 @@
 
   <h3>Questions</h3>
   <h4>answer questions to more accurately match your next roommate</h4>
-    <ul>
-      <li class="control-group" ng-repeat="question in questions">
-        <h3>{{question.question}}</h3>
-        <div class="btn-group" data-toggle="buttons-checkbox" ng-repeat="answer in question.answers">
-          <button type="button" class="btn btn-primary">{{answer.message}}</button>
-          <!-- <input type="checkbox" value="$index"> -->
-        </div>
-      </li>
-    </ul>
+    <form class="control-group" ng-repeat="question in questions" ng-submit="submitQA()">
+      <h3>{{question.question}}</h3>
+      <div class="btn-group" data-toggle="buttons-radio">
+        <button type="button" ng-click="setUserAnswer($index, question._id)" class="btn btn-primary" ng-repeat="answer in question.answers">{{answer.message}}</button>
+      </div>
+      <h4>Answers I'll accept...</h4>
+      <div class="btn-group" data-toggle="buttons-checkbox">
+        <button type="button" ng-click="setUserAccepts($index)" class="btn btn-primary" ng-repeat="answer in question.answers">{{answer.message}}</button>
+      </div>
+      <input type="submit" class="btn btn-success" value="Submit">
+      <h4>This question is...</h4>
+      <div class="btn-group" data-toggle="buttons-radio">
+        <button type="button" ng-click="setUserImportance($index)" class="btn btn-primary" ng-repeat="answer in importance">{{answer}}</button>
+      </div>
+    </form>
 </section>

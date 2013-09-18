@@ -24,5 +24,33 @@ angular.module('rm.users', [])
     if(err) throw err;
   });
 
-  
+  $scope.importance = ['Irrelevant', 'a bit important', 'a little important', 'a lot important', 'a must have'];
+
+  $scope.submitQA = function() {
+    var userQuestionAnswers = {
+      questionId: this.questionId,
+      answer: this.userAnswer,
+      accepts: this.userAccepts,
+      importance: this.userImportance
+    };
+    $http.post('api/setUserQA', userQuestionAnswers)
+    .success(function(data, status, headers, config) {
+      console.log('set user question and answer ', data);
+    }).error(function(err, status, headers, config) { if(err) throw err; });
+  };
+
+  $scope.setUserAnswer = function(answer, questionId) {
+    $scope.questionId = questionId;
+    $scope.userAnswer = answer;
+  };
+
+  $scope.setUserAccepts = function(accepts) {
+    $scope.userAccepts = $scope.userAccepts || [];
+    $scope.userAccepts.push(accepts);
+  };
+
+  $scope.setUserImportance = function(importance) {
+    $scope.userImportance = importance;
+  };
+
 }]);
