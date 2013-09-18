@@ -7,5 +7,11 @@ angular.module('rm.system').controller('HeaderController', ['$scope', 'Global', 
   }, {
     "title": "Create New Article",
     "link": "articles/create"
+  }, {
+    "title": "Questions",
+    "link": "questions"
+  }, {
+    "title": "Create New Questions",
+    "link": "questions/create"
   }];
 }]);

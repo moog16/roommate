@@ -1,0 +1,11 @@
+<section data-ng-controller="QuestionsController" data-ng-init="find()">
+  <ul class="questions unstyled">
+    <li data-ng-repeat="question in questions">
+      <span>{{question.created | date:'medium'}}</span> /
+      <span>{{question.user.name}}</span>
+      <h2><a data-ng-href="#!/questions/{{question._id}}">{{question.question}}</a></h2>
+      <div ng-repeat="answer in question.answers">{{answer}}</div>
+    </li>
+  </ul>
+  <h1 data-ng-hide="!questions || questions.length">No questions yet. <br> Why don't you <a href="/#!/questions/create">Create One</a>?</h1>
+</section>

@@ -4,18 +4,21 @@
 }
 
 #profileMovies, #profileMusic {
-  margin: auto;
+  margin: 0px;
   height: 200px;
-  width: 100%;
+  width: 200px;
   
   overflow: auto;
-  overflow-y: hidden;
 }
 
+.resize {
+  width: 180px;
+  margin: 0px;
+}
 .multimedia {
-  margin: 10px;
+  margin: 10px 0px;
   height: 100px;
-  width: 270px;
+  width: 180px;
   
   overflow: hidden;
 
@@ -29,5 +32,8 @@
 }
 
 .mediaTitle {
-  z-index: 1;
+
+  width: 180px;
+  display: block;
+
 }

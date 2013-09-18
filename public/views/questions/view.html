@@ -1,0 +1,6 @@
+<section data-ng-controller="QuestionsController" data-ng-init="findOne()">
+  <span>{{question.created | date:'medium'}}</span> /
+  <span>{{question.user.name}}</span>
+  <h2>{{question.question}} <a data-ng-show="global.user._id == question.user._id" href="/#!/questions/{{question._id}}/edit">edit</a></h2>
+  <div ng-repeat="answer in question.answers">{{answer}}</div>
+</section>

@@ -7,14 +7,14 @@ var QuestionSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  title: {
+  question: {
     type: String,
     default: '',
     trim: true
   },
-  content: {
-    type: String,
-    default: '',
+  answers: {
+    type: Array,
+    default: ['Yes', 'No'],
     trim: true
   },
   user: {
@@ -26,9 +26,9 @@ var QuestionSchema = new Schema({
 /**
  * Validations
  */
-QuestionSchema.path('title').validate(function(title) {
-  return title.length;
-}, 'Title cannot be blank');
+QuestionSchema.path('question').validate(function(question) {
+  return question.length;
+}, 'Question cannot be blank');
 
 /**
  * Statics

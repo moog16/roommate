@@ -28,15 +28,6 @@ module.exports = function(app, passport, auth) {
     failureRedirect: '/signin',
     failureFlash: 'Invalid email or password.'
   }), users.session);
-  // Setup API blockade
-  // app.all('/api/*', function(req, res, next) {
-  //   // passport gives us a 'isAuthenticated' method
-  //   // we'll check this method
-  //   if (req.isAuthenticated()) return next();
-
-  //   return res.send(401, 'Unauthorized');
-  // });
-
 
   app.get('/users/me', users.me);
   app.get('/users/:userId', users.show);
@@ -78,6 +69,17 @@ module.exports = function(app, passport, auth) {
 
   //Finish with setting up the articleId param
   app.param('articleId', articles.article);
+
+  //Question Routes
+  var questions = require('../app/controllers/questions');
+  app.get('/questions', questions.all);
+  app.post('/questions', auth.requiresLogin, questions.create);
+  app.get('/questions/:questionId', questions.show);
+  app.put('/questions/:questionId', auth.requiresLogin, auth.question.hasAuthorization, questions.update);
+  app.del('/questions/:questionId', auth.requiresLogin, auth.question.hasAuthorization, questions.destroy);
+
+  //Finish with setting up the questionId param
+  app.param('questionId', questions.question);
 
   //Home route
   var index = require('../app/controllers/index');
