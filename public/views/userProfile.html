@@ -35,9 +35,13 @@
 
   <h3>Questions</h3>
   <h4>answer questions to more accurately match your next roommate</h4>
-  <div>
-    {{questions}}
-  </div>
-
-
+    <ul>
+      <li class="control-group" ng-repeat="question in questions">
+        <h3>{{question.question}}</h3>
+        <div class="btn-group" data-toggle="buttons-checkbox" ng-repeat="answer in question.answers">
+          <button type="button" class="btn btn-primary">{{answer.message}}</button>
+          <!-- <input type="checkbox" value="$index"> -->
+        </div>
+      </li>
+    </ul>
 </section>
