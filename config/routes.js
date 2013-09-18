@@ -2,6 +2,7 @@ var async = require('async'),
     users = require('../app/controllers/users.js'),
     getUser = require('../app/controllers/api/getUser.js'),
     getRoommate = require('../app/controllers/api/getRoommate.js'),
+    getQuestions = require('../app/controllers/api/getQuestions.js'),
     https = require('https');
 
 module.exports = function(app, passport, auth) {
@@ -33,6 +34,8 @@ module.exports = function(app, passport, auth) {
   app.get('/users/:userId', users.show);
 
   app.get('/api/userInfo', getUser.info);
+
+  app.get('/api/getQuestions', getQuestions.andAnswers);
 
   app.get('/api/getRoommate', getRoommate.info);
 
