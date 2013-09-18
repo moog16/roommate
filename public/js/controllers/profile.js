@@ -34,6 +34,7 @@ angular.module('rm.users', [])
       accepts: this.userAccepts,
       importance: this.userImportance
     };
+    $scope.userAccepts = [];
     $http.post('api/setUserQA', userQuestionAnswers)
     .success(function(data, status, headers, config) {
       $scope.showNextQuestion();

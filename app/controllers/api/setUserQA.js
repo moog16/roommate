@@ -3,7 +3,6 @@ var mongoose = require('mongoose'),
 
 module.exports = function(req, res) {
   var questionReq = req.body;
-
   User.findOne({
     'facebook.id': req.user.facebook.id
   }, function(err, user) {
@@ -12,19 +11,18 @@ module.exports = function(req, res) {
     } else if(!user) {
       res.redirect('/signup');
     } else {
-      user.name = "not me";
-      user.questions[questionReq.questionId] = {
-        answer: questionReq.answer,
-        accepts: questionReq.accepts,  //unique
-        importance: questionReq.importance
-      };
-      console.log(user.questions);
-      console.log(user);
+
+      user.questions.questionId = questionReq.questionId;
+      user.questions.answer = questionReq.answer;
+      user.questions.accepts = questionReq.accepts;  //make unique
+      user.questions.importance = questionReq.importance;
+
+      // console.log(user.questions);
+      // console.log(user);
       user.save(function(err,u) {
         if(err) {
           throw err;
         } else {
-          // console.log(u);
           res.send('confirmed');
         }
       });

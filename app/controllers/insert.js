@@ -49,15 +49,20 @@ exports.user = function(accessToken, refreshToken, profile, done) {
       if (!user) {
         var userProfile = profile._json;
         console.log(typeof userProfile);
-        userProfile['accessToken'] = accessToken;
-        userProfile['refreshToken'] = refreshToken;
+        userProfile.accessToken = accessToken;
+        userProfile.refreshToken = refreshToken;
         user = new User({
           name: profile.displayName,
           email: profile.emails[0].value,
           username: profile.username,
           provider: 'facebook',
           facebook: userProfile,
-          questions: {'5238a6f3f74d90bd15000004': 'abc123'}
+          questions: [{
+            questionId: '523a21248335859844000002',
+            answer: 0,
+            accepts: [0,1,2],
+            importance: 3
+          }]
         });
       }
 
@@ -75,7 +80,7 @@ exports.user = function(accessToken, refreshToken, profile, done) {
           } else {
             FBresults = JSON.parse(FBresults);
             var keys = Object.keys(FBresults);
-            for(key in keys) {
+            for(var key in keys) {
               console.log(keys[key]);
               user.facebook[keys[key]] = FBresults[keys[key]];
             }
