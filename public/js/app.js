@@ -6,6 +6,8 @@ window.app = angular.module('rm',
 'rm.system',
 'rm.articles.service',
 'rm.articles.controller',
+'rm.questions.service',
+'rm.questions.controller',
 'rm.users', 
 'rm.roommates',
 'rm.roommate.directive']);
@@ -13,6 +15,8 @@ window.app = angular.module('rm',
 angular.module('rm.system', []);
 angular.module('rm.articles.service', []);
 angular.module('rm.articles.controller', []);
+angular.module('rm.questions.service', []);
+angular.module('rm.questions.controller', []);
 angular.module('rm.users', []);
 angular.module('rm.roommates', []);
 angular.module('rm.roommate.directive', []);

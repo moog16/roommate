@@ -5,6 +5,7 @@
 
   </div>
 
+  <h3>Movies</h3>
   <div id="profileMovies">
     <div ng-repeat="movie in userInfo.movies.data">
       <div class="multimedia">
@@ -14,6 +15,7 @@
     </div>
   </div>  
 
+  <h3>Music</h3>
   <div id="profileMusic">
     <div ng-repeat="music in userInfo.music.data">
       <div class="multimedia">
@@ -22,4 +24,13 @@
       <h4 class="mediaTitle">{{music.name}}</h4>
     </div>
   </div>
+
+
+  <h3>Work</h3>
+  <div id="profileMusic">
+    <div ng-repeat="work in userInfo.work">
+      <span>{{work.employer.name}}</span>
+    </div>
+  </div>
+
 </section>

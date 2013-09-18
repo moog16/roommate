@@ -1,0 +1,22 @@
+<section data-ng-controller="QuestionsController">
+  <form class="form-horizontal" data-ng-submit="create()">
+    <div class="control-group">
+      <label class="control-label" for="title">Title</label>
+      <div class="controls">
+        <input type="text" data-ng-model="question" id="title" placeholder="Question" required>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="content">Content</label>
+      <div class="controls answersFields">
+        <input type="text" ng-repeat="answer in answers" data-ng-model="answer.message" id="content" placeholder="{{answer.a}}">
+      </div>
+    </div>
+    <div class="control-group">
+      <div class="controls">
+        <input type="submit" class="btn">
+        <input type="button" class="btn" value="Add Answer" ng-click="addAnswer()">
+      </div>
+    </div>
+  </form>
+</section>
