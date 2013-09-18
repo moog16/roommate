@@ -19,6 +19,7 @@ angular.module('rm.users', [])
     url: '/api/getQuestions'})
   .success(function(data, status, headers, config) {
     $scope.questions = data;
+    $scope.questions[0].isActive = true;
   })
   .error(function(err, status, headers, config) {
     if(err) throw err;
@@ -35,6 +36,7 @@ angular.module('rm.users', [])
     };
     $http.post('api/setUserQA', userQuestionAnswers)
     .success(function(data, status, headers, config) {
+      $scope.showNextQuestion();
       console.log('set user question and answer ', data);
     }).error(function(err, status, headers, config) { if(err) throw err; });
   };
@@ -53,4 +55,8 @@ angular.module('rm.users', [])
     $scope.userImportance = importance;
   };
 
+  $scope.showNextQuestion = function() {
+    $scope.questions[1].isActive = true;
+    $scope.questions.splice(0,1);
+  };
 }]);

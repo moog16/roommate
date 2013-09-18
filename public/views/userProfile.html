@@ -35,7 +35,7 @@
 
   <h3>Questions</h3>
   <h4>answer questions to more accurately match your next roommate</h4>
-    <form class="control-group" ng-repeat="question in questions" ng-submit="submitQA()">
+    <form class="question control-group" ng-repeat="question in questions" ng-submit="submitQA()" ng-class="{ active : question.isActive }">
       <h3>{{question.question}}</h3>
       <div class="btn-group" data-toggle="buttons-radio">
         <button type="button" ng-click="setUserAnswer($index, question._id)" class="btn btn-primary" ng-repeat="answer in question.answers">{{answer.message}}</button>

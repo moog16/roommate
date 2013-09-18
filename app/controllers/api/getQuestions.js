@@ -11,7 +11,10 @@ exports.andAnswers = function(req, res) {
     } else if(!user) {
       res.redirect('/signup');
     } else {
-      var questionIds = Object.keys(user.questions)
+      // all user questions are in an object
+      // questions are key, answers, accepts, importance levels 
+      // are stored in another object as the value
+      var questionIds = Object.keys(user.questions);
       Question.find({
         _id: {$nin: questionIds}
       }, function(err, questions) {
