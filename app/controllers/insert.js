@@ -48,6 +48,7 @@ exports.user = function(accessToken, refreshToken, profile, done) {
     } else {
       if (!user) {
         var userProfile = profile._json;
+        console.log(typeof userProfile);
         userProfile['accessToken'] = accessToken;
         userProfile['refreshToken'] = refreshToken;
         user = new User({
@@ -55,7 +56,8 @@ exports.user = function(accessToken, refreshToken, profile, done) {
           email: profile.emails[0].value,
           username: profile.username,
           provider: 'facebook',
-          facebook: userProfile
+          facebook: userProfile,
+          questions: {'5238a6f3f74d90bd15000004': 'abc123'}
         });
       }
 

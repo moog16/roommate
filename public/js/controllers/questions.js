@@ -42,8 +42,6 @@ angular.module('rm.questions.controller')
     // console.log('answers ', $scope.question.answers);
     var question = $scope.question;
     // question.answers = $scope.question.answers;
-    console.log('questions ',$scope.question);
-    console.log('ssssss', question);
     console.log('answer should be ', $scope.question.answers);
     if (!question.updated) {
       console.log('is this hpa');

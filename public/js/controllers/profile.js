@@ -1,8 +1,6 @@
 angular.module('rm.users', [])
 .controller('ProfileController', ['$scope', '$http', function ($scope, $http) {
-  // $scope.global = Global;
-
-  $scope.temporary = 'hello';
+  // $scope.global = Global
 
   $http({
     method: 'GET',
@@ -14,4 +12,17 @@ angular.module('rm.users', [])
   .error(function(err, status, headers, config) {
     if(err) throw err;
   });
+
+
+  $http({
+    method: 'GET',
+    url: '/api/getQuestions'})
+  .success(function(data, status, headers, config) {
+    $scope.questions = data;
+  })
+  .error(function(err, status, headers, config) {
+    if(err) throw err;
+  });
+
+  
 }]);
