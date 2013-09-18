@@ -53,6 +53,7 @@ exports.update = function(req, res) {
  * Delete an question
  */
 exports.destroy = function(req, res) {
+  console.log(req);
   var question = req.question;
 
   question.remove(function(err) {

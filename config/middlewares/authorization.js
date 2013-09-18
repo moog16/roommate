@@ -37,7 +37,9 @@ exports.article = {
  */
 exports.question = {
   hasAuthorization: function(req, res, next) {
-    if (req.question.user.id != req.user.id) {
+    // console.log(req.question.user);
+    // console.log(req.user.id);
+    if (req.question.user != req.user.id) {
       return res.send(401, 'User is not authorized');
     }
     next();
