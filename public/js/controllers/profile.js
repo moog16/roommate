@@ -19,7 +19,9 @@ angular.module('rm.users', [])
     url: '/api/getQuestions'})
   .success(function(data, status, headers, config) {
     $scope.questions = data;
-    $scope.questions[0].isActive = true;
+    if($scope.questions.length > 0) {
+      $scope.questions[0].isActive = true;
+    }
   })
   .error(function(err, status, headers, config) {
     if(err) throw err;
@@ -57,7 +59,9 @@ angular.module('rm.users', [])
   };
 
   $scope.showNextQuestion = function() {
-    $scope.questions[1].isActive = true;
+    if($scope.questions.length > 0) {
+      $scope.questions[1].isActive = true;
+    }
     $scope.questions.splice(0,1);
   };
 }]);

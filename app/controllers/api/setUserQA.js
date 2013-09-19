@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
-    User = mongoose.model('User');
+    User = mongoose.model('User'),
+    _ = require('underscore');
 
 module.exports = function(req, res) {
   var questionReq = req.body;
@@ -11,16 +12,13 @@ module.exports = function(req, res) {
     } else if(!user) {
       res.redirect('/signup');
     } else {
-
+      var answerAccepts = _.uniq(questionReq.accepts);
       user.questions.push({
         questionId: questionReq.questionId,
         answer: questionReq.answer,
-        accepts: questionReq.accepts,  //make unique
+        accepts: answerAccepts,
         importance: questionReq.importance
       });
-
-      console.log(user.questions);
-      // console.log(user);
       user.save(function(err,u) {
         if(err) {
           throw err;

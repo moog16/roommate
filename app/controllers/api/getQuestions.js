@@ -11,10 +11,6 @@ exports.andAnswers = function(req, res) {
     } else if(!user) {
       res.redirect('/signup');
     } else {
-      // all user questions are in an object
-      // questions are key, answers, accepts, importance levels 
-      // are stored in another object as the value
-      // var questionIds = Object.keys(user.questions);
       var questionIds = [];
       for(var i=0; i<user.questions.length; i++) {
         questionIds.push(user.questions[i].questionId);
