@@ -57,12 +57,7 @@ exports.user = function(accessToken, refreshToken, profile, done) {
           username: profile.username,
           provider: 'facebook',
           facebook: userProfile,
-          questions: [{
-            questionId: '523a21248335859844000002',
-            answer: 0,
-            accepts: [0,1,2],
-            importance: 3
-          }]
+          questions: []
         });
       }
 

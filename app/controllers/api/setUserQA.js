@@ -12,12 +12,14 @@ module.exports = function(req, res) {
       res.redirect('/signup');
     } else {
 
-      user.questions.questionId = questionReq.questionId;
-      user.questions.answer = questionReq.answer;
-      user.questions.accepts = questionReq.accepts;  //make unique
-      user.questions.importance = questionReq.importance;
+      user.questions.push({
+        questionId: questionReq.questionId,
+        answer: questionReq.answer,
+        accepts: questionReq.accepts,  //make unique
+        importance: questionReq.importance
+      });
 
-      // console.log(user.questions);
+      console.log(user.questions);
       // console.log(user);
       user.save(function(err,u) {
         if(err) {
