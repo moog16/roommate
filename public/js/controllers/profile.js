@@ -59,7 +59,7 @@ angular.module('rm.users', [])
   };
 
   $scope.showNextQuestion = function() {
-    if($scope.questions.length > 0) {
+    if($scope.questions.length > 1) {
       $scope.questions[1].isActive = true;
     }
     $scope.questions.splice(0,1);

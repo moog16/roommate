@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
     User = mongoose.model('User'),
+    Question = mongoose.model('Question'),
     _ = require('underscore');
 
 module.exports = function(req, res) {
@@ -12,18 +13,27 @@ module.exports = function(req, res) {
     } else if(!user) {
       res.redirect('/signup');
     } else {
-      var answerAccepts = _.uniq(questionReq.accepts);
-      user.questions.push({
-        questionId: questionReq.questionId,
-        answer: questionReq.answer,
-        accepts: answerAccepts,
-        importance: questionReq.importance
-      });
-      user.save(function(err,u) {
+      Question.findOne({
+      }, function(err, question) {
         if(err) {
           throw err;
+        } else if(!question) {
+          var answerAccepts = _.uniq(questionReq.accepts);
+          user.questions.push({
+            questionId: questionReq.questionId,
+            answer: questionReq.answer,
+            accepts: answerAccepts,
+            importance: questionReq.importance
+          });
+          user.save(function(err,u) {
+            if(err) {
+              throw err;
+            } else {
+              res.send('confirmed');
+            }
+          });
         } else {
-          res.send('confirmed');
+          res.send('question already exists, not saved');
         }
       });
     }
