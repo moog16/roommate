@@ -6,7 +6,7 @@ angular.module('rm.roommate.service', [])
   var initRoommate = function() {
     var deferred = $q.defer();
 
-    //deferred.notify('loading up all roommates');
+    deferred.notify('loading up all roommates');
     $http.get('/api/getRoommate')
     .success(function(roommateData, status, headers, config) {
       $http.get('/api/userInfo')
@@ -16,15 +16,10 @@ angular.module('rm.roommate.service', [])
         roommateInitVars.roommates = roommateData;
         roommateInitVars.user = userData;
         roommateInitVars.userQAIndex = {};
-        // $scope.roommates = roommateData;
-        // $scope.user = userData;
-        // $scope.userQAIndex = {};
         for(var i=0; i<userData.questions.length; i++) {
           roommateInitVars.userQAIndex[userData.questions[i].questionId] = i;
-          // $scope.userQAIndex[userData.questions[i].questionId] = i;
         }
         roommateInitVars.mutualRoommateInfo = [];
-        // $scope.mutualRoommateInfo = [];
         getMutualInfo();
         console.log(roommateInitVars);
         deferred.resolve(roommateInitVars);
@@ -49,27 +44,21 @@ angular.module('rm.roommate.service', [])
 
   var mutualInfoCalc = function(roommateNum) {
     var newMutualInfo = {};
-    // newMutualInfo.music = findIntersect($scope.roommates[roommateNum], 'music'); //needchanging
-    // newMutualInfo.movies = findIntersect($scope.roommates[roommateNum], 'movies');
-    // newMutualInfo.friends = findIntersect($scope.roommates[roommateNum], 'friends');
-    // newMutualInfo.questionIds = findIntersectQuestion($scope.roommates[roommateNum].questions);
+    newMutualInfo.music = findIntersect(roommateInitVars.roommates[roommateNum], 'music');
+    newMutualInfo.movies = findIntersect(roommateInitVars.roommates[roommateNum], 'movies');
+    newMutualInfo.friends = findIntersect(roommateInitVars.roommates[roommateNum], 'friends');
     newMutualInfo.questionIds = findIntersectQuestion(roommateInitVars.roommates[roommateNum].questions);
     // newMutualInfo.compatibility = findCompatibility(newMutualInfo.questionIds, roommateNum);
-
-    // $scope.mutualRoommateInfo.push(newMutualInfo);
     roommateInitVars.mutualRoommateInfo.push(newMutualInfo);
   };
 
   var findIntersect = function(roommate, infoCategory) {
-    // return _.intersectionObjects($scope.user.facebook[infoCategory].data, roommate.facebook[infoCategory].data);
     return _.intersectionObjects(roommateInitVars.user.facebook[infoCategory].data, roommate.facebook[infoCategory].data);
   };
 
   var findIntersectQuestion = function(roommate) {
     var userQuestionIds = [];
     var roommateQuestionIds = [];
-    // for(var i=0; i<$scope.user.questions.length; i++) {
-      // userQuestionIds.push($scope.user.questions[i].questionId);
     for(var i=0; i<roommateInitVars.user.questions.length; i++) {
       userQuestionIds.push(roommateInitVars.user.questions[i].questionId);
     }

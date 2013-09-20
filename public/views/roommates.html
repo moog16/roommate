@@ -11,23 +11,23 @@
 
       <button class="btn btn-success likeNope" ng-click="showNextRoommate()">Like</button>
 
-      <!--<h4>mutual friends</h4>
-        <div ng-repeat="mFriend in mutualRoommateInfo[0].friends">
+      <h4>mutual friends</h4>
+     <!--    <div ng-repeat="mFriend in roommateInfo.mutualRoommateInfo[0].friends">
           <img src="{{mFriend.picture.data.url}}">
           <span>{{mFriend.name}}<span>
         </div>
-      <h4>mutual music</h4>
-        <div ng-repeat="mMusic in mutualRoommateInfo[0].music">
+      --> <h4>mutual music</h4>
+        <div ng-repeat="mMusic in roommateInfo.mutualRoommateInfo[0].music">
           <img src="{{mMusic.picture.data.url}}">
           <span>{{mMusic.name}}</span>
-        </div>-->
-      <!--<h4>mutual movies</h4>
-        <div ng-repeat="mMovie in mutualRoommateInfo[0].movies">
+        </div>
+      <h4>mutual movies</h4>
+        <div ng-repeat="mMovie in roommateInfo.mutualRoommateInfo[0].movies">
           <img src="{{mMovie.picture.data.url}}">
           <span>{{mMovies.name}}</span>
-        </div>-->
+        </div>
       <h4>compatibility</h4>
-      <span>You are a {{(mutualRoommateInfo[0].compatibility * 100).toFixed(2)}}% match.</span>
+      <span>You are a {{(roommateInfo.mutualRoommateInfo[0].compatibility * 100).toFixed(2)}}% match.</span>
       <a href="#!/roommates/mutualQuestions">See the questions and answers that you two had in common</a>
     </li>
 
