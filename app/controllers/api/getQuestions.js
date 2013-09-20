@@ -31,3 +31,19 @@ exports.andAnswers = function(req, res) {
     }
   });
 };
+
+exports.fromUser = function(req, res) {
+  var questionIds = [];
+  for(var i=0; i<req.body.length; i++) {
+    questionIds.push(req.body[i].questionId);
+  }
+  Question.find({
+    _id: {$in: questionIds}
+  }, function(err, questions) {
+    if(err) {
+      throw err;
+    } else {
+      res.send(questions);
+    }
+  });
+};

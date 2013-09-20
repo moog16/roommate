@@ -36,7 +36,8 @@ module.exports = function(app, passport, auth) {
 
   // api interface routes
   app.get('/api/userInfo', getUser.info);
-  app.get('/api/getQuestions', getQuestions.andAnswers);
+  app.get('/api/getQuestions/unanswered', getQuestions.andAnswers);
+  app.post('/api/getQuestions/fromUser', getQuestions.fromUser);
   app.get('/api/getRoommate', getRoommate.info);
 
   app.post('/api/setUserQA', setUserQA);

@@ -3,12 +3,12 @@ angular.module('rm.roommates', [])
 
   $http.get('/api/getRoommate')
   .success(function(roommateData, status, headers, config) {
-    // console.log('roommates ', data);
+    // console.log('roommates ', roommateData);
     $scope.roommates = roommateData;
     $scope.roommates[0].isActive = true;
     $http.get('/api/userInfo')
     .success(function(userData, status, headers, config) {
-      // console.log('user ', data);
+      // console.log('user ', userData);
       $scope.user = userData;
       $scope.mutualRoommateInfo = [];
       getMutualInfo();
@@ -41,11 +41,18 @@ angular.module('rm.roommates', [])
     newMutualInfo.mutualMusic = findIntersect($scope.roommates[roommateNum], 'music');
     newMutualInfo.mutualMovies = findIntersect($scope.roommates[roommateNum], 'movies');
     newMutualInfo.mutualFriends = findIntersect($scope.roommates[roommateNum], 'friends');
+    newMutualInfo.mutualQuestions = findIntersectQuestion($scope.roommates[roommateNum]);
+    console.log(newMutualInfo.mutualQuestions);
+    newMutualInfo.compatibility = findCompatibility(newMutualInfo.mutualQuestions);
     $scope.mutualRoommateInfo.push(newMutualInfo);
   };
 
   var findIntersect = function(roommate, infoCategory) {
-    return _.intersectionObjects($scope.user[infoCategory].data, roommate.facebook[infoCategory].data);
+    return _.intersectionObjects($scope.user.facebook[infoCategory].data, roommate.facebook[infoCategory].data);
+  };
+
+  var findIntersectQuestion = function(roommate) {
+    return _.intersectionObjects($scope.user.questions, roommate.questions);
   };
 
   _.intersectionObjects = function(array) {
@@ -57,6 +64,13 @@ angular.module('rm.roommates', [])
         return _.any(other, function(element) { return _.isEqual(element, item); });
       });
     });
+  };
+
+  var findCompatibility = function(mutualQuestions) {
+    $http.post('/api/getQuestions/fromUser', mutualQuestions)
+    .success(function(userQuestions, status, headers, config) {
+      console.log(userQuestions);
+    }).error(function(err) { if(err) throw err; });
   };
 
 }]);

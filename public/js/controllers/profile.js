@@ -5,7 +5,7 @@ angular.module('rm.users', [])
   $http.get('/api/userInfo')
   .success(function(data, status, headers, config) {
     console.log(data);
-    $scope.userInfo = data;
+    $scope.userInfo = data.facebook;
   })
   .error(function(err, status, headers, config) {
     if(err) throw err;
@@ -14,7 +14,7 @@ angular.module('rm.users', [])
 
   $http({
     method: 'GET',
-    url: '/api/getQuestions'})
+    url: '/api/getQuestions/unanswered'})
   .success(function(data, status, headers, config) {
     $scope.questions = data;
     if($scope.questions.length > 0) {

@@ -11,7 +11,7 @@
 
       <button class="btn btn-success likeNope" ng-click="showNextRoommate()">Like</button>
 
-      <h4>mutual friends</h4>
+      <!--<h4>mutual friends</h4>
         <div ng-repeat="mFriend in mutualRoommateInfo[0].mutualFriends">
           <img src="{{mFriend.picture.data.url}}">
           <span>{{mFriend.name}}<span>
@@ -20,13 +20,18 @@
         <div ng-repeat="mMusic in mutualRoommateInfo[0].mutualMusic">
           <img src="{{mMusic.picture.data.url}}">
           <span>{{mMusic.name}}</span>
-        </div>
-      <h4>mutual movies</h4>
+        </div>-->
+      <!--<h4>mutual movies</h4>
         <div ng-repeat="mMovie in mutualRoommateInfo[0].mutualMovies">
           <img src="{{mMovie.picture.data.url}}">
           <span>{{mMovies.name}}</span>
-        </div>
-      
+        </div>-->
+      <h4>mutual questions</h4>
+      <div ng-repeat="mQuestion in mutualRoommateInfo[0].mutualQuestions">
+        {{mQuestion}}
+      </div>
     </li>
+  <!-- <compatibility></compatibility> -->
+
   </ul>
 </section>

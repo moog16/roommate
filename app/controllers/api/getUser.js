@@ -10,7 +10,7 @@ exports.info = function(req, res) {
     } else if(!user) {
       res.redirect('/signup');
     } else {
-      res.send(user.facebook);
+      res.send(user);
     }
   });
 };
