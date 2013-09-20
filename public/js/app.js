@@ -14,7 +14,8 @@ window.app = angular.module('rm',
 'rm.roommate.service',
 'rm.compatibility.service',
 'rm.roommateHelpers.service',
-'rm.mutualQuestions.controller']);
+'rm.mutualQuestions.controller',
+'rm.getMutual.service']);
 
 angular.module('rm.system', []);
 angular.module('rm.articles.service', []);
@@ -27,4 +28,5 @@ angular.module('rm.roommate.directive', []);
 angular.module('rm.roommate.service', []);
 angular.module('rm.compatibility.service', []);
 angular.module('rm.mutualQuestions.controller', []);
+angular.module('rm.getMutual.service', []);
 angular.module('rm.roommateHelpers.service', []);

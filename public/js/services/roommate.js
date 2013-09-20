@@ -1,6 +1,6 @@
 angular.module('rm.roommate.service', [])
-.factory("roommateInit", ['$http', '$q', 'compatibility', 'intersection',
-  function($http, $q, compatibility, intersection) {
+.factory("roommateInit", ['$http', '$q', 'getMutual',
+  function($http, $q, getMutual) {
 
   var roommateInitVars = {};
 
@@ -20,8 +20,10 @@ angular.module('rm.roommate.service', [])
         for(var i=0; i<userData.questions.length; i++) {
           roommateInitVars.userQAIndex[userData.questions[i].questionId] = i;
         }
-        roommateInitVars.mutualRoommateInfo = [];
-        getMutualInfo();
+        roommateInitVars.mutualRoommateInfo = getMutual.info(roommateInitVars.roommates,
+                                                             roommateInitVars.user.questions,
+                                                             roommateInitVars.userQAIndex,
+                                                             roommateInitVars.user.facebook);
         console.log(roommateInitVars);
         deferred.resolve(roommateInitVars);
       })
@@ -36,30 +38,30 @@ angular.module('rm.roommate.service', [])
     return deferred.promise;
   };
 
-  var getMutualInfo = function() {
-    // for(var i=0; i<$scope.roommates.length; i++) {
-    for(var i=0; i<roommateInitVars.roommates.length; i++) {
-      mutualInfoCalc(i);
-    }
-  };
+  // var getMutualInfo = function() {
+  //   // for(var i=0; i<$scope.roommates.length; i++) {
+  //   for(var i=0; i<roommateInitVars.roommates.length; i++) {
+  //     mutualInfoCalc(i);
+  //   }
+  // };
 
-  var mutualInfoCalc = function(roommateNum) {
-    var newMutualInfo = {};
-    var roommate = roommateInitVars.roommates[roommateNum];
-    newMutualInfo.music = findIntersect(roommate, 'music');
-    newMutualInfo.movies = findIntersect(roommate, 'movies');
-    newMutualInfo.friends = findIntersect(roommate, 'friends');
-    newMutualInfo.questionIds = intersection.question(roommate.questions, roommateInitVars.user.questions);
-    newMutualInfo.compatibility = compatibility(newMutualInfo.questionIds,
-                                                roommate.questions,
-                                                roommateInitVars.user.questions,
-                                                roommateInitVars.userQAIndex);
-    roommateInitVars.mutualRoommateInfo.push(newMutualInfo);
-  };
+  // var mutualInfoCalc = function(roommateNum) {
+  //   var newMutualInfo = {};
+  //   var roommate = roommateInitVars.roommates[roommateNum];
+  //   newMutualInfo.music = findIntersect(roommate, 'music');
+  //   newMutualInfo.movies = findIntersect(roommate, 'movies');
+  //   newMutualInfo.friends = findIntersect(roommate, 'friends');
+  //   newMutualInfo.questionIds = intersection.question(roommate.questions, roommateInitVars.user.questions);
+  //   newMutualInfo.compatibility = compatibility(newMutualInfo.questionIds,
+  //                                               roommate.questions,
+  //                                               roommateInitVars.user.questions,
+  //                                               roommateInitVars.userQAIndex);
+  //   roommateInitVars.mutualRoommateInfo.push(newMutualInfo);
+  // };
 
-  var findIntersect = function(roommate, infoCategory) {
-    return intersection.objects(roommateInitVars.user.facebook[infoCategory].data, roommate.facebook[infoCategory].data);
-  };
+  // var findIntersect = function(roommate, infoCategory) {
+  //   return intersection.objects(roommateInitVars.user.facebook[infoCategory].data, roommate.facebook[infoCategory].data);
+  // };
   
   return {
     init: initRoommate
