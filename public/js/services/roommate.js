@@ -45,11 +45,15 @@ angular.module('rm.roommate.service', [])
 
   var mutualInfoCalc = function(roommateNum) {
     var newMutualInfo = {};
-    newMutualInfo.music = findIntersect(roommateInitVars.roommates[roommateNum], 'music');
-    newMutualInfo.movies = findIntersect(roommateInitVars.roommates[roommateNum], 'movies');
-    newMutualInfo.friends = findIntersect(roommateInitVars.roommates[roommateNum], 'friends');
-    newMutualInfo.questionIds = intersection.question(roommateInitVars.roommates[roommateNum].questions, roommateInitVars.user.questions);
-    // newMutualInfo.compatibility = findCompatibility(newMutualInfo.questionIds, roommateNum);
+    var roommate = roommateInitVars.roommates[roommateNum];
+    newMutualInfo.music = findIntersect(roommate, 'music');
+    newMutualInfo.movies = findIntersect(roommate, 'movies');
+    newMutualInfo.friends = findIntersect(roommate, 'friends');
+    newMutualInfo.questionIds = intersection.question(roommate.questions, roommateInitVars.user.questions);
+    newMutualInfo.compatibility = compatibility(newMutualInfo.questionIds,
+                                                roommate.questions,
+                                                roommateInitVars.user.questions,
+                                                roommateInitVars.userQAIndex);
     roommateInitVars.mutualRoommateInfo.push(newMutualInfo);
   };
 
