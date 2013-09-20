@@ -1,81 +1,27 @@
-angular.module('rm.roommates', [])
-.controller('RoommatesController', ['$scope', '$http', function ($scope, $http) {
+angular.module('rm.roommates.controller', [])
+.controller('RoommatesController', ['$scope', '$http', 'roommateInit', function ($scope, $http, roommateInit) {
 
-  $http.get('/api/getRoommate')
-  .success(function(roommateData, status, headers, config) {
-    // console.log('roommates ', roommateData);
-    $scope.roommates = roommateData;
-    $scope.roommates[0].isActive = true;
-    $http.get('/api/userInfo')
-    .success(function(userData, status, headers, config) {
-      // console.log('user ', userData);
-      $scope.user = userData;
-      $scope.userQAIndex = {};
-      for(var i=0; i<userData.questions.length; i++) {
-        $scope.userQAIndex[userData.questions[i].questionId] = i;
-      }
-      $scope.mutualRoommateInfo = [];
-      getMutualInfo();
-    })
-    .error(function(err) {
-      if(err) throw err;
-    });
+  // $scope.roommateInfo
+  var promise = roommateInit.init();
+  promise.then(function(roommateInfo) {
+    console.log(roommateInfo);
+    $scope.roommateInfo = roommateInfo;
+    $scope.roommateInfo.roommates[0].isActive = true;
+  }, function(reason) {
+    console.log('Failed ', reason);
+  }, function(update) {
+    console.log('Got notification ', update);
   })
-  .error(function(err, status, headers, config) {
-    if(err) throw err;
-  });
+
 
   $scope.showNextRoommate = function() {
-    $scope.roommates.splice(0,1);
-    $scope.mutualRoommateInfo.splice(0,1);
-    if($scope.roommates.length >= 1) {
-      $scope.roommates[0].isActive = true;
+    $scope.roommateInfo.roommates.splice(0,1);
+    $scope.roommateInfo.mutualRoommateInfo.splice(0,1);
+    if($scope.roommateInfo.roommates.length >= 1) {
+      $scope.roommateInfo.roommates[0].isActive = true;
     }
   };
 
-  var getMutualInfo = function() {
-    for(var i=0; i<$scope.roommates.length; i++) {
-      mutualInfoCalc(i);
-    }
-    // console.log($scope.mutualRoommateInfo);
-  };
-
-  var mutualInfoCalc = function(roommateNum) {
-    var newMutualInfo = {};
-    // newMutualInfo.music = findIntersect($scope.roommates[roommateNum], 'music');
-    // newMutualInfo.movies = findIntersect($scope.roommates[roommateNum], 'movies');
-    // newMutualInfo.friends = findIntersect($scope.roommates[roommateNum], 'friends');
-    newMutualInfo.questionIds = findIntersectQuestion($scope.roommates[roommateNum].questions);
-    newMutualInfo.compatibility = findCompatibility(newMutualInfo.questionIds, roommateNum);
-    $scope.mutualRoommateInfo.push(newMutualInfo);
-  };
-
-  var findIntersect = function(roommate, infoCategory) {
-    return _.intersectionObjects($scope.user.facebook[infoCategory].data, roommate.facebook[infoCategory].data);
-  };
-
-  var findIntersectQuestion = function(roommate) {
-    var userQuestionIds = [];
-    var roommateQuestionIds = [];
-    for(var i=0; i<$scope.user.questions.length; i++) {
-      userQuestionIds.push($scope.user.questions[i].questionId);
-    }
-    for(var j=0; j<roommate.length; j++) {
-      roommateQuestionIds.push(roommate[j].questionId);
-    }
-    return _.intersection(userQuestionIds, roommateQuestionIds);
-  };
-
-  _.intersectionObjects = function(array) {
-    var slice = Array.prototype.slice; // added this line as a utility
-    var rest = slice.call(arguments, 1);
-    return _.filter(_.uniq(array), function(item) {
-      return _.every(rest, function(other) {
-        //return _.indexOf(other, item) >= 0;
-        return _.any(other, function(element) { return _.isEqual(element, item); });
-      });
-    });
-  };
 
   var importanceWeight = [0, 1, 10, 50, 250];  // 0=irrelevant -> 4=mandatory
 
@@ -123,13 +69,6 @@ angular.module('rm.roommates', [])
     //take lowest possible match score by subtracting error
     return truMatchE-error;
     // console.log('true match is ', truMatchE, '+/-',  error);
-  };
-
-  var getMutualAnswersFromRoommate = function() {
-    // $http.post('/api/getQuestions/fromUser', $scope.mutualRoommateInfo[0].questionIds)
-    // .success(function(userQuestions, status, headers, config) {
-    //   console.log(userQuestions);
-    // }).error(function(err) { if(err) throw err; });
   };
 
 }]);

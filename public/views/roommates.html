@@ -2,7 +2,7 @@
   <h1>Find Your Roommate Now!</h1>
 
   <ul id="roommates">
-    <li ng-repeat="roommate in roommates" class="roommate" ng-class="{ active : roommate.isActive }">
+    <li ng-repeat="roommate in roommateInfo.roommates" class="roommate" ng-class="{ active : roommate.isActive }">
       <img ng-src="{{ roommate.facebook.picture.data.url }}" class="roommateProfilePic" />
       <h4>{{ roommate.facebook.name }}</h4>
 
@@ -28,7 +28,7 @@
         </div>-->
       <h4>compatibility</h4>
       <span>You are a {{(mutualRoommateInfo[0].compatibility * 100).toFixed(2)}}% match.</span>
-      <a ng-click="getMutualAnswersFromRoommate()">See the questions and answers that you two had in common</a>
+      <a href="#!/roommates/mutualQuestions">See the questions and answers that you two had in common</a>
     </li>
 
   </ul>

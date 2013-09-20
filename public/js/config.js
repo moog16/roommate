@@ -35,6 +35,9 @@ window.app.config(['$routeProvider',
     .when('/roommates', {
       templateUrl: 'views/roommates.html'
     })
+    .when('/roommates/mutualQuestions', {
+      templateUrl: 'views/mutualQuestions.html'
+    })
     .otherwise({
       redirectTo: '/'
     });
