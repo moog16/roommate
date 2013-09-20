@@ -15,7 +15,8 @@ window.app = angular.module('rm',
 'rm.compatibility.service',
 'rm.roommateHelpers.service',
 'rm.mutualQuestions.controller',
-'rm.getMutual.service']);
+'rm.getMutual.service',
+'rm.mutualQuestions.service']);
 
 angular.module('rm.system', []);
 angular.module('rm.articles.service', []);
@@ -30,3 +31,4 @@ angular.module('rm.compatibility.service', []);
 angular.module('rm.mutualQuestions.controller', []);
 angular.module('rm.getMutual.service', []);
 angular.module('rm.roommateHelpers.service', []);
+angular.module('rm.mutualQuestions.service', [])
