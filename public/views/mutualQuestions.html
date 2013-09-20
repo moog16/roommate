@@ -1,5 +1,14 @@
 <section ng-controller="MutualQuestionsController">
   <h1>Questions and Answers</h1>
 
+  <div>You!</div>
+  <ul>
+    <li ng-repeat="question in userQuestions">
+      {{qaText[$index].question}}<br>
+      <span class="userQuestionCompare">{{qaText[$index].answers[question.answer].message}}</span><br>
+      <span class="rmQuestionCompare">{{qaText[$index].answers[rmQuestions[$index].answer].message}}</span>
+    </li>
+  </ul>
+  <div>Them</div>
 
 </section>
