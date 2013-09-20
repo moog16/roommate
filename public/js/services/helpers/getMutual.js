@@ -2,11 +2,11 @@ angular.module('rm.getMutual.service', [])
 .factory("getMutual", ['compatibility', 'intersection',
   function(compatibility, intersection) {
 
-  var mutualRoommateInfo = [];
 
   var info = function(roommates, userQuestions, userQAIndex, userFacebook) {
+    var mutualRoommateInfo = [];
     for(var i=0; i<roommates.length; i++) {
-      mutualInfoCalc(roommates[i], userQuestions, userQAIndex, userFacebook);
+      mutualRoommateInfo.push(mutualInfoCalc(roommates[i], userQuestions, userQAIndex, userFacebook));
     }
     return mutualRoommateInfo;
   };
@@ -21,7 +21,7 @@ angular.module('rm.getMutual.service', [])
                                                 roommate.questions,
                                                 userQuestions,
                                                 userQAIndex);
-    mutualRoommateInfo.push(newMutualInfo);
+    return newMutualInfo;
   };
 
   var findIntersect = function(roommate, infoCategory, userFacebook) {
