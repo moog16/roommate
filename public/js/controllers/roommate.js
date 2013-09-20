@@ -38,12 +38,11 @@ angular.module('rm.roommates', [])
 
   var mutualInfoCalc = function(roommateNum) {
     var newMutualInfo = {};
-    newMutualInfo.mutualMusic = findIntersect($scope.roommates[roommateNum], 'music');
-    newMutualInfo.mutualMovies = findIntersect($scope.roommates[roommateNum], 'movies');
-    newMutualInfo.mutualFriends = findIntersect($scope.roommates[roommateNum], 'friends');
-    newMutualInfo.mutualQuestions = findIntersectQuestion($scope.roommates[roommateNum]);
-    console.log(newMutualInfo.mutualQuestions);
-    newMutualInfo.compatibility = findCompatibility(newMutualInfo.mutualQuestions);
+    // newMutualInfo.music = findIntersect($scope.roommates[roommateNum], 'music');
+    // newMutualInfo.movies = findIntersect($scope.roommates[roommateNum], 'movies');
+    // newMutualInfo.friends = findIntersect($scope.roommates[roommateNum], 'friends');
+    newMutualInfo.questionIds = findIntersectQuestion($scope.roommates[roommateNum].questions);
+    newMutualInfo.compatibility = findCompatibility(newMutualInfo.questionIds, roommateNum);
     $scope.mutualRoommateInfo.push(newMutualInfo);
   };
 
@@ -52,7 +51,15 @@ angular.module('rm.roommates', [])
   };
 
   var findIntersectQuestion = function(roommate) {
-    return _.intersectionObjects($scope.user.questions, roommate.questions);
+    var userQuestionIds = [];
+    var roommateQuestionIds = [];
+    for(var i=0; i<$scope.user.questions.length; i++) {
+      userQuestionIds.push($scope.user.questions[i].questionId);
+    }
+    for(var j=0; j<roommate.length; j++) {
+      roommateQuestionIds.push(roommate[j].questionId);
+    }
+    return _.intersection(userQuestionIds, roommateQuestionIds);
   };
 
   _.intersectionObjects = function(array) {
@@ -66,11 +73,25 @@ angular.module('rm.roommates', [])
     });
   };
 
-  var findCompatibility = function(mutualQuestions) {
-    $http.post('/api/getQuestions/fromUser', mutualQuestions)
-    .success(function(userQuestions, status, headers, config) {
-      console.log(userQuestions);
-    }).error(function(err) { if(err) throw err; });
+  var findCompatibility = function(mutualQuestionIds, roommateNum) {
+    var roommateAnswers = $scope.roommates[roommateNum].questions;
+    var considerRoommateAnswers = [];
+    for(var i=0; i<roommateAnswers.length; i++) {
+      if(_.indexOf(mutualQuestionIds, roommateAnswers[i].questionId > -1)) {
+        console.log(roommateNum, roommateAnswers[i]);
+      }
+    }
+
+    //get user accepted answers
+    //calculate what each one allows for
+    //sum up
+  };
+
+  var getMutualAnswersFromRoommate = function(questionIds) {
+    // $http.post('/api/getQuestions/fromUser', mutualQuestions)
+    // .success(function(userQuestions, status, headers, config) {
+    //   console.log(userQuestions);
+    // }).error(function(err) { if(err) throw err; });
   };
 
 }]);
