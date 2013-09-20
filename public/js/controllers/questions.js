@@ -11,6 +11,7 @@ angular.module('rm.questions.controller')
     var len = $scope.answers.length+1;
     var placeholder = 'answer ' + len;
     $scope.answers.push({a: placeholder});
+
   };
 
   $scope.create = function() {
@@ -24,7 +25,7 @@ angular.module('rm.questions.controller')
     });
 
     this.question = "";
-    this.answers = "";
+    this.answers = [{a: 'answer 1'}, {a: 'answer 2'}];
   };
 
   $scope.remove = function(question) {

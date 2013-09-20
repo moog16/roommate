@@ -2,9 +2,7 @@ angular.module('rm.users', [])
 .controller('ProfileController', ['$scope', '$http', function ($scope, $http) {
   // $scope.global = Global
 
-  $http({
-    method: 'GET',
-    url: '/api/userInfo'})
+  $http.get('/api/userInfo')
   .success(function(data, status, headers, config) {
     console.log(data);
     $scope.userInfo = data;
@@ -47,21 +45,40 @@ angular.module('rm.users', [])
   $scope.setUserAnswer = function(answer, questionId) {
     $scope.questionId = questionId;
     $scope.userAnswer = answer;
+    isValid();
   };
 
   $scope.setUserAccepts = function(accepts) {
     $scope.userAccepts = $scope.userAccepts || [];
     $scope.userAccepts.push(accepts);
+    isValid();
   };
 
   $scope.setUserImportance = function(importance) {
     $scope.userImportance = importance;
+    isValid();
   };
 
   $scope.showNextQuestion = function() {
     if($scope.questions.length > 1) {
       $scope.questions[1].isActive = true;
     }
+    $scope.userAnswer = null;
+    $scope.userAccepts = null;
+    $scope.userImportance = null;
+    $scope.validForm = false;
     $scope.questions.splice(0,1);
   };
+
+  //form validation
+  var isValid = function() {
+    if($scope.userAnswer !== null &&
+       $scope.userAccepts.length > 0 &&
+       $scope.userImportance !== null) {
+      $scope.validForm = true;
+    } else {
+      $scope.validForm = false;
+    }
+  };
+
 }]);

@@ -48,11 +48,11 @@
         <div class="btn-group" data-toggle="buttons-checkbox">
           <button type="button" ng-click="setUserAccepts($index)" class="btn btn-primary" ng-repeat="answer in question.answers">{{answer.message}}</button>
         </div>
-        <input type="submit" class="btn btn-success" value="Submit">
         <h4>This question is...</h4>
         <div class="btn-group" data-toggle="buttons-radio">
           <button type="button" ng-click="setUserImportance($index)" class="btn btn-primary" ng-repeat="answer in importance">{{answer}}</button>
         </div>
+        <input type="submit" class="btn btn-success" value="Submit" ng-show="validForm">
       </form>
   </div>
 </section>

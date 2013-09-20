@@ -5,16 +5,28 @@
     <li ng-repeat="roommate in roommates" class="roommate" ng-class="{ active : roommate.isActive }">
       <img ng-src="{{ roommate.facebook.picture.data.url }}" class="roommateProfilePic" />
       <h4>{{ roommate.facebook.name }}</h4>
+
+
+      <button class="btn btn-danger likeNope" ng-click="showNextRoommate()" >Nope</button>
+
+      <button class="btn btn-success likeNope" ng-click="showNextRoommate()">Like</button>
+
+      <h4>mutual friends</h4>
+        <div ng-repeat="mFriend in mutualRoommateInfo[0].mutualFriends">
+          <img src="{{mFriend.picture.data.url}}">
+          <span>{{mFriend.name}}<span>
+        </div>
+      <h4>mutual music</h4>
+        <div ng-repeat="mMusic in mutualRoommateInfo[0].mutualMusic">
+          <img src="{{mMusic.picture.data.url}}">
+          <span>{{mMusic.name}}</span>
+        </div>
+      <h4>mutual movies</h4>
+        <div ng-repeat="mMovie in mutualRoommateInfo[0].mutualMovies">
+          <img src="{{mMovie.picture.data.url}}">
+          <span>{{mMovies.name}}</span>
+        </div>
+      
     </li>
   </ul>
-
-
-  <button class="btn btn-danger likeNope" ng-click="showNextRoommate()" >Nope</button>
-
-  <button class="btn btn-success likeNope" ng-click="showNextRoommate()">Like</button>
-
-  <h4>mutual friends</h4>
-  <h4>mutual music</h4>
-  <h4>mutual movies</h4>
-  
 </section>
