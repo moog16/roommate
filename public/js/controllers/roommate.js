@@ -109,10 +109,10 @@ angular.module('rm.roommates', [])
       }
     }
 
-    console.log('userSum', userSum);
-    console.log('roommateSum', roommateSum);
-    console.log('userDivisor', userDivisor);
-    console.log('roommateDivisor', roommateDivisor);
+    // console.log('userSum', userSum);
+    // console.log('roommateSum', roommateSum);
+    // console.log('userDivisor', userDivisor);
+    // console.log('roommateDivisor', roommateDivisor);
 
     //multiply the two and sqrt to get the true match, with error
     var truMatchE = Math.sqrt(userSum/userDivisor * roommateSum/roommateDivisor);
@@ -120,11 +120,13 @@ angular.module('rm.roommates', [])
     //error = 1/S, where S = #mutualQuestionsAnswered by both parties
     var error = 1/S;
 
-    console.log('true match is ', truMatchE, '+/-',  error);
+    //take lowest possible match score by subtracting error
+    return truMatchE-error;
+    // console.log('true match is ', truMatchE, '+/-',  error);
   };
 
-  var getMutualAnswersFromRoommate = function(questionIds) {
-    // $http.post('/api/getQuestions/fromUser', mutualQuestions)
+  var getMutualAnswersFromRoommate = function() {
+    // $http.post('/api/getQuestions/fromUser', $scope.mutualRoommateInfo[0].questionIds)
     // .success(function(userQuestions, status, headers, config) {
     //   console.log(userQuestions);
     // }).error(function(err) { if(err) throw err; });

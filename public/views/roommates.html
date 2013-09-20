@@ -26,12 +26,10 @@
           <img src="{{mMovie.picture.data.url}}">
           <span>{{mMovies.name}}</span>
         </div>-->
-      <h4>mutual questions</h4>
-      <div ng-repeat="mQuestion in mutualRoommateInfo[0].questions">
-        {{mQuestion}}
-      </div>
+      <h4>compatibility</h4>
+      <span>You are a {{(mutualRoommateInfo[0].compatibility * 100).toFixed(2)}}% match.</span>
+      <a ng-click="getMutualAnswersFromRoommate()">See the questions and answers that you two had in common</a>
     </li>
-  <!-- <compatibility></compatibility> -->
 
   </ul>
 </section>
