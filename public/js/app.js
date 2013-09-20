@@ -12,6 +12,7 @@ window.app = angular.module('rm',
 'rm.roommates.controller',
 'rm.roommate.directive',
 'rm.roommate.service',
+'rm.compatibility.service',
 'rm.mutualQuestions.controller']);
 
 angular.module('rm.system', []);
@@ -23,4 +24,5 @@ angular.module('rm.users', []);
 angular.module('rm.roommates.controller', []);
 angular.module('rm.roommate.directive', []);
 angular.module('rm.roommate.service', []);
+angular.module('rm.compatibility.service', []);
 angular.module('rm.mutualQuestions.controller', []);

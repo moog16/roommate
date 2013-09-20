@@ -1,5 +1,5 @@
 angular.module('rm.roommate.service', [])
-.factory("roommateInit", ['$http', '$q', function($http, $q) {
+.factory("roommateInit", ['$http', '$q', 'compatibility', function($http, $q, compatibility) {
 
   var roommateInitVars = {};
 
