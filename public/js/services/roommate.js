@@ -1,12 +1,13 @@
 angular.module('rm.roommate.service', [])
-.factory("roommateInit", ['$http', '$q', 'compatibility', function($http, $q, compatibility) {
+.factory("roommateInit", ['$http', '$q', 'compatibility', 'intersection',
+  function($http, $q, compatibility, intersection) {
 
   var roommateInitVars = {};
 
   var initRoommate = function() {
     var deferred = $q.defer();
 
-    deferred.notify('loading up all roommates');
+    // deferred.notify('loading up all roommates');
     $http.get('/api/getRoommate')
     .success(function(roommateData, status, headers, config) {
       $http.get('/api/userInfo')
@@ -47,36 +48,13 @@ angular.module('rm.roommate.service', [])
     newMutualInfo.music = findIntersect(roommateInitVars.roommates[roommateNum], 'music');
     newMutualInfo.movies = findIntersect(roommateInitVars.roommates[roommateNum], 'movies');
     newMutualInfo.friends = findIntersect(roommateInitVars.roommates[roommateNum], 'friends');
-    newMutualInfo.questionIds = findIntersectQuestion(roommateInitVars.roommates[roommateNum].questions);
+    newMutualInfo.questionIds = intersection.question(roommateInitVars.roommates[roommateNum].questions, roommateInitVars.user.questions);
     // newMutualInfo.compatibility = findCompatibility(newMutualInfo.questionIds, roommateNum);
     roommateInitVars.mutualRoommateInfo.push(newMutualInfo);
   };
 
   var findIntersect = function(roommate, infoCategory) {
-    return _.intersectionObjects(roommateInitVars.user.facebook[infoCategory].data, roommate.facebook[infoCategory].data);
-  };
-
-  var findIntersectQuestion = function(roommate) {
-    var userQuestionIds = [];
-    var roommateQuestionIds = [];
-    for(var i=0; i<roommateInitVars.user.questions.length; i++) {
-      userQuestionIds.push(roommateInitVars.user.questions[i].questionId);
-    }
-    for(var j=0; j<roommate.length; j++) {
-      roommateQuestionIds.push(roommate[j].questionId);
-    }
-    return _.intersection(userQuestionIds, roommateQuestionIds);
-  };
-
-  _.intersectionObjects = function(array) {
-    var slice = Array.prototype.slice; // added this line as a utility
-    var rest = slice.call(arguments, 1);
-    return _.filter(_.uniq(array), function(item) {
-      return _.every(rest, function(other) {
-        //return _.indexOf(other, item) >= 0;
-        return _.any(other, function(element) { return _.isEqual(element, item); });
-      });
-    });
+    return intersection.objects(roommateInitVars.user.facebook[infoCategory].data, roommate.facebook[infoCategory].data);
   };
   
   return {

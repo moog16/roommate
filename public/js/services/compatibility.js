@@ -4,7 +4,7 @@ angular.module('rm.compatibility.service', [])
   var importanceWeight = [0, 1, 10, 50, 250];  // 0=irrelevant -> 4=mandatory
 
   var findCompatibility = function(mutualQuestionIds, roommateNum) {
-    // var roommateAnswers = $scope.roommates[roommateNum].questions;
+    var roommateAnswers = $scope.roommates[roommateNum].questions;
     var considerRoommateAnswers = [];
     var userSum = 0;
     var roommateSum = 0;
@@ -15,7 +15,7 @@ angular.module('rm.compatibility.service', [])
     for(var i=0; i<roommateAnswers.length; i++) {
       if(_.indexOf(mutualQuestionIds, roommateAnswers[i].questionId) > -1) {
         var roommateQAset = roommateAnswers[i];
-        // var userQAset = $scope.user.questions[$scope.userQAIndex[roommateAnswers[i].questionId]];
+        var userQAset = $scope.user.questions[$scope.userQAIndex[roommateAnswers[i].questionId]];
         //set user numbers based off of roommate answers
         if(_.indexOf(userQAset.accepts, roommateQAset.answer) > -1) {
           userSum += importanceWeight[userQAset.importance];
