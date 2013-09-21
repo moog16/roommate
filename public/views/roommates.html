@@ -5,25 +5,24 @@
     <!-- <li ng-repeat="roommate in roommateInfo.roommates" class="roommate" ng-class="{ active : roommate.isActive }"> -->
     <li>
       <img ng-src="{{ roommateInfo.roommates[0].facebook.picture.data.url }}" class="roommateProfilePic" />
-      <h4>{{ roommateInfo.rommates[0].facebook.name }}</h4>
+      <h4>{{ roommateInfo.roomates[0].facebook.name }}</h4>
 
 
-      <button class="btn btn-danger likeNope" ng-click="showNextRoommate()">Nope</button>
+      <button class="btn btn-danger likeNope" ng-click="nopeButton()">Nope</button>
 
-      <button class="btn btn-success likeNope" ng-click="showNextRoommate()">Like</button>
+      <button class="btn btn-success likeNope" ng-click="likeButton()">Like</button>
 
         <div class="roommateMutual">
           <h4>mutual friends</h4>
-          <img src="{{roommateInfo.mutualRoommateInfo[0].friends[0].picture.data.url}}" ng-click="mutualFriendsModal()">
+          <img src="{{friendsPic}}" ng-click="mutualFriendsModal()">
         </div>
         <div class="roommateMutual">
           <h4>mutual music</h4>
-          <img src="{{roommateInfo.mutualRoommateInfo[0].music[0].picture.data.url}}" ng-click="mutualMusicModal()">
-          <span>{{mMusic.name}}</span>
+          <img src="{{musicPic}}" ng-click="mutualMusicModal()">
         </div>
         <div class="roommateMutual">
           <h4>mutual movies</h4>
-          <img src="{{roommateInfo.mutualRoommateInfo[0].movies[0].picture.data.url}}" ng-click="mutualMoviesModal()">
+          <img src="{{moviePic}}" ng-click="mutualMoviesModal()">
         </div>
       <h4>compatibility</h4>
       <span>You are a {{(roommateInfo.mutualRoommateInfo[0].compatibility * 100).toFixed(2)}}% match.</span>
