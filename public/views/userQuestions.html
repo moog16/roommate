@@ -1,0 +1,28 @@
+<section class="mainColumn">
+<div ng-hide="questions.length > 0">
+    <h3>Watch here for more questions</h3>
+</div>
+<div ng-show="questions.length > 0">
+  <h3>Questions</h3>
+  <h4>answer questions to more accurately match your next roommate</h4>
+
+  <form class="question control-group" ng-submit="submitQA()" >
+    <h3>{{questions[0].question}}</h3>
+    <div class="btn-group" data-toggle="buttons-radio">
+      <button type="button" ng-click="setUserAnswer($index, questions[0]._id)" class="questionBtn btn btn-primary" ng-repeat="answer in questions[0].answers">{{answer.message}}</button>
+    </div>
+    <h4>Answers I'll accept...</h4>
+    <div class="btn-group" data-toggle="buttons-checkbox">
+      <button type="button" ng-click="setUserAccepts($index)" class="questionBtn btn btn-primary" ng-repeat="answer in questions[0].answers">{{answer.message}}</button>
+    </div>
+    <h4>This question is...</h4>
+    <div class="btn-group lastRowQuestions" data-toggle="buttons-radio">
+      <button type="button" ng-click="setUserImportance($index)" class="questionBtn btn btn-primary" ng-repeat="answer in importance">{{answer}}</button>
+    </div>
+    <div class="lastRowQuestions">
+      <input type="button" class="btn btn-info" value="Skip" ng-click="showNextQuestion()">
+      <input type="submit" class="btn btn-success" value="Submit" ng-show="validForm">
+    </div>
+  </form>
+</div>
+</section>

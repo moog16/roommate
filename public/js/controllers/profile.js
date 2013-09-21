@@ -1,28 +1,14 @@
 angular.module('rm.users', [])
-.controller('ProfileController', ['$scope', '$http', function ($scope, $http) {
-  // $scope.global = Global
+.controller('ProfileController', ['$scope','$http', 'profileInit', function ($scope, $http, profileInit) {
 
-  $http.get('/api/userInfo')
-  .success(function(data, status, headers, config) {
-    // console.log(data);
-    $scope.userInfo = data.facebook;
-  })
-  .error(function(err, status, headers, config) {
-    if(err) throw err;
-  });
-
-
-  $http({
-    method: 'GET',
-    url: '/api/getQuestions/unanswered'})
-  .success(function(data, status, headers, config) {
-    $scope.questions = data;
-    if($scope.questions.length > 0) {
-      $scope.questions[0].isActive = true;
-    }
-  })
-  .error(function(err, status, headers, config) {
-    if(err) throw err;
+  var promise = profileInit.init();
+  promise.then(function(userProfile) {
+      $scope.questions = userProfile.questions;
+      $scope.userInfo = userProfile.userInfo;
+    }, function(reason) {
+      console.log('Failed ', reason);
+    }, function(update) {
+      console.log('Got notification ', update);
   });
 
   $scope.importance = ['Irrelevant', 'a bit important', 'a little important', 'a lot important', 'a must have'];
@@ -61,8 +47,8 @@ angular.module('rm.users', [])
   };
 
   $scope.showNextQuestion = function() {
-    if($scope.questions.length > 1) {
-      $scope.questions[1].isActive = true;
+    if($scope.questions.length >= 1) {
+      // $scope.questions[1].isActive = true;
     }
     resetValidation();
     $scope.questions.splice(0,1);
@@ -85,6 +71,14 @@ angular.module('rm.users', [])
     } else {
       $scope.validForm = false;
     }
+  };
+
+  $scope.openMovies = function() {
+    $('#userMovieModal').modal('toggle');
+  };  
+
+  $scope.openMusic = function() {
+    $('#userMusicModal').modal('toggle');
   };
 
 }]);

@@ -2,15 +2,22 @@
   width: 180px;
 }
 
-.question { 
-  width: 0%;
-  height: 0%;
-  opacity:0; 
+.lastRowQuestions {
+  margin-right: 100px;
+  float: left;
+  display: inline;
 }
 
-.question.active {
-  width:100%; 
-  height:100%;
-  top:0; 
-  opacity:1; 
+.lastRowQuestions input {
+  margin: 3px 0px;
+  display: block;
+}
+
+.questionBtn {
+  margin: 3px 0px;
+  display: block;
+  border-bottom-right-radius: 4px !important;
+  border-top-left-radius: 4px !important;
+  border-bottom-left-radius: 4px !important;
+  border-top-right-radius: 4px !important;
 }

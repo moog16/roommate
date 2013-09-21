@@ -10,14 +10,15 @@ window.app = angular.module('rm',
 'rm.questions.controller',
 'rm.users', 
 'rm.roommates.controller',
-'rm.roommate.directive',
 'rm.roommate.service',
 'rm.compatibility.service',
 'rm.roommateHelpers.service',
 'rm.mutualQuestions.controller',
 'rm.getMutual.service',
 'rm.mutualQuestions.service',
-'rm.mutualModal.directive']);
+'rm.mutualModal.directive',
+'rm.userProfile.service',
+'rm.userProfile.directive']);
 
 angular.module('rm.system', []);
 angular.module('rm.articles.service', []);
@@ -26,7 +27,6 @@ angular.module('rm.questions.service', []);
 angular.module('rm.questions.controller', []);
 angular.module('rm.users', []);
 angular.module('rm.roommates.controller', []);
-angular.module('rm.roommate.directive', []);
 angular.module('rm.roommate.service', []);
 angular.module('rm.compatibility.service', []);
 angular.module('rm.mutualQuestions.controller', []);
@@ -34,5 +34,5 @@ angular.module('rm.getMutual.service', []);
 angular.module('rm.roommateHelpers.service', []);
 angular.module('rm.mutualQuestions.service', []);
 angular.module('rm.mutualModal.directive', []);
-
-
+angular.module('rm.userProfile.service', []);
+angular.module('rm.userProfile.directive', []);

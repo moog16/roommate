@@ -1,58 +1,33 @@
-<section ng-controller="ProfileController">
-  <img src="{{userInfo.cover.source}}" class="coverProfile" alt="You have no Cover"/>
-  <img src="{{userInfo.picture.data.url}}" />
-  <div>
+<section ng-controller="ProfileController" class="mainColumn">
+  <!-- <img src="{{userInfo.cover.source}}" class="coverProfile" alt="You have no Cover"/> -->
+  <img class="profilePic" src="{{userInfo.picture.data.url}}" />
 
+  <div class="profile">
+    <h3>Movies</h3>
+    <div class="multimedia">
+      <img src="{{userInfo.movies.data[0].picture.data.url}}" ng-click="openMovies()">
+    </div>
   </div>
 
-  <h3>Movies</h3>
-  <div id="profileMovies">
-    <div ng-repeat="movie in userInfo.movies.data">
-      <div class="multimedia">
-        <a href="{{movie.link}}"><img src="{{movie.picture.data.url}}" /></a>
-      </div>
-      <h4 class="mediaTitle">{{movie.name}}</h4>
-    </div>
-  </div>  
-
-  <h3>Music</h3>
-  <div id="profileMusic">
-    <div ng-repeat="music in userInfo.music.data">
-      <div class="multimedia">
-        <a href="{{music.link}}"><img src="{{music.picture.data.url}}" /></a>
-      </div>
-      <h4 class="mediaTitle">{{music.name}}</h4>
+  <div class="profile">
+    <h3>Music</h3>
+    <div class="multimedia">
+      <img src="{{userInfo.music.data[0].picture.data.url}}" ng-click="openMusic()">
     </div>
   </div>
 
 
-  <h3>Work</h3>
-  <div id="profileMusic">
+  <div class="profile">
+    <h3>Work</h3>
     <div ng-repeat="work in userInfo.work">
       <span>{{work.employer.name}}</span>
     </div>
   </div>
 
-  <div ng-hide="questions.length > 0">
-    <h3>Watch here for more questions</h3>
-  </div>
-  <div ng-show="questions.length > 0">
-    <h3>Questions</h3>
-    <h4>answer questions to more accurately match your next roommate</h4>
-      <form class="question control-group" ng-repeat="question in questions" ng-submit="submitQA()" ng-class="{ active : question.isActive }">
-        <h3>{{question.question}}</h3>
-        <div class="btn-group" data-toggle="buttons-radio">
-          <button type="button" ng-click="setUserAnswer($index, question._id)" class="btn btn-primary" ng-repeat="answer in question.answers">{{answer.message}}</button>
-        </div>
-        <h4>Answers I'll accept...</h4>
-        <div class="btn-group" data-toggle="buttons-checkbox">
-          <button type="button" ng-click="setUserAccepts($index)" class="btn btn-primary" ng-repeat="answer in question.answers">{{answer.message}}</button>
-        </div>
-        <h4>This question is...</h4>
-        <div class="btn-group" data-toggle="buttons-radio">
-          <button type="button" ng-click="setUserImportance($index)" class="btn btn-primary" ng-repeat="answer in importance">{{answer}}</button>
-        </div>
-        <input type="submit" class="btn btn-success" value="Submit" ng-show="validForm">
-      </form>
-  </div>
+  <div user-movies-modal></div>
+  <div user-music-modal></div>
+
+
+  <div user-questions></div>
+
 </section>

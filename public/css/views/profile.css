@@ -3,32 +3,27 @@
   margin: auto;
 }
 
-#profileMovies, #profileMusic {
+.profilePic {
+  margin: auto;
+  display: block;
+}
+
+.profile {
   margin: 0px;
   height: 200px;
   width: 200px;
   
-  overflow: auto;
+  float: left;
+  display: inline;
+  overflow: hidden;
 }
 
-.resize {
-  width: 180px;
-  margin: 0px;
-}
-.multimedia {
-  margin: 10px 0px;
-  height: 100px;
-  width: 180px;
-  
+.multimedia a img {
+  margin: auto;
+
   overflow: hidden;
 
   float: left;
-}
-
-.multimedia img {
-  margin: auto;
-  display: inline;
-  vertical-align: center;
 }
 
 .mediaTitle {

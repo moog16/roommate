@@ -1,7 +1,7 @@
 {
     "db": "mongodb://localhost/mean-dev",
     "app": {
-      "name": "Roommy_somethingg"
+      "name": "Roommates"
     },
     "facebook": {
       "callbackURL": "http://goom.com:3000/auth/facebook/callback"

@@ -19,9 +19,6 @@ angular.module('rm.mutualQuestions.controller', [])
     }).error(function(err) {
       if(err) throw err;
     });
-
-    // console.log( $scope.rmQuestions);
-    // console.log( $scope.userQuestions);
   };
 
   if(Object.keys(roommateInit.vars).length === 0) {
