@@ -1,6 +1,6 @@
 angular.module('rm.roommates.controller', [])
-.controller('RoommatesController', ['$scope', '$modal', 'roommateInit',
-  function ($scope, $modal, roommateInit) {
+.controller('RoommatesController', ['$scope', 'roommateInit',
+  function ($scope, roommateInit) {
 
   if(Object.keys(roommateInit.vars).length === 0) {
     var promise = roommateInit.init();
@@ -18,6 +18,7 @@ angular.module('rm.roommates.controller', [])
   }
 
   var showNextRoommate = function() {
+    console.log('htllo');
     $scope.roommateInfo.roommates.splice(0,1);
     $scope.roommateInfo.mutualRoommateInfo.splice(0,1);
     if($scope.roommateInfo.roommates.length >= 1) {
@@ -25,16 +26,23 @@ angular.module('rm.roommates.controller', [])
     }
   };
 
+  $scope.mutualMoviesModal = function() {
+    $('#mutualMoviesModal').modal('toggle');
+  };
+
+  $scope.mutualMusicModal = function() {
+    $('#mutualMusicModal').modal('toggle');
+  };
+
+  $scope.mutualFriendsModal = function() {
+    $('#mutualFriendsModal').modal('toggle');
+  };
+
   $scope.likeButton = function() {
     //modal messaging
-    var modalBox = $modal.open({
-      templateUrl: '../public/views/messageModal.html',
-      controller: RoommatesController,
-      resolve: {
-      }
-    })
+    // $('#myModal').modal('toggle');
     //input into favorites && skipBox
-    //showNextRoommate()
+    showNextRoommate()
   };
 
   $scope.nopeButton = function() {

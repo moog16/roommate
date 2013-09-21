@@ -2,30 +2,29 @@
   <h1>Find Your Roommate Now!</h1>
 
   <ul id="roommates">
-    <li ng-repeat="roommate in roommateInfo.roommates" class="roommate" ng-class="{ active : roommate.isActive }">
-      <img ng-src="{{ roommate.facebook.picture.data.url }}" class="roommateProfilePic" />
-      <h4>{{ roommate.facebook.name }}</h4>
+    <!-- <li ng-repeat="roommate in roommateInfo.roommates" class="roommate" ng-class="{ active : roommate.isActive }"> -->
+    <li>
+      <img ng-src="{{ roommateInfo.roommates[0].facebook.picture.data.url }}" class="roommateProfilePic" />
+      <h4>{{ roommateInfo.rommates[0].facebook.name }}</h4>
 
 
-      <button class="btn btn-danger likeNope" ng-click="likeButton()" >Nope</button>
+      <button class="btn btn-danger likeNope" ng-click="showNextRoommate()">Nope</button>
 
-      <button class="btn btn-success likeNope" ng-click="nopeButton()">Like</button>
+      <button class="btn btn-success likeNope" ng-click="showNextRoommate()">Like</button>
 
-      <h4>mutual friends</h4>
-     <!--    <div ng-repeat="mFriend in roommateInfo.mutualRoommateInfo[0].friends">
-          <img src="{{mFriend.picture.data.url}}">
-          <span>{{mFriend.name}}<span>
+        <div class="roommateMutual">
+          <h4>mutual friends</h4>
+          <img src="{{roommateInfo.mutualRoommateInfo[0].friends[0].picture.data.url}}" ng-click="mutualFriendsModal()">
         </div>
-      --> <h4>mutual music</h4>
-        <!-- <div ng-repeat="mMusic in roommateInfo.mutualRoommateInfo[0].music">
-          <img src="{{mMusic.picture.data.url}}">
+        <div class="roommateMutual">
+          <h4>mutual music</h4>
+          <img src="{{roommateInfo.mutualRoommateInfo[0].music[0].picture.data.url}}" ng-click="mutualMusicModal()">
           <span>{{mMusic.name}}</span>
         </div>
-      <h4>mutual movies</h4>
-        <div ng-repeat="mMovie in roommateInfo.mutualRoommateInfo[0].movies">
-          <img src="{{mMovie.picture.data.url}}">
-          <span>{{mMovies.name}}</span>
-        </div> -->
+        <div class="roommateMutual">
+          <h4>mutual movies</h4>
+          <img src="{{roommateInfo.mutualRoommateInfo[0].movies[0].picture.data.url}}" ng-click="mutualMoviesModal()">
+        </div>
       <h4>compatibility</h4>
       <span>You are a {{(roommateInfo.mutualRoommateInfo[0].compatibility * 100).toFixed(2)}}% match.</span>
       <a href="#!/roommates/mutualQuestions?{{roommate.facebook.id}}">
@@ -33,4 +32,7 @@
       </a>
     </li>
   </ul>
+  <div mutual-movies></div>
+  <div mutual-music></div>
+  <div mutual-friends></div>
 </section>
