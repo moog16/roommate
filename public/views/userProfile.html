@@ -1,23 +1,19 @@
 <section ng-controller="ProfileController">
   <!-- <img src="{{userInfo.cover.source}}" class="coverProfile" alt="You have no Cover"/> -->
-  <div class="row">
+  <div class="row-fluid">
     <img class="span4 offset4" src="{{userInfo.picture.data.url}}"/>
   </div>
-  <div class="row">
-    <div class="span2 offset3">
+  <div class="row-fluid">
+    <div class="span3 offset2">
       <h3 class="center">Movies</h3>
-      <div class="multimedia">
-        <img src="{{userInfo.movies.data[0].picture.data.url}}" ng-click="openMovies()">
-      </div>
+      <img src="{{userInfo.movies.data[0].picture.data.url}}" ng-click="openMovies()" class="mediaImg">
     </div>
 
-    <div class="span2">
+    <div class="span3">
       <h3 class="center">Music</h3>
-      <div class="multimedia">
-        <img src="{{userInfo.music.data[0].picture.data.url}}" ng-click="openMusic()">
-      </div>
+      <img src="{{userInfo.music.data[0].picture.data.url}}" ng-click="openMusic()" class="mediaImg">
     </div>
-    <div class="span2">
+    <div class="span3">
       <h3 class="center">Work</h3>
       <div ng-repeat="work in userInfo.work">
         <span>{{work.employer.name}}</span>

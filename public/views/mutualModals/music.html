@@ -1,16 +1,16 @@
 <div id="mutualMusicModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Music you both like...</h3>
+    <h3 id="myModalLabel">Music you both like...({{roommateInfo.mutualRoommateInfo[0].music.length}})</h3>
   </div>
   <div class="modal-body">
-    <div ng-repeat="mMusic in roommateInfo.mutualRoommateInfo[0].music">
-      <img src="{{mMusic.picture.data.url}}">
-      <span>{{mMovies.name}}</span>
+    <div ng-repeat="mMusic in roommateInfo.mutualRoommateInfo[0].music" class="mediaDiv">
+      <img src="{{mMusic.picture.data.url}}" class="mediaImg">
+      <span class="mediaName">{{mMusic.name}}<span>
     </div>
   </div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <!-- <button class="btn btn-primary">Save changes</button> -->
   </div>
 </div>
+

@@ -1,41 +1,28 @@
-#roommates {
-  height: 300px;
-  margin: auto;
-}
-
-#roommates, #roommates li {
-  margin: auto;
-  width: 300px;
-  list-style-type: none;
-}
-
-li img {
-  margin: auto;
-  display: block;
-}
-
-.roommate { 
-  /*top:0; */
-  /*position:absolute; */
-  width:100%; 
-  height:100%; 
-  opacity:0; 
-  /*-webkit-transform: translate3d(0, 100%, 0);*/
-  /*-webkit-transition: all 1.5s; */
-}
-.roommate.active {
-  top:0; 
-  opacity:1; 
-  /*-webkit-transform: translate3d(0,0,0); */
-}
-
-.likeNope {
-  margin: auto;
-}
-
-.roommateMutual {
-  display: inline;
-  height: 180px;
-  width: 180px;
+.mediaImg, .mediaDiv {
   float: left;
+  display: inline;
+  overflow: hidden;
+  overflow-y: hidden;
+}
+
+.mediaImg {
+  height: 120px;
+  width: 120px;
+}
+
+.mediaDiv {
+  height: 137px;
+  width: 120px;
+}
+
+.mediaName {
+  margin-bottom: 2px;
+  font-size: 15px;
+}
+
+.fixedFoot {
+  position: absolute;
+  width: 94.6%;
+  bottom: -57px;
+  left: 0px;
 }
