@@ -7,9 +7,9 @@
       <h4>{{ roommate.facebook.name }}</h4>
 
 
-      <button class="btn btn-danger likeNope" ng-click="showNextRoommate()" >Nope</button>
+      <button class="btn btn-danger likeNope" ng-click="likeButton()" >Nope</button>
 
-      <button class="btn btn-success likeNope" ng-click="showNextRoommate()">Like</button>
+      <button class="btn btn-success likeNope" ng-click="nopeButton()">Like</button>
 
       <h4>mutual friends</h4>
      <!--    <div ng-repeat="mFriend in roommateInfo.mutualRoommateInfo[0].friends">
@@ -32,6 +32,5 @@
         See the questions and answers that you two had in common
       </a>
     </li>
-
   </ul>
 </section>
