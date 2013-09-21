@@ -2,20 +2,6 @@ angular.module('rm.roommates.controller', [])
 .controller('RoommatesController', ['$scope', 'roommateInit',
   function ($scope, roommateInit) {
 
-  if(Object.keys(roommateInit.vars).length === 0) {
-    var promise = roommateInit.init();
-    promise.then(function(roommateInfo) {
-      // console.log(roommateInfo);
-      $scope.roommateInfo = roommateInfo;
-      setNoMutualInfo();
-    }, function(reason) {
-      console.log('Failed ', reason);
-    }, function(update) {
-      console.log('Got notification ', update);
-    });
-  } else {
-    $scope.roommateInfo = roommateInit.vars;
-  }
 
   var showNextRoommate = function() {
     $scope.roommateInfo.roommates.splice(0,1);
@@ -27,7 +13,6 @@ angular.module('rm.roommates.controller', [])
   };
 
   var setNoMutualInfo = function() {
-    console.log($scope.roommateInfo.mutualRoommateInfo[0].movies);
     if($scope.roommateInfo.mutualRoommateInfo[0].movies.length === 0) {
       $scope.moviePic = '../img/nothing.jpg';
       $scope.movieName = 'none';
@@ -74,4 +59,21 @@ angular.module('rm.roommates.controller', [])
     //input into skipBox
     //showNextRoommate()
   };
+  
+  if(Object.keys(roommateInit.vars).length === 0) {
+    var promise = roommateInit.init();
+    promise.then(function(roommateInfo) {
+      // console.log(roommateInfo);
+      $scope.roommateInfo = roommateInfo;
+      setNoMutualInfo();
+    }, function(reason) {
+      console.log('Failed ', reason);
+    }, function(update) {
+      console.log('Got notification ', update);
+    });
+  } else {
+    $scope.roommateInfo = roommateInit.vars;
+    setNoMutualInfo();
+  }
+
 }]);

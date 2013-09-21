@@ -15,19 +15,18 @@ angular.module('rm.mutualQuestions.controller', [])
       $scope.qaText = _.sortBy(qaText, function(question) {
         return question._id;
       });
-      console.log($scope.qaText);
+      // console.log($scope.qaText);
     }).error(function(err) {
       if(err) throw err;
     });
 
-    console.log( $scope.rmQuestions);
-    console.log( $scope.userQuestions);
+    // console.log( $scope.rmQuestions);
+    // console.log( $scope.userQuestions);
   };
 
   if(Object.keys(roommateInit.vars).length === 0) {
     var promise = roommateInit.init();
     promise.then(function(roommateInfo) {
-      console.log(roommateInit.vars);
       setMutualQuestions(roommateInit.vars);
     }, function(reason) {
       console.log('Failed ', reason);
@@ -35,7 +34,7 @@ angular.module('rm.mutualQuestions.controller', [])
       console.log('Got notification ', update);
     });
   } else {
-    console.log(roommateInit.vars);
+    // console.log(roommateInit.vars);
     setMutualQuestions(roommateInit.vars);
   }
 

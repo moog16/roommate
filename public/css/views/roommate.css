@@ -34,5 +34,8 @@ li img {
 }
 
 .roommateMutual {
+  display: inline;
+  height: 180px;
+  width: 180px;
   float: left;
 }

@@ -26,7 +26,7 @@
         </div>
       <h4>compatibility</h4>
       <span>You are a {{(roommateInfo.mutualRoommateInfo[0].compatibility * 100).toFixed(2)}}% match.</span>
-      <a href="#!/roommates/mutualQuestions?{{roommate.facebook.id}}">
+      <a href="#!/roommates/mutualQuestions?{{roommateInfo.roommates[0].facebook.id}}">
         See the questions and answers that you two had in common
       </a>
     </li>
