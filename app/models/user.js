@@ -21,7 +21,9 @@ var UserSchema = new Schema({
   hashed_password: String,
   salt: String,
   facebook: {},
-  questions: [UserQuestionSchema]
+  questions: [UserQuestionSchema],
+  roommatesSeen: [String],
+  roommatesFavorite: [String]
 });
 
 /**

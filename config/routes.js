@@ -4,6 +4,7 @@ var async = require('async'),
     getRoommate = require('../app/controllers/api/getRoommate.js'),
     getQuestions = require('../app/controllers/api/getQuestions.js'),
     setUserQA = require('../app/controllers/api/setUserQA.js'),
+    setuserRoommates = require('../app/controllers/api/setuserRoommates.js')
     https = require('https');
 
 module.exports = function(app, passport, auth) {
@@ -41,6 +42,8 @@ module.exports = function(app, passport, auth) {
   app.get('/api/getRoommate', getRoommate.info);
 
   app.post('/api/setUserQA', setUserQA);
+  app.post('/api/setUserRoommates/favorite', setuserRoommates);
+  app.post('/api/setUserRoommates/skip', setuserRoommates);
 
   //Setting the facebook oauth routes
   app.get('/auth/facebook', passport.authenticate('facebook', {

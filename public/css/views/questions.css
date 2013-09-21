@@ -9,3 +9,13 @@
   border-bottom-left-radius: 4px !important;
   border-top-right-radius: 4px !important;
 }
+
+.userQuestionCompare {
+  color: blue;
+  position: absolute;
+  left: 200px;
+}
+
+.rmQuestionCompare {
+  color: red;
+}

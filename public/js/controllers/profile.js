@@ -65,7 +65,7 @@ angular.module('rm.users', [])
   var isValid = function() {
     // debugger;
     if($scope.userAnswer !== null && $scope.userAnswer !== undefined &&
-       $scope.userAccepts.length > 0 &&
+       ($scope.userAccepts && $scope.userAccepts.length > 0) &&
        $scope.userImportance !== null && $scope.userImportance !== undefined) {
       $scope.validForm = true;
     } else {

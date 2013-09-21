@@ -18,7 +18,8 @@ window.app = angular.module('rm',
 'rm.mutualQuestions.service',
 'rm.mutualModal.directive',
 'rm.userProfile.service',
-'rm.userProfile.directive']);
+'rm.userProfile.directive',
+'rm.sendRoommate.service']);
 
 angular.module('rm.system', []);
 angular.module('rm.articles.service', []);
@@ -36,3 +37,5 @@ angular.module('rm.mutualQuestions.service', []);
 angular.module('rm.mutualModal.directive', []);
 angular.module('rm.userProfile.service', []);
 angular.module('rm.userProfile.directive', []);
+angular.module('rm.sendRoommate.service', []);
+

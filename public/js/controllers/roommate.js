@@ -1,6 +1,6 @@
 angular.module('rm.roommates.controller', [])
-.controller('RoommatesController', ['$scope', 'roommateInit',
-  function ($scope, roommateInit) {
+.controller('RoommatesController', ['$scope', 'roommateInit', 'sendRoommate',
+  function ($scope, roommateInit, sendRoommate) {
 
 
   var showNextRoommate = function() {
@@ -48,16 +48,14 @@ angular.module('rm.roommates.controller', [])
     $('#mutualFriendsModal').modal('toggle');
   };
 
-  $scope.likeButton = function() {
-    //modal messaging
-    // $('#myModal').modal('toggle');
-    //input into favorites && skipBox
+  $scope.likeButton = function(roommate) {
+    sendRoommate.favorite(roommate);
     showNextRoommate();
   };
 
-  $scope.nopeButton = function() {
-    //input into skipBox
-    //showNextRoommate()
+  $scope.nopeButton = function(roommate) {
+    sendRoommate.skip(roommate);
+    showNextRoommate();
   };
   
   if(Object.keys(roommateInit.vars).length === 0) {
