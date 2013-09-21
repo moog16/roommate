@@ -52,7 +52,7 @@ angular.module('rm.roommates.controller', [])
     //modal messaging
     // $('#myModal').modal('toggle');
     //input into favorites && skipBox
-    showNextRoommate()
+    showNextRoommate();
   };
 
   $scope.nopeButton = function() {

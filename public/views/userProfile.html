@@ -1,29 +1,29 @@
-<section ng-controller="ProfileController" class="mainColumn">
+<section ng-controller="ProfileController">
   <!-- <img src="{{userInfo.cover.source}}" class="coverProfile" alt="You have no Cover"/> -->
-  <img class="profilePic" src="{{userInfo.picture.data.url}}" />
+  <div class="row">
+    <img class="span4 offset4" src="{{userInfo.picture.data.url}}"/>
+  </div>
+  <div class="row">
+    <div class="span2 offset3">
+      <h3 class="center">Movies</h3>
+      <div class="multimedia">
+        <img src="{{userInfo.movies.data[0].picture.data.url}}" ng-click="openMovies()">
+      </div>
+    </div>
 
-  <div class="profile">
-    <h3>Movies</h3>
-    <div class="multimedia">
-      <img src="{{userInfo.movies.data[0].picture.data.url}}" ng-click="openMovies()">
+    <div class="span2">
+      <h3 class="center">Music</h3>
+      <div class="multimedia">
+        <img src="{{userInfo.music.data[0].picture.data.url}}" ng-click="openMusic()">
+      </div>
+    </div>
+    <div class="span2">
+      <h3 class="center">Work</h3>
+      <div ng-repeat="work in userInfo.work">
+        <span>{{work.employer.name}}</span>
+      </div>
     </div>
   </div>
-
-  <div class="profile">
-    <h3>Music</h3>
-    <div class="multimedia">
-      <img src="{{userInfo.music.data[0].picture.data.url}}" ng-click="openMusic()">
-    </div>
-  </div>
-
-
-  <div class="profile">
-    <h3>Work</h3>
-    <div ng-repeat="work in userInfo.work">
-      <span>{{work.employer.name}}</span>
-    </div>
-  </div>
-
   <div user-movies-modal></div>
   <div user-music-modal></div>
 

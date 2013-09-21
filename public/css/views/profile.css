@@ -3,21 +3,9 @@
   margin: auto;
 }
 
-.profilePic {
+.center {
   margin: auto;
-  display: block;
 }
-
-.profile {
-  margin: 0px;
-  height: 200px;
-  width: 200px;
-  
-  float: left;
-  display: inline;
-  overflow: hidden;
-}
-
 .multimedia a img {
   margin: auto;
 

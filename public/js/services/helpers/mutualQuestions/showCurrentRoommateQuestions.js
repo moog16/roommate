@@ -26,7 +26,7 @@ angular.module('rm.mutualQuestions.service', [])
     return _.filter(rmInterest.questions, function(rmQA) {
       return _.indexOf(roommateVars.mutualRoommateInfo[rmIndex].questionIds, rmQA.questionId) > -1;
     });
-  }
+  };
 
   var userCommonQuestions = function(roommateVars) {
     var rmIndex = findRMIndex(roommateVars);

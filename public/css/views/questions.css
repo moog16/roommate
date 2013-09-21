@@ -1,18 +1,6 @@
 .answersFields {
   width: 180px;
 }
-
-.lastRowQuestions {
-  margin-right: 100px;
-  float: left;
-  display: inline;
-}
-
-.lastRowQuestions input {
-  margin: 3px 0px;
-  display: block;
-}
-
 .questionBtn {
   margin: 3px 0px;
   display: block;
