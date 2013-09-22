@@ -42,8 +42,7 @@ module.exports = function(app, passport, auth) {
   app.get('/api/getRoommate', getRoommate.info);
 
   app.post('/api/setUserQA', setUserQA);
-  app.post('/api/setUserRoommates/favorite', setuserRoommates);
-  app.post('/api/setUserRoommates/skip', setuserRoommates);
+  app.post('/api/setUserRoommates', setuserRoommates);
 
   //Setting the facebook oauth routes
   app.get('/auth/facebook', passport.authenticate('facebook', {
