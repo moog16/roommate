@@ -20,15 +20,15 @@ module.exports = function(app, passport, auth) {
     res.send(200);
   });
 
-  app.get('/signin', users.signin);
-  app.get('/signup', users.signup);
+  // app.get('/signin', users.signin);
+  // app.get('/signup', users.signup);
   app.get('/signout', users.signout);
 
   //Setting up the users api
   app.post('/users', users.create);
   
   app.post('/users/session', passport.authenticate('local', {
-    failureRedirect: '/signin',
+    failureRedirect: '/',
     failureFlash: 'Invalid email or password.'
   }), users.session);
 
@@ -57,11 +57,11 @@ module.exports = function(app, passport, auth) {
             'friends_questions', 'user_birthday', 'user_location', 'friends_location', 'user_games_activity',
             'friends_online_presence', 'user_notes', 'publish_actions', 'user_subscriptions', 'user_likes',
             'friends_likes'],
-    failureRedirect: '/signin'
-  }), users.signin);
+    failureRedirect: '/'
+  }), function(req, res) { res.redirect('/'); });
 
   app.get('/auth/facebook/callback', passport.authenticate('facebook', {
-    failureRedirect: '/signin'
+    failureRedirect: '/'
   }), users.session); 
 
   //Finish with setting up the userId param

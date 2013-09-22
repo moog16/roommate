@@ -4,22 +4,22 @@ var mongoose = require('mongoose'),
 /**
  * Show login form
  */
-exports.signin = function(req, res) {
-  res.render('users/signin', {
-    title: 'Signin',
-    message: req.flash('error12312313')
-  });
-};
+// exports.signin = function(req, res) {
+//   res.render('users/auth', {
+//     title: 'Signin',
+//     message: req.flash('errrror')
+//   });
+// };
 
-/**
- * Show sign up form
- */
-exports.signup = function(req, res) {
-  res.render('users/signup', {
-    title: 'Sign up',
-    user: new User()
-  });
-};
+// *
+//  * Show sign up form
+ 
+// exports.signup = function(req, res) {
+//   res.render('users/signup', {
+//     title: 'Sign up',
+//     user: new User()
+//   });
+// };
 
 /**
  * Logout
