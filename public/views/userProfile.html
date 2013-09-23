@@ -1,9 +1,9 @@
 <section ng-controller="ProfileController">
   <!-- <img src="{{userInfo.cover.source}}" class="coverProfile" alt="You have no Cover"/> -->
-  <div class="row-fluid">
+  <div class="row">
     <img class="span4 offset4" src="{{userInfo.picture.data.url}}"/>
   </div>
-  <div class="row-fluid">
+  <div class="row">
     <div class="span3 offset2">
       <h3 class="center">Movies</h3>
       <img src="{{userInfo.movies.data[0].picture.data.url}}" ng-click="openMovies()" class="mediaImg">
@@ -20,10 +20,38 @@
       </div>
     </div>
   </div>
+
+  <div class="row">
+    <div id="panel" class="offset2">
+      <input id="searchTextField" type="text" size="50">
+    </div>
+    <div id="map-canvas"></div>
+  </div>
   <div user-movies-modal></div>
   <div user-music-modal></div>
 
+  <div class="row">
+    <div user-questions class="span5 offset2"></div>
+    <div class="span4">
+      <h3>Preferences</h3>
+      <div class="row">
+        <ul>
+          <li>
+            <h5>Budget</h5>
 
-  <div user-questions></div>
+          </li>
+          <li>
+            <h5>Location</h5>
+          </li>
+          <li>
+            <h5>Size of apartment</h5>
+          </li>
+          <li>
+            <h5>Duration of stay</h5>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
 </section>

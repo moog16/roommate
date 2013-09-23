@@ -1,5 +1,8 @@
 angular.module('rm.users', [])
-.controller('ProfileController', ['$scope','$http', 'profileInit', function ($scope, $http, profileInit) {
+.controller('ProfileController', ['$scope','$http', 'profileInit', 'mapsInit',
+  function($scope, $http, profileInit, mapsInit) {
+    mapsInit();
+    // google.maps.event.addDomListener(window, 'load', mapsInit);
 
   var promise = profileInit.init();
   promise.then(function(userProfile) {

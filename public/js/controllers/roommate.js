@@ -62,7 +62,7 @@ angular.module('rm.roommates.controller', [])
     var promise = roommateInit.init();
     promise.then(function(roommateInfo) {
       // console.log(roommateInfo);
-      console.log(roommateInfo.roommates[0].facebook.name);
+      // console.log(roommateInfo.roommates[0].facebook.name);
       $scope.roommateInfo = roommateInfo;
       setNoMutualInfo();
     }, function(reason) {

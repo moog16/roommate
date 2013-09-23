@@ -19,7 +19,8 @@ window.app = angular.module('rm',
 'rm.mutualModal.directive',
 'rm.userProfile.service',
 'rm.userProfile.directive',
-'rm.sendRoommate.service']);
+'rm.sendRoommate.service',
+'rm.maps.service']);
 
 angular.module('rm.system', []);
 angular.module('rm.articles.service', []);
@@ -38,4 +39,5 @@ angular.module('rm.mutualModal.directive', []);
 angular.module('rm.userProfile.service', []);
 angular.module('rm.userProfile.directive', []);
 angular.module('rm.sendRoommate.service', []);
+angular.module('rm.maps.service', []);
 
