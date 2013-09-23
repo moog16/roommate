@@ -23,3 +23,11 @@ footer {
 footer p {
   padding:5px 0 12px 10px
 }
+
+.signin {
+  height:300px;
+}
+
+.navRoommate {
+  background: orange;
+}

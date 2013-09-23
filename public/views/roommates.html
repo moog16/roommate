@@ -1,34 +1,37 @@
 <section ng-controller="RoommatesController">
   <h1>Find Your Roommate Now!</h1>
-
-  <div class="row-fluid">
-    <img ng-src="{{ roommateInfo.roommates[0].facebook.picture.data.url }}" class="span4 offset4" />
+  <div class="row">
+    <img ng-src="{{ roommateInfo.roommates[0].facebook.picture.data.url }}" class="offset3 span6" />
     <h4>{{ roommateInfo.roomates[0].facebook.name }}</h4>
   </div>
-  <div class="row-fluid">
+  <div class="row">
     <button class="btn btn-danger span2 offset4" ng-click="nopeButton(roommateInfo.roommates[0])">Nope</button>
     <button class="btn btn-success span2" ng-click="likeButton(roommateInfo.roommates[0])">Like</button>
   </div>
-  <div class="row-fluid">
-    <div class="span3 offset2">
+
+  <div class="row">
+    <div class="offset3 span2">
       <h4 class="center">mutual friends</h4>
-      <img src="{{friendsPic}}" ng-click="mutualFriendsModal()" class="mediaImg">
+      <img src="{{friendsPic}}" ng-click="mutualFriendsModal()">
     </div>
-    <div class="span3">
+    <div class="span2">
       <h4 class="center">mutual music</h4>
-      <img src="{{musicPic}}" ng-click="mutualMusicModal()" class="mediaImg">
+      <img src="{{musicPic}}" ng-click="mutualMusicModal()">
     </div>
-    <div class="span3">
+    <div class="span2">
       <h4 class="center">mutual movies</h4>
-      <img src="{{moviePic}}" ng-click="mutualMoviesModal()" class="mediaImg">
+      <img src="{{moviePic}}" ng-click="mutualMoviesModal()">
     </div>
   </div>
-  <div class="row-fluid">
-    <h4 class="span2 offset4">compatibility</h4>
-    <span>You are a {{(roommateInfo.mutualRoommateInfo[0].compatibility * 100).toFixed(2)}}% match.</span>
-    <a class="span4" href="#!/roommates/mutualQuestions?{{roommateInfo.roommates[0].facebook.id}}">
-      See the questions and answers that you two had in common
-    </a>
+
+  <div class="row">
+    <div class="offset3 span2">
+      <h4 >compatibility</h4>
+      <span>You are a {{(roommateInfo.mutualRoommateInfo[0].compatibility * 100).toFixed(2)}}% match.</span>
+      <a href="#!/roommates/mutualQuestions?{{roommateInfo.roommates[0].facebook.id}}">
+        See the questions and answers that you two had in common
+      </a>
+    </div>
   </div>
 
   <div mutual-movies></div>
