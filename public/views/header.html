@@ -1,10 +1,7 @@
-<div class="navbar-inner navRoommate" data-ng-controller="HeaderController">
+<div class="navbar-inner" data-ng-controller="HeaderController">
     <ul class="nav">
         <li>
             <a class="brand" href="/">Roommates</a>
-        </li>
-        <li data-ng-repeat="item in menu" data-ng-show="global.user" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}">
-            <a href="#!/{{item.link}}">{{item.title}}</a>
         </li>
     </ul>
     <ul class="nav pull-right" data-ng-show="global.authenticated">
@@ -15,7 +12,10 @@
             <ul class="dropdown-menu">
                 <li><a href="#!/userProfile">My Profile</a>
                 <li><a href="#!/roommates">Roommates!</a>
-                <li><a href="/signout">Signout</a>
+                <li><a href="/signout">Signout</a>        
+                <li data-ng-repeat="item in menu" data-ng-show="global.user" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}">
+                    <a href="#!/{{item.link}}">{{item.title}}</a>
+                </li>
                 </li>
             </ul>
         </li>

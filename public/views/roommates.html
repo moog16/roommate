@@ -1,8 +1,10 @@
 <section ng-controller="RoommatesController">
-  <h1>Find Your Roommate Now!</h1>
+  <!-- <h1>Find Your Roommate Now!</h1> -->
   <div class="row">
     <img ng-src="{{ roommateInfo.roommates[0].facebook.picture.data.url }}" class="offset3 span6" />
-    <h4>{{ roommateInfo.roomates[0].facebook.name }}</h4>
+  </div>
+  <div class="row">
+    <h4 class="offset2">{{ roommateInfo.roommates[0].facebook.name }}</h4>
   </div>
   <div class="row">
     <button class="btn btn-danger span2 offset4" ng-click="nopeButton(roommateInfo.roommates[0])">Nope</button>
@@ -10,7 +12,7 @@
   </div>
 
   <div class="row">
-    <div class="offset3 span2">
+    <div class="offset2 span2">
       <h4 class="center">mutual friends</h4>
       <img src="{{friendsPic}}" ng-click="mutualFriendsModal()">
     </div>

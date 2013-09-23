@@ -13,5 +13,8 @@ angular.module('rm.system').controller('HeaderController', ['$scope', 'Global', 
   }, {
     "title": "Create New Questions",
     "link": "questions/create"
+  }, {
+    "title": "Checkout Your Faves",
+    "link": "favorites"
   }];
 }]);

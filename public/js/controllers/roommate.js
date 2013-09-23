@@ -13,7 +13,7 @@ angular.module('rm.roommates.controller', [])
   };
 
   var setNoMutualInfo = function() {
-    if($scope.roommateInfo.mutualRoommateInfo[0].movies.length === 0) {
+    if($scope.roommateInfo.mutualRoommateInfo[0].movies.length === 0 ) {
       $scope.moviePic = '../img/nothing.jpg';
       $scope.movieName = 'none';
     } else {
@@ -49,12 +49,12 @@ angular.module('rm.roommates.controller', [])
   };
 
   $scope.likeButton = function(roommate) {
-    sendRoommate.favorite(roommate);
+    // sendRoommate.favorite(roommate);
     showNextRoommate();
   };
 
   $scope.nopeButton = function(roommate) {
-    sendRoommate.skip(roommate);
+    // sendRoommate.skip(roommate);  uncomment to stop seening same person
     showNextRoommate();
   };
   
@@ -62,6 +62,7 @@ angular.module('rm.roommates.controller', [])
     var promise = roommateInit.init();
     promise.then(function(roommateInfo) {
       // console.log(roommateInfo);
+      console.log(roommateInfo.roommates[0].facebook.name);
       $scope.roommateInfo = roommateInfo;
       setNoMutualInfo();
     }, function(reason) {
