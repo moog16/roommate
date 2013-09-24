@@ -27,7 +27,6 @@ angular.module('rm.slider.directive', [])
           scope.maxValue = '36+ mos';
         }
       });
-      // scope.temporary = 'hellooooo';
     }
   };
 });

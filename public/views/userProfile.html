@@ -39,37 +39,34 @@
           </li>
           <li>
             <h5>Location</h5>
-            <div id="panel" style="border: solid 1px black">
-              <input id="searchTextField" type="text" size="50">
+            <div id="panel">
+              <input id="searchTextField" type="text" size="50" placeholder="{{place || 'Enter a location'}}">
             </div>
           </li>
           <li>
             <h5>Size of apartment</h5>
             <div class="btn-group">
               <a class="btn btn-small dropdown-toggle" data-toggle="dropdown">
-                Type:
-                <span class="caret"></span>
+                {{housingType || 'Type:'}}<span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a tabindex="-1" ng-repeat="type in housingTypes">{{type}}</a></li>
+                <li><a tabindex="-1" ng-repeat="type in housingTypes" ng-click="setHousing(type)">{{type}}</a></li>
               </ul>
             </div>
             <div class="btn-group">
               <a class="btn btn-small dropdown-toggle" data-toggle="dropdown">
-                Bedrooms:
-                <span class="caret"></span>
+                {{bedroomValue || 'Bedrooms:'}}<span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a tabindex="-1" ng-repeat="room in bedroomRange">{{room}}</a></li>
+                <li><a tabindex="-1" ng-repeat="room in bedroomRange" ng-click="setBedroom(room)">{{room}}</a></li>
               </ul>
             </div>
             <div class="btn-group">
               <a class="btn btn-small dropdown-toggle" data-toggle="dropdown">
-                Baths:
-                <span class="caret"></span>
+                {{bathValue || 'Baths:'}}<span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a tabindex="-1" ng-repeat="room in bathRange">{{room}}</a></li>
+                <li><a tabindex="-1" ng-repeat="room in bathRange" ng-click="setBath(room)">{{room}}</a></li>
               </ul>
             </div>
           </li>
@@ -81,6 +78,8 @@
         </ul>
         <button ng-mouseup="setPrefs()">set</button>
       </div>
+    </div>
+  </div>
 
 
 

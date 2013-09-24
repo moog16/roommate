@@ -28,6 +28,7 @@ angular.module('rm.users', [])
       }, function(update) {
         console.log('Got notification ', update);
     });
+
     $scope.housingTypes = ['House', 'Apartment', 'Dorm', 'Co-op', 'Condo', 'Assisted Living'];
     $scope.bedroomRange = _.range(1,7);
     $scope.bedroomRange[6] = '7+';
@@ -71,9 +72,6 @@ angular.module('rm.users', [])
   };
 
   $scope.showNextQuestion = function() {
-    if($scope.questions.length >= 1) {
-      // $scope.questions[1].isActive = true;
-    }
     resetValidation();
     $scope.questions.splice(0,1);
   };
@@ -109,6 +107,7 @@ angular.module('rm.users', [])
     console.log($scope.place);
     var budget = $('#budgetSlider').data('slider').getValue();
     var duration = $('#durationSlider').data('slider').getValue();
+    $scope.bedroomValue = 'this is bedroom';
 
     $scope.durationMin = duration[0];
     $scope.durationMax = duration[1];
@@ -124,6 +123,18 @@ angular.module('rm.users', [])
     //   durationStay: $scope.duration //days
     // };
     // userPref(preferences);
+  };
+
+  $scope.setHousing = function(type) {
+    $scope.housingType = type;
+  };
+
+  $scope.setBedroom = function(room) {
+    $scope.bedroomValue = room;
+  };
+
+  $scope.setBath = function(room) {
+    $scope.bathValue = room;
   };
 
   initialize();
