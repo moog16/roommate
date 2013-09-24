@@ -8,29 +8,34 @@ angular.module('rm.users', [])
 
     google.maps.event.addListener(autocomplete, 'place_changed', function() {
       var place = autocomplete.getPlace();
-      $scope.place = place;
-      if (!place.geometry) {
-        input.className = 'notfound';
-        return;
+      if (place.geometry) {
+        $scope.place = place;
+        setPrefs();
       }
     });
   };
 
-  maps();
-  $('#budgetSlider').slider();
+  var initialize = function() {
 
-  var promise = profileInit.init();
-  promise.then(function(userProfile) {
-      $scope.questions = userProfile.questions;
-      $scope.userInfo = userProfile.userInfo;
-      $scope.userPref = userProfile.userPref;
-    }, function(reason) {
-      console.log('Failed ', reason);
-    }, function(update) {
-      console.log('Got notification ', update);
-  });
+    maps();
+    var promise = profileInit.init();
+    promise.then(function(userProfile) {
+        $scope.questions = userProfile.questions;
+        $scope.userInfo = userProfile.userInfo;
+        $scope.userPref = userProfile.userPref;
+      }, function(reason) {
+        console.log('Failed ', reason);
+      }, function(update) {
+        console.log('Got notification ', update);
+    });
+    $scope.housingTypes = ['House', 'Apartment', 'Dorm', 'Co-op', 'Condo', 'Assisted Living'];
+    $scope.bedroomRange = _.range(1,7);
+    $scope.bedroomRange[6] = '7+';
+    $scope.bathRange = $scope.bedroomRange.slice();
+    $scope.bathRange.unshift('shared');
 
-  $scope.importance = ['Irrelevant', 'a bit important', 'a little important', 'a lot important', 'a must have'];
+    $scope.importance = ['Irrelevant', 'a bit important', 'a little important', 'a lot important', 'a must have'];
+  };
 
   $scope.submitQA = function() {
     var userQuestionAnswers = {
@@ -102,6 +107,16 @@ angular.module('rm.users', [])
 
   $scope.setPrefs = function() {
     console.log($scope.place);
+    var budget = $('#budgetSlider').data('slider').getValue();
+    var duration = $('#durationSlider').data('slider').getValue();
+
+    $scope.durationMin = duration[0];
+    $scope.durationMax = duration[1];
+    $scope.budgetMin = budget[0];
+    $scope.budgetMax = budget[1];
+    console.log(duration);
+    console.log(budget);
+
     // var preferences = {
     //   location: $scope.place, //geolocation data, will determine what search results bring back
     //   budget: $scope.budget, //how much are you willing to spend
@@ -111,4 +126,5 @@ angular.module('rm.users', [])
     // userPref(preferences);
   };
 
+  initialize();
 }]);

@@ -20,7 +20,8 @@ window.app = angular.module('rm',
 'rm.userProfile.service',
 'rm.userProfile.directive',
 'rm.sendRoommate.service',
-'rm.userPref.service']);
+'rm.userPref.service',
+'rm.slider.directive']);
 
 angular.module('rm.system', []);
 angular.module('rm.articles.service', []);
@@ -40,4 +41,5 @@ angular.module('rm.userProfile.service', []);
 angular.module('rm.userProfile.directive', []);
 angular.module('rm.sendRoommate.service', []);
 angular.module('rm.userPref.service', []);
+angular.module('rm.slider.directive', []);
 
