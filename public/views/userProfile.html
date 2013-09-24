@@ -1,8 +1,9 @@
 <section ng-controller="ProfileController">
-  <!-- <img src="{{userInfo.cover.source}}" class="coverProfile" alt="You have no Cover"/> -->
+
   <div class="row">
     <img class="span4 offset4" src="{{userInfo.picture.data.url}}"/>
   </div>
+
   <div class="row">
     <div class="span3 offset2">
       <h3 class="center">Movies</h3>
@@ -21,12 +22,6 @@
     </div>
   </div>
 
-  <div class="row">
-    <div id="panel" class="offset2">
-      <input id="searchTextField" type="text" size="50">
-    </div>
-    <div id="map-canvas"></div>
-  </div>
   <div user-movies-modal></div>
   <div user-music-modal></div>
 
@@ -38,20 +33,49 @@
         <ul>
           <li>
             <h5>Budget</h5>
-
+            {{budget}}
           </li>
           <li>
             <h5>Location</h5>
+            {{location}}
           </li>
           <li>
             <h5>Size of apartment</h5>
+            {{dwelling}}
           </li>
           <li>
             <h5>Duration of stay</h5>
+            {{duration}}
           </li>
         </ul>
+        <button ng-click="setPrefs()">edit</button>
       </div>
-    </div>
-  </div>
+      <div class="row">
+
+        <div id="panel">
+          <input id="searchTextField" type="text" size="50">
+        </div>
+
+        <div class="well">
+          Filter by price interval: <b>€ 10</b> 
+          <div class="slider slider-horizontal">
+            <div class="slider-track">
+              <div class="slider-selection" >
+              </div>
+              <!-- <div class="slider-handle round" style="left: 15.656565656565657%;"> -->
+              <!-- </div> -->
+              <!-- <div class="slider-handle round" style="left: 67.67676767676768%;"> -->
+              <!-- </div> -->
+            </div>
+            <div class="tooltip top" style="top: -40px; left: 142.00000000000003px;">
+              <div class="tooltip-arrow"></div>
+              <div class="tooltip-inner">165 : 570</div>
+            </div>
+            <input type="text" class="span2" value="" data-slider-min="10" data-slider-max="1000" data-slider-step="5" data-slider-value="[250,450]" id="budgetSlider" style="">
+          </div> 
+          <b>€ 1000</b>
+        </div>
+        
+      </div>
 
 </section>

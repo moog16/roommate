@@ -7,10 +7,11 @@ angular.module('rm.userProfile.service', [])
 
     var deferred = $q.defer();
 
-    $http.get('/api/userInfo')
+    $http.get('/api/userInfo')  // getting all user data
     .success(function(userData, status, headers, config) {
       $http.get('/api/getQuestions/unanswered')
       .success(function(questions, status, headers, config) {
+        userPref = userData.preferences;
         userProfile.userInfo = userData.facebook;
         userProfile.questions = questions;
         deferred.resolve(userProfile);

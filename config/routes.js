@@ -4,24 +4,15 @@ var async = require('async'),
     getRoommate = require('../app/controllers/api/getRoommate.js'),
     getQuestions = require('../app/controllers/api/getQuestions.js'),
     setUserQA = require('../app/controllers/api/setUserQA.js'),
-    setuserRoommates = require('../app/controllers/api/setuserRoommates.js')
+    setuserRoommates = require('../app/controllers/api/setuserRoommates.js'),
+    setUserPref = require('../app/controllers/api/setUserPref.js'),
     https = require('https');
 
 module.exports = function(app, passport, auth) {
-  // Setup CORS
-  app.use(function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', config.clientUrl);
-    res.header('Access-Control-Allow-Headers', 'Content-Type,X-Requested-With');
-    res.header('Access-Control-Allow-Credentials', 'true');
-    next();
-  });
-
   app.options('*', function(req, res){
     res.send(200);
   });
 
-  // app.get('/signin', users.signin);
-  // app.get('/signup', users.signup);
   app.get('/signout', users.signout);
 
   //Setting up the users api
@@ -43,6 +34,7 @@ module.exports = function(app, passport, auth) {
 
   app.post('/api/setUserQA', setUserQA);
   app.post('/api/setUserRoommates', setuserRoommates);
+  app.post('/api/setUserPref', setUserPref);
 
   //Setting the facebook oauth routes
   app.get('/auth/facebook', passport.authenticate('facebook', {
@@ -67,16 +59,16 @@ module.exports = function(app, passport, auth) {
   //Finish with setting up the userId param
   app.param('userId', users.user);
 
-  //Article Routes
-  var articles = require('../app/controllers/articles');
-  app.get('/articles', articles.all);
-  app.post('/articles', auth.requiresLogin, articles.create);
-  app.get('/articles/:articleId', articles.show);
-  app.put('/articles/:articleId', auth.requiresLogin, auth.article.hasAuthorization, articles.update);
-  app.del('/articles/:articleId', auth.requiresLogin, auth.article.hasAuthorization, articles.destroy);
+  // //Article Routes
+  // var articles = require('../app/controllers/articles');
+  // app.get('/articles', articles.all);
+  // app.post('/articles', auth.requiresLogin, articles.create);
+  // app.get('/articles/:articleId', articles.show);
+  // app.put('/articles/:articleId', auth.requiresLogin, auth.article.hasAuthorization, articles.update);
+  // app.del('/articles/:articleId', auth.requiresLogin, auth.article.hasAuthorization, articles.destroy);
 
-  //Finish with setting up the articleId param
-  app.param('articleId', articles.article);
+  // //Finish with setting up the articleId param
+  // app.param('articleId', articles.article);
 
   //Question Routes
   var questions = require('../app/controllers/questions');

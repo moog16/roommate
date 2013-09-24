@@ -1,13 +1,29 @@
 angular.module('rm.users', [])
-.controller('ProfileController', ['$scope','$http', 'profileInit', 'mapsInit',
-  function($scope, $http, profileInit, mapsInit) {
-    mapsInit();
-    // google.maps.event.addDomListener(window, 'load', mapsInit);
+.controller('ProfileController', ['$scope','$http', 'profileInit', 'userPref',
+  function($scope, $http, profileInit, userPref) {
+
+  var maps = function() {
+    var input = (document.getElementById('searchTextField'));
+    var autocomplete = new google.maps.places.Autocomplete(input);
+
+    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+      var place = autocomplete.getPlace();
+      $scope.place = place;
+      if (!place.geometry) {
+        input.className = 'notfound';
+        return;
+      }
+    });
+  };
+
+  maps();
+  $('#budgetSlider').slider();
 
   var promise = profileInit.init();
   promise.then(function(userProfile) {
       $scope.questions = userProfile.questions;
       $scope.userInfo = userProfile.userInfo;
+      $scope.userPref = userProfile.userPref;
     }, function(reason) {
       console.log('Failed ', reason);
     }, function(update) {
@@ -82,6 +98,17 @@ angular.module('rm.users', [])
 
   $scope.openMusic = function() {
     $('#userMusicModal').modal('toggle');
+  };
+
+  $scope.setPrefs = function() {
+    console.log($scope.place);
+    // var preferences = {
+    //   location: $scope.place, //geolocation data, will determine what search results bring back
+    //   budget: $scope.budget, //how much are you willing to spend
+    //   dwellingType: $scope.dwelling, //apartment/house/etc
+    //   durationStay: $scope.duration //days
+    // };
+    // userPref(preferences);
   };
 
 }]);
