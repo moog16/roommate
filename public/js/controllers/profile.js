@@ -10,7 +10,7 @@ angular.module('rm.users', [])
       var place = autocomplete.getPlace();
       if (place.geometry) {
         $scope.place = place;
-        setPrefs();
+        $scope.setPrefs();
       }
     });
   };
@@ -103,26 +103,31 @@ angular.module('rm.users', [])
     $('#userMusicModal').modal('toggle');
   };
 
+  /***************************************  preferences  *****************************************/
+
   $scope.setPrefs = function() {
     console.log($scope.place);
     var budget = $('#budgetSlider').data('slider').getValue();
     var duration = $('#durationSlider').data('slider').getValue();
-    $scope.bedroomValue = 'this is bedroom';
+    var housing = {
+      type: $scope.housingType,
+      bedroom: $scope.bedroomValue,
+      bath: $scope.bathValue
+    };
 
     $scope.durationMin = duration[0];
     $scope.durationMax = duration[1];
     $scope.budgetMin = budget[0];
     $scope.budgetMax = budget[1];
-    console.log(duration);
-    console.log(budget);
 
-    // var preferences = {
-    //   location: $scope.place, //geolocation data, will determine what search results bring back
-    //   budget: $scope.budget, //how much are you willing to spend
-    //   dwellingType: $scope.dwelling, //apartment/house/etc
-    //   durationStay: $scope.duration //days
-    // };
-    // userPref(preferences);
+
+    var preferences = {
+      location: $scope.place,
+      budget: budget,
+      dwellingType: housing,
+      durationStay: duration
+    };
+    userPref(preferences);
   };
 
   $scope.setHousing = function(type) {

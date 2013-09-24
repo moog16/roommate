@@ -34,7 +34,7 @@
         <ul class="unstyled">
           <li>
             <h5>Budget</h5>
-            {{budgetMin}} - {{budgetMax}}
+            {{budgetMin || 'n/a'}} - {{budgetMax || 'n/a'}}
             <div slider name="budgetSlider"></div>
           </li>
           <li>
@@ -72,7 +72,7 @@
           </li>
           <li>
             <h5>Duration of stay</h5>
-            {{durationMin}} - {{durationMax}}
+            {{durationMin || 'n/a'}} - {{durationMax || 'n/a'}}
             <div slider name="durationSlider"></div>
           </li>
         </ul>
