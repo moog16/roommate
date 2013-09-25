@@ -35,6 +35,7 @@ module.exports = function(app, passport, auth) {
   app.post('/api/setUserQA', setUserQA);
   app.post('/api/setUserRoommates', setuserRoommates);
   app.post('/api/setUserPref', setUserPref);
+  app.post('/api/userArray', getUser.userArray);
 
   //Setting the facebook oauth routes
   app.get('/auth/facebook', passport.authenticate('facebook', {

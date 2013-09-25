@@ -63,8 +63,6 @@ angular.module('rm.roommates.controller', [])
     if(Object.keys(roommateInit.vars).length === 0) {
       var promise = roommateInit.init();
       promise.then(function(roommateInfo) {
-        // console.log(roommateInfo);
-        console.log(roommateInfo.roommates[0]);
         $scope.roommateInfo = roommateInfo;
         setNoMutualInfo();
       }, function(reason) {

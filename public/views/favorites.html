@@ -1,0 +1,9 @@
+<section ng-controller="FavoritesController">
+<div>
+  <h1>Favorites</h1>
+  <div ng-repeat="fave in favorites">
+    <a href="{{fave.facebook.link}}"><img src="{{fave.facebook.picture.data.url}}"></a>
+    <h4>{{fave.name}}</h4>
+  </div>
+</div>
+</section>

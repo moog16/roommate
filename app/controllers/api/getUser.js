@@ -7,10 +7,20 @@ exports.info = function(req, res) {
   }, function(err, user) {
     if(err) {
       throw err;
-    } else if(!user) {
-      res.redirect('/signup');
     } else {
       res.send(user);
+    }
+  });
+};
+
+exports.userArray = function(req, res) {
+  User.find({
+   'facebook.id': {$in: req.body}
+  }, function(err, users) {
+    if(err) {
+      throw err;
+    } else {
+      res.send(users);
     }
   });
 };
