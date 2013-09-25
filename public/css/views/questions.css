@@ -4,10 +4,6 @@
 .questionBtn {
   margin: 3px 0px;
   display: block;
-  border-bottom-right-radius: 4px !important;
-  border-top-left-radius: 4px !important;
-  border-bottom-left-radius: 4px !important;
-  border-top-right-radius: 4px !important;
 }
 
 .userQuestionCompare {
