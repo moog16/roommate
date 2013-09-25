@@ -44,6 +44,11 @@ angular.module('rm.users', [])
     $scope.bathRange.unshift('shared');
 
     $scope.importance = ['Irrelevant', 'a bit important', 'a little important', 'a lot important', 'a must have'];
+
+    $('#navTabs a').click(function(e) {
+      e.preventDefault(0);
+      $(this).tab('show');
+    });
   };
 
   $scope.submitQA = function() {

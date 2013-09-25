@@ -10,13 +10,10 @@
 				{{global.user.name}} <b class="caret"></b>
 			</a>
             <ul class="dropdown-menu">
-                <li><a href="#!/userProfile">My Profile</a>
-                <li><a href="#!/roommates">Roommates!</a>
-                <li><a href="/signout">Signout</a>        
                 <li data-ng-repeat="item in menu" data-ng-show="global.user" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}">
                     <a href="#!/{{item.link}}">{{item.title}}</a>
                 </li>
-                </li>
+                <li><a href="/signout">Signout</a></li>
             </ul>
         </li>
     </ul>

@@ -1,0 +1,52 @@
+<div class="span4">
+  <h3>Preferences</h3>
+  <div class="row">
+    <ul class="unstyled">
+      <li>
+        <h5>Budget</h5>
+        {{budgetMin}} - {{budgetMax}}
+        <div slider name="budgetSlider" maximum="{{budgetMax}}" minimum="{{budgetMin}}"></div>
+      </li>
+      <li>
+        <h5>Location</h5> 
+        <div id="panel">
+          <input id="searchTextField" type="text" size="50" placeholder="{{place.address_components[0].long_name + ', ' + place.address_components[2].short_name || 'Enter a location'}}">
+        </div>
+      </li>
+      <li>
+        <h5>Size of apartment</h5>
+        <div class="btn-group">
+          <a class="btn btn-small dropdown-toggle" data-toggle="dropdown">
+            {{housingType || 'Type:'}}<span class="caret"></span>
+          </a>
+  {{flavor}}
+          <ul class="dropdown-menu">
+            <li><a tabindex="-1" ng-repeat="type in housingTypes" ng-click="setHousing(type)">{{type}}</a></li>
+          </ul>
+        </div>
+        <div class="btn-group">
+          <a class="btn btn-small dropdown-toggle" data-toggle="dropdown">
+            {{bedroomValue || 'Bedrooms:'}}<span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a tabindex="-1" ng-repeat="room in bedroomRange" ng-click="setBedroom(room)">{{room}}</a></li>
+          </ul>
+        </div>
+        <div class="btn-group">
+          <a class="btn btn-small dropdown-toggle" data-toggle="dropdown">
+            {{bathValue || 'Baths:'}}<span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a tabindex="-1" ng-repeat="room in bathRange" ng-click="setBath(room)">{{room}}</a></li>
+          </ul>
+        </div>
+      </li>
+      <li>
+        <h5>Duration of stay</h5>
+        {{durationMin}} - {{durationMax}}
+        <div slider name="durationSlider" maximum="{{durationMin}}" minimum="{{durationMax}}"></div>
+      </li>
+    </ul>
+    <button ng-mouseup="setPrefs()">set</button>
+  </div>
+</div>
