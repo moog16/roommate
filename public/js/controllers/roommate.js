@@ -57,22 +57,26 @@ angular.module('rm.roommates.controller', [])
     // sendRoommate.skip(roommate);  uncomment to stop seening same person
     showNextRoommate();
   };
-  
-  if(Object.keys(roommateInit.vars).length === 0) {
-    var promise = roommateInit.init();
-    promise.then(function(roommateInfo) {
-      // console.log(roommateInfo);
-      // console.log(roommateInfo.roommates[0].facebook.name);
-      $scope.roommateInfo = roommateInfo;
-      setNoMutualInfo();
-    }, function(reason) {
-      console.log('Failed ', reason);
-    }, function(update) {
-      console.log('Got notification ', update);
-    });
-  } else {
-    $scope.roommateInfo = roommateInit.vars;
-    setNoMutualInfo();
-  }
 
+  var init = function() {
+    
+    if(Object.keys(roommateInit.vars).length === 0) {
+      var promise = roommateInit.init();
+      promise.then(function(roommateInfo) {
+        // console.log(roommateInfo);
+        console.log(roommateInfo.roommates[0]);
+        $scope.roommateInfo = roommateInfo;
+        setNoMutualInfo();
+      }, function(reason) {
+        console.log('Failed ', reason);
+      }, function(update) {
+        console.log('Got notification ', update);
+      });
+    } else {
+      $scope.roommateInfo = roommateInit.vars;
+      setNoMutualInfo();
+    }
+  };
+
+  init();
 }]);

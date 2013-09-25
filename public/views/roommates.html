@@ -4,7 +4,7 @@
     <img ng-src="{{ roommateInfo.roommates[0].facebook.picture.data.url }}" class="offset3 span6" />
   </div>
   <div class="row">
-    <h4 class="offset2">{{ roommateInfo.roommates[0].facebook.name }}</h4>
+    <h4 class="offset3">{{ roommateInfo.roommates[0].facebook.name }}</h4>
   </div>
   <div class="row">
     <button class="btn btn-danger span2 offset4" ng-click="nopeButton(roommateInfo.roommates[0])">Nope</button>
@@ -12,7 +12,7 @@
   </div>
 
   <div class="row">
-    <div class="offset2 span2">
+    <div class="offset3 span2">
       <h4 class="center">mutual friends</h4>
       <img src="{{friendsPic}}" ng-click="mutualFriendsModal()">
     </div>
@@ -33,6 +33,13 @@
       <a href="#!/roommates/mutualQuestions?{{roommateInfo.roommates[0].facebook.id}}">
         See the questions and answers that you two had in common
       </a>
+    </div>
+
+    <div class="span3 offset1">
+      <h4>Looking For:</h4>
+      <div class="row">
+        a place with a budget between <span class="label label-info">${{roommateInfo.roommates[0].preferences.budget[0]}} - ${{roommateInfo.roommates[0].preferences.budget[1]}}</span> for a duration of length <span class="label label-warning">{{roommateInfo.roommates[0].preferences.durationStay[0]}} - {{roommateInfo.roommates[0].preferences.durationStay[1]}} months</span>, in <span class="label label-important">{{roommateInfo.roommates[0].preferences.location.address_components[0].long_name}}, {{roommateInfo.roommates[0].preferences.location.address_components[2].short_name}}</span>. Ideally I would like a {{roommateInfo.roommates[0].dwellingType.bedroom}} bed, {{roommateInfo.roommates[0].preferences.dwellingType.bath}} bath {{roommateInfo.roommates[0].preferences.dwellingType.type}}.
+      </div>
     </div>
   </div>
 

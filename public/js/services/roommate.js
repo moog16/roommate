@@ -14,7 +14,7 @@ angular.module('rm.roommate.service', [])
       $http.get('/api/userInfo')
       .success(function(userData, status, headers, config) {
         // console.log('roommates ', roommateData);
-        // console.log('user ', userData);
+        console.log('user ', userData);
         roommateInitVars.roommates = roommateData;
         roommateInitVars.user = userData;
         roommateInitVars.userQAIndex = {};

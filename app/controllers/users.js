@@ -1,29 +1,6 @@
 var mongoose = require('mongoose'),
   User = mongoose.model('User');
 
-/**
- * Show login form
- */
-// exports.signin = function(req, res) {
-//   res.render('users/auth', {
-//     title: 'Signin',
-//     message: req.flash('errrror')
-//   });
-// };
-
-// *
-//  * Show sign up form
- 
-// exports.signup = function(req, res) {
-//   res.render('users/signup', {
-//     title: 'Sign up',
-//     user: new User()
-//   });
-// };
-
-/**
- * Logout
- */
 exports.signout = function(req, res) {
   req.logout();
   res.redirect('/');

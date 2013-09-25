@@ -4,34 +4,34 @@ var mongoose = require('mongoose'),
   fields =  ['id,',
           'name,',
           'interests.fields(name,id),',
-          'age_range,',
-          'about,',
-          'bio,',
-          'education,',
-          'favorite_athletes,',
-          'favorite_teams,',
-          'hometown,',
-          'gender,',
-          'birthday,',
-          'books.fields(name,id,link,picture.type(large)),',
-          'relationship_status,',
+          //'age_range,',
+          //'about,',
+          //'bio,',
+          // 'education,',
+          // 'favorite_athletes,',
+          // 'favorite_teams,',
+          // 'hometown,',
+          // 'gender,',
+          // 'birthday,',
+          // 'books.fields(name,id,link,picture.type(large)),',
+          // 'relationship_status,',
           'friends.fields(name,id,link,picture.type(large)),',
-          'quotes,',
-          'languages,',
-          'inspirational_people,',
-          'sports,',
+          // 'quotes,',
+          // 'languages,',
+          // 'inspirational_people,',
+          // 'sports,',
           'music.fields(name,id,link,picture.type(large)),',
           'movies.fields(name,id,link,picture.type(large)),',
-          'devices,',
+          // 'devices,',
           'work,',
           'posts,',
-          'photos,',
-          'albums,',
-          'location,',
-          'events.fields(name,picture.type(large)),',
-          'cover,',
-          'religion,',
-          'sports,',
+          // 'photos,',
+          // 'albums,',
+          // 'location,',
+          // 'events.fields(name,picture.type(large)),',
+          // 'cover,',
+          // 'religion,',
+          // 'sports,',
           'picture.type(large)'];
   
 exports.user = function(accessToken, refreshToken, profile, done) {
@@ -49,7 +49,6 @@ exports.user = function(accessToken, refreshToken, profile, done) {
     } else {
       if (!user) {
         var userProfile = profile._json;
-        console.log(typeof userProfile);
         userProfile.accessToken = accessToken;
         userProfile.refreshToken = refreshToken;
         user = new User({
@@ -77,7 +76,6 @@ exports.user = function(accessToken, refreshToken, profile, done) {
             FBresults = JSON.parse(FBresults);
             var keys = Object.keys(FBresults);
             for(var key in keys) {
-              console.log(keys[key]);
               user.facebook[keys[key]] = FBresults[keys[key]];
             }
             user.save(function(err) {
