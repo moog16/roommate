@@ -49,6 +49,7 @@ angular.module('rm.users', [])
       e.preventDefault(0);
       $(this).tab('show');
     });
+    $('#navTabs a:first').tab('show');
   };
 
   $scope.submitQA = function() {

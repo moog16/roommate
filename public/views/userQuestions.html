@@ -4,31 +4,29 @@
   </div>
   <div ng-show="questions.length > 0">
     <h3 class="">Questions</h3>
+    <h5 class="">answer questions to more accurately match your next roommate</h5>
+
+    <form class="question control-group" ng-submit="submitQA()">
+      <h4>{{questions[0].question}}</h4>
+      <div class=" offset2">
+        <input type="button" class="btn btn-info" value="Skip" ng-click="showNextQuestion()">
+        <input type="submit" class="btn btn-success" value="Submit" ng-show="validForm">
+      </div>
+
+      <div class="btn-group " data-toggle="buttons-radio">
+        <button type="button" ng-click="setUserAnswer($index, questions[0]._id)" class="questionBtn btn btn-primary" ng-repeat="answer in questions[0].answers">{{answer.message}}</button>
+      </div>
+
+      <h4>Answers I'll accept...</h4>
+      <div class="btn-group" data-toggle="buttons-checkbox">
+        <button type="button" ng-click="setUserAccepts($index)" class="questionBtn btn btn-primary" ng-repeat="answer in questions[0].answers">{{answer.message}}</button>
+      </div>
+
+      <h4>This question is...</h4>
+      <div class="btn-group" data-toggle="buttons-radio">
+        <button type="button" ng-click="setUserImportance($index)" class="questionBtn btn btn-primary" ng-repeat="answer in importance">{{answer}}</button>
+      </div>
+    </form>
   </div>
-  
-  <h5 class="">answer questions to more accurately match your next roommate</h5>
-
-
-  <form class="question control-group" ng-submit="submitQA()">
-    <h4>{{questions[0].question}}</h4>
-    <div class=" offset3">
-      <input type="button" class="btn btn-info" value="Skip" ng-click="showNextQuestion()">
-      <input type="submit" class="btn btn-success" value="Submit" ng-show="validForm">
-    </div>
-
-    <div class="btn-group " data-toggle="buttons-radio">
-      <button type="button" ng-click="setUserAnswer($index, questions[0]._id)" class="questionBtn btn btn-primary" ng-repeat="answer in questions[0].answers">{{answer.message}}</button>
-    </div>
-
-    <h4>Answers I'll accept...</h4>
-    <div class="btn-group" data-toggle="buttons-checkbox">
-      <button type="button" ng-click="setUserAccepts($index)" class="questionBtn btn btn-primary" ng-repeat="answer in questions[0].answers">{{answer.message}}</button>
-    </div>
-
-    <h4>This question is...</h4>
-    <div class="btn-group" data-toggle="buttons-radio">
-      <button type="button" ng-click="setUserImportance($index)" class="questionBtn btn btn-primary" ng-repeat="answer in importance">{{answer}}</button>
-    </div>
-  </form>
 
 </section>
