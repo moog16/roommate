@@ -35,7 +35,7 @@
           <li>
             <h5>Budget</h5>
             {{budgetMin || 'n/a'}} - {{budgetMax || 'n/a'}}
-            <div slider name="budgetSlider"></div>
+            <div slider name="budgetSlider" maximum="{{budgetMax}}" minimum="{{budgetMin}}"></div>
           </li>
           <li>
             <h5>Location</h5>
@@ -73,7 +73,7 @@
           <li>
             <h5>Duration of stay</h5>
             {{durationMin || 'n/a'}} - {{durationMax || 'n/a'}}
-            <div slider name="durationSlider"></div>
+            <div slider name="durationSlider" maximum="{{durationMin}}" minimum="{{durationMax}}"></div>
           </li>
         </ul>
         <button ng-mouseup="setPrefs()">set</button>

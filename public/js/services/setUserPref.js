@@ -3,7 +3,7 @@ angular.module('rm.userPref.service', [])
   function($http) {
 
   var sendUserPrefs = function(data) {
-    console.log(data);
+    console.log('from client to server ', data);
     $http.post('/api/setUserPref', data)
     .success(function(response, status, headers, config) {
       console.log(response);

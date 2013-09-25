@@ -11,7 +11,7 @@ angular.module('rm.userProfile.service', [])
     .success(function(userData, status, headers, config) {
       $http.get('/api/getQuestions/unanswered')
       .success(function(questions, status, headers, config) {
-        userPref = userData.preferences;
+        userProfile.preferences = userData.preferences;
         userProfile.userInfo = userData.facebook;
         userProfile.questions = questions;
         deferred.resolve(userProfile);

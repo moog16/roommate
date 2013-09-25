@@ -12,16 +12,20 @@ angular.module('rm.slider.directive', [])
             min: 10,
             max: 2000,
             step: 5,
-            value: [30, 1500]
+            //value: [attrs.minimum, attrs.minimum]
+            value: [750, 1500]
           });
           scope.minValue = '$10';
           scope.maxValue = '$2000k+';
         } else if( scope.name === 'durationSlider') {
+          console.log('duration ', attrs.minimum);
+          console.log('duration max ', attrs.maximum);
           $('#durationSlider').slider({
             min: 1,
             max: 36,
             step: 1,
-            value: [6, 24]
+            // value: [attrs.minimum, attrs.maximum]
+            value: [6, 20]
           });
           scope.minValue = '1';
           scope.maxValue = '36+ mos';
