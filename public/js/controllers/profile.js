@@ -23,10 +23,14 @@ angular.module('rm.users', [])
         $scope.questions = userProfile.questions;
         $scope.userInfo = userProfile.userInfo;
 
-        $scope.durationMin = userProfile.preferences.durationStay[0];
-        $scope.durationMax = userProfile.preferences.durationStay[1];
-        $scope.budgetMin = userProfile.preferences.budget[0];
-        $scope.budgetMax = userProfile.preferences.budget[1];
+        $scope.durationMin = userProfile.preferences.durationStay[0] || 'n/a';
+        $scope.durationMax = userProfile.preferences.durationStay[1] || 'n/a';
+        $scope.budgetMin = userProfile.preferences.budget[0] || 'n/a';
+        $scope.budgetMax = userProfile.preferences.budget[1] || 'n/a';
+        $scope.place = userProfile.preferences.location;
+        $scope.setBedroom(userProfile.preferences.dwellingType.bedroom);
+        $scope.setHousing(userProfile.preferences.dwellingType.type);
+        $scope.setBath(userProfile.preferences.dwellingType.bath);
       }, function(reason) {
         console.log('Failed ', reason);
       }, function(update) {
@@ -38,8 +42,6 @@ angular.module('rm.users', [])
     $scope.bedroomRange[6] = '7+';
     $scope.bathRange = $scope.bedroomRange.slice();
     $scope.bathRange.unshift('shared');
-
-
 
     $scope.importance = ['Irrelevant', 'a bit important', 'a little important', 'a lot important', 'a must have'];
   };
@@ -147,7 +149,6 @@ angular.module('rm.users', [])
   $scope.setBath = function(room) {
     $scope.bathValue = room;
   };
-  $scope.temp = 'whale';
 
   initialize();
 }]);

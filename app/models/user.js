@@ -25,9 +25,9 @@ var UserSchema = new Schema({
   roommatesSeen: [String],
   roommatesFavorite: [String],
   preferences: {
-    location: String, //geolocation data, will determine what search results bring back
+    location: {}, //geolocation data, will determine what search results bring back
     budget: [Number], //how much are you willing to spend
-    dwellingType: String, //apartment/house/etc
+    dwellingType: {}, //apartment/house/etc
     durationStay: [Number]  //days
   }
 });

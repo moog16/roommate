@@ -18,8 +18,6 @@ angular.module('rm.slider.directive', [])
           scope.minValue = '$10';
           scope.maxValue = '$2000k+';
         } else if( scope.name === 'durationSlider') {
-          console.log('duration ', attrs.minimum);
-          console.log('duration max ', attrs.maximum);
           $('#durationSlider').slider({
             min: 1,
             max: 36,

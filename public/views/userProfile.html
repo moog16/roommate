@@ -34,13 +34,13 @@
         <ul class="unstyled">
           <li>
             <h5>Budget</h5>
-            {{budgetMin || 'n/a'}} - {{budgetMax || 'n/a'}}
+            {{budgetMin}} - {{budgetMax}}
             <div slider name="budgetSlider" maximum="{{budgetMax}}" minimum="{{budgetMin}}"></div>
           </li>
           <li>
             <h5>Location</h5>
             <div id="panel">
-              <input id="searchTextField" type="text" size="50" placeholder="{{place || 'Enter a location'}}">
+              <input id="searchTextField" type="text" size="50" placeholder="{{place.address_components[0].long_name + ', ' + place.address_components[2].short_name || 'Enter a location'}}">
             </div>
           </li>
           <li>
@@ -72,7 +72,7 @@
           </li>
           <li>
             <h5>Duration of stay</h5>
-            {{durationMin || 'n/a'}} - {{durationMax || 'n/a'}}
+            {{durationMin}} - {{durationMax}}
             <div slider name="durationSlider" maximum="{{durationMin}}" minimum="{{durationMax}}"></div>
           </li>
         </ul>
@@ -80,7 +80,5 @@
       </div>
     </div>
   </div>
-
-
 
 </section>
