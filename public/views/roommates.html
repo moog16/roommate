@@ -14,12 +14,14 @@
       <div class="carousel-inner">
         <div class="active item">
           <a href="{{roommateInfo.roommates[0].facebook.link}}">
-            <img ng-src="{{ roommateInfo.roommates[0].facebook.picture.data.url }}" class="offset3 span6" />
+            <img src="{{ roommateInfo.roommates[0].facebook.picture.data.url }}" class="offset3 span6" />
           </a>
         </div>
+
         <div class="item" ng-repeat="photo in roommateInfo.roomates[0].facebook.photos.data">
           <img src="{{photo.source}}">
         </div>
+
       </div>
       <a class="carousel-control left" href="#roommatePics" data-slide="prev">&lsaquo;</a>
       <a class="carousel-control right" href="#roommatePics" data-slide="next">&rsaquo;</a>
@@ -34,33 +36,33 @@
     <button class="btn btn-success span2" ng-click="likeButton(roommateInfo.roommates[0])">Like</button>
   </div>
 
-  <div class="row">
-    <div class="span2">
-      <h4 class="center">mutual friends</h4>
+  <div class="row scroller">
+    <div class="mediaWheel">
       <img src="{{friendsPic}}" ng-click="mutualFriendsModal()">
+      <h4><span class="mediaCatRm">mutual friends</span></h4>
     </div>
-    <div class="span2">
-      <h4 class="center">mutual music</h4>
+    <div class="mediaWheel">
       <img src="{{musicPic}}" ng-click="mutualMusicModal()">
+      <h4><span class="mediaCatRm">mutual music</span></h4>
     </div>
-    <div class="span2">
-      <h4 class="center">mutual movies</h4>
+    <div class="mediaWheel">
       <img src="{{moviePic}}" ng-click="mutualMoviesModal()">
+      <h4><span class="mediaCatRm">mutual movies</span></h4>
     </div>
 
-    <div class="span2">
-      <h4 >compatibility</h4>
-      <span>You are a {{(roommateInfo.mutualRoommateInfo[0].compatibility * 100).toFixed(2)}}% match.</span>
+    <div class="mediaWheelText">
+      <h4>compatibility</h4>
+      <span class="">You are a {{(roommateInfo.mutualRoommateInfo[0].compatibility * 100).toFixed(2)}}% match.</span>
       <a href="#!/roommates/mutualQuestions?{{roommateInfo.roommates[0].facebook.id}}">
         See the questions and answers that you two had in common
       </a>
     </div>
 
-    <div class="span2">
+    <div class="mediaWheelText">
       <h4>Looking For:</h4>
-      <div class="row">
+      <p>
         a place with a budget between <span class="label label-info">${{roommateInfo.roommates[0].preferences.budget[0]}} - ${{roommateInfo.roommates[0].preferences.budget[1]}}</span> for a duration of length <span class="label label-warning">{{roommateInfo.roommates[0].preferences.durationStay[0]}} - {{roommateInfo.roommates[0].preferences.durationStay[1]}} months</span>, in <span class="label label-important">{{roommateInfo.roommates[0].preferences.location.address_components[0].long_name}}, {{roommateInfo.roommates[0].preferences.location.address_components[2].short_name}}</span>. Ideally I would like a {{roommateInfo.roommates[0].dwellingType.bedroom}} bed, {{roommateInfo.roommates[0].preferences.dwellingType.bath}} bath {{roommateInfo.roommates[0].preferences.dwellingType.type}}.
-      </div>
+      </p>
     </div>
   </div>
 

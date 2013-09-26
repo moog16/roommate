@@ -1,5 +1,5 @@
 body {
-
+  background-image: url('/img/ticks.png');
 }
 .navbar .nav>li>a.brand {
   padding-left:20px;
@@ -67,4 +67,56 @@ footer p {
   width: 94.6%;
   bottom: -57px;
   left: 0px;
+}
+
+.scroller {
+  float: left;
+  width: 100%;
+  overflow: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  height: 180px;
+}
+
+.mediaWheel {
+  display: inline-block;
+  max-width: 180px;
+  position: relative;
+  height: 145px;
+  width: 180px;
+  overflow: hidden;
+  float: left;
+}
+
+
+.mediaWheel h4 {
+  position: absolute;
+  top: 60%;
+  left: 0px;
+  width: 100%;
+}
+
+.mediaCatRm {
+  background: black;
+  color: white;
+  opacity: 0.8;
+  padding: 0px 3px;
+}
+
+.mediaWheelText {
+  height: 145px;
+  width: 180px;
+  display: inline-block;
+  max-width: 180px;
+  background: #ff715e;
+}
+
+.mediaWheelText span, .mediaWheelText a, .mediaWheelText p {
+  white-space: pre-line;
+  margin: 0px;
+}
+
+.mediaWheelText h4 {
+  margin: 0px 0px 3px 0px;
+  background: #1e59b2;
 }
