@@ -42,7 +42,7 @@
         <ul class="unstyled">
           <li ng-repeat="work in roommateInfo.roommates[0].facebook.work">
             <span class="label">{{work.position.name}}</span>
-            <span class="label label-info employerName">{{work.employer.name}}</span>
+            <span class="label label-info">{{work.employer.name}}</span>
           </li>
         </ul>
       </div>
@@ -77,4 +77,60 @@
   <div mutual-movies></div>
   <div mutual-music></div>
   <div mutual-friends></div>
+
+<!-- 
+  <div id="myCarousel" class="carousel slide">
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+  </ol>
+
+  <div class="carousel-inner">
+
+  </div>
+
+  <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+  <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+</div>
+ -->
+
+
+
+
+
+
+
+<div ng-controller="CarouselController">
+  <carousel interval="myInterval">
+    <slide ng-repeat="slide in slides" active="slide.active">
+      <img ng-src="{{slide.image}}" style="margin:auto;">
+      <div class="carousel-caption">
+        <h4>Slide {{$index}}</h4>
+        <p>{{slide.text}}</p>
+      </div>
+    </slide>
+  </carousel>
+  <div class="row-fluid">
+    <div class="span6">
+      <ul>
+<!--             <li><div class="active item">roommateInfo.roommates[0].facebook.photos.data[3].source</div></li>
+    <li><div class="item">roommateInfo.roommates[0].facebook.photos.data[1].source</div></li>
+    <li><div class="item">roommateInfo.roommates[0].facebook.photos.data[2].source</div></li>
+ -->
+
+
+        <li ng-repeat="slide in slides">
+          <button class="btn btn-mini" ng-class="{'btn-info': !slide.active, 'btn-success': slide.active}" ng-disabled="slide.active" ng-click="slide.active = true">select</button>
+          {{$index}}: {{slide.text}}
+        </li>
+      </ul>
+      <a class="btn" ng-click="addSlide()">Add Slide</a>
+    </div>
+    <div class="span6">
+      Interval, in milliseconds: <input type="number" ng-model="myInterval">
+      <br />Enter a negative number to stop the interval.
+    </div>
+  </div>
+</div>
 </section>

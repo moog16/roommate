@@ -124,7 +124,6 @@ footer p {
 .banner {
   background: white;
   color: black;
-  padding-left: 5px;
   margin-top: 0px;
   margin-bottom: 0px;
   margin-right: 0px;
@@ -133,7 +132,7 @@ footer p {
 
 .likeNope {
   margin: 0px;
-  width: 48.25%;
+  width: 47.75%;
   border: none;
   height: 90px;
 }

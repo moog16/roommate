@@ -22,7 +22,8 @@ window.app = angular.module('rm',
 'rm.sendRoommate.service',
 'rm.userPref.service',
 'rm.slider.directive',
-'rm.favorites.controller']);
+'rm.favorites.controller']);//,
+// 'rm.carousel.controller']);
 
 angular.module('rm.system', []);
 angular.module('rm.articles.service', []);
@@ -44,4 +45,5 @@ angular.module('rm.sendRoommate.service', []);
 angular.module('rm.userPref.service', []);
 angular.module('rm.slider.directive', []);
 angular.module('rm.favorites.controller', []);
+// angular.module('rm.carousel.controller', []);
 
