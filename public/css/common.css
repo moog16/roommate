@@ -120,3 +120,28 @@ footer p {
   margin: 0px 0px 3px 0px;
   background: #1e59b2;
 }
+
+.banner {
+  background: white;
+  color: black;
+  padding-left: 5px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-right: 0px;
+  width: 100%;
+}
+
+.likeNope {
+  margin: 0px;
+  width: 48.25%;
+  border: none;
+  height: 90px;
+}
+
+.right {
+  float: right;
+}
+
+.employerName {
+  margin-left: 5px;
+}

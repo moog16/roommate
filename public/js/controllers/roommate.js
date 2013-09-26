@@ -65,6 +65,9 @@ angular.module('rm.roommates.controller', [])
       promise.then(function(roommateInfo) {
         $scope.roommateInfo = roommateInfo;
         setNoMutualInfo();
+        // var picHeight = document.getElementById('picHeight').style.height;
+        // console.log('picheight', picHeight);
+        // document.getElementById('sidebarHeight').style.height = picHeight+'px';
       }, function(reason) {
         console.log('Failed ', reason);
       }, function(update) {
@@ -75,7 +78,6 @@ angular.module('rm.roommates.controller', [])
       setNoMutualInfo();
     }
 
-    $('.carousel').carousel();
   };
 
   init();
