@@ -76,22 +76,25 @@ img.userProfile {
 }
 
 .scroller {
-  float: left;
+  /*float: left;*/
+  height: 180px;
   width: 100%;
-  overflow: auto;
+  overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
-  height: 180px;
+}
+
+.scroller div{
+  display:inline-block;
 }
 
 .mediaWheel {
   display: inline-block;
-  max-width: 180px;
   position: relative;
   height: 145px;
   width: 180px;
   overflow: hidden;
-  float: left;
+  vertical-align: top;
 }
 
 
