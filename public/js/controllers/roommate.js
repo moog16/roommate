@@ -74,6 +74,8 @@ angular.module('rm.roommates.controller', [])
       $scope.roommateInfo = roommateInit.vars;
       setNoMutualInfo();
     }
+
+    $('.carousel').carousel();
   };
 
   init();

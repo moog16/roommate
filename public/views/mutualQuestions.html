@@ -1,18 +1,20 @@
 <section ng-controller="MutualQuestionsController">
   <h1>Questions and Answers</h1>
 
-  <ul>
-    <li ng-repeat="question in userQuestions">
-      {{qaText[$index].question}}
-      <br>
-      <span class="userQuestionCompare">
-        {{qaText[$index].answers[question.answer].message}}
-      </span>
-      <br>
-      <span class="rmQuestionCompare">
-        {{qaText[$index].answers[rmQuestions[$index].answer].message}}
-      </span>
-    </li>
-  </ul>
+  <ol class="offset2">
+    <div class="row" ng-repeat="question in userQuestions">
+      <li class="span4">
+        {{qaText[$index].question}}
+        <br>
+        <span class="label label-info">
+          {{qaText[$index].answers[rmQuestions[$index].answer].message}}
+        </span>
+        <br>
+        <span class="label label-important userQuestionCompare">
+          {{qaText[$index].answers[question.answer].message}}
+        </span>
+      </li>
+    </div>
+  </ol>
 
 </section>

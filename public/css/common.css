@@ -1,3 +1,6 @@
+body {
+
+}
 .navbar .nav>li>a.brand {
   padding-left:20px;
   margin-left:0
@@ -26,4 +29,42 @@ footer p {
 
 .signin {
   height:300px;
+}
+
+.btn-question-choice {
+  background: #6d91ff;
+  color: white;
+}
+
+.mediaImg {
+  position: relative;
+  width: 100%;
+}
+
+.mediaImg h3 {
+  position: absolute;
+  top: 60%;
+  left: 0px;
+  width: 100%;
+}
+
+.mediaDiv {
+  height: 130px;
+  width: 130px;
+  overflow: hidden;
+  float: left;
+}
+
+.mediaCat {
+  background: black;
+  color: white;
+  opacity: 0.8;
+  padding: 0px 3px;
+}
+
+.fixedFoot {
+  position: absolute;
+  width: 94.6%;
+  bottom: -57px;
+  left: 0px;
 }

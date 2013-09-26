@@ -1,35 +1,44 @@
 <section ng-controller="ProfileController">
 
-  <div class="row">
-    <img class="span4 offset4" src="{{userInfo.picture.data.url}}"/>
-  </div>
+<div class="row">
 
-  <div class="row">
-    <div class="span2 offset3">
-      <h3 class="center">Movies</h3>
-      <img src="{{userInfo.movies.data[0].picture.data.url}}" ng-click="openMovies()" class="mediaImg">
-    </div>
+  <div class="span4">
+    <img class="row" src="{{userInfo.picture.data.url}}"/>
 
-    <div class="span2">
-      <h3 class="center">Music</h3>
-      <img src="{{userInfo.music.data[0].picture.data.url}}" ng-click="openMusic()" class="mediaImg">
-    </div>
-    <div class="span2">
-      <h3 class="center">Work</h3>
-      <div ng-repeat="work in userInfo.work">
-        <span>{{work.employer.name}}</span>
+    <div class="row">
+      <div class="mediaImg">
+        <img src="{{userInfo.movies.data[0].picture.data.url}}" ng-click="openMovies()">
+        <h3><span class="mediaCat">movies</span></h3>
       </div>
     </div>
+
+    <div class="row mediaImg">
+      <img src="{{userInfo.music.data[0].picture.data.url}}" ng-click="openMusic()">
+      <h3><span class="mediaCat">music</span></h3>
+    </div>
+
+    <div class="row">
+
+        <div class="row">
+          <div ng-repeat="work in userInfo.work">
+            <span >{{work.employer.name}}</span><br>
+            <em >{{work.position.name}}</em>
+          </div>
+        </div>
+
+        <div class="row">
+          <div ng-repeat="education in userInfo.education">
+            <span >{{education.school.name}}</span><br>
+            <em>{{education.school.type}}</em>
+          </div>
+        </div>
+    </div>
   </div>
 
-  <div user-movies-modal></div>
-  <div user-music-modal></div>
-  <br>
 
 
-  <div class="row">
-    <div class="offset3 span6">
 
+    <div class="span6">
       <ul class="nav nav-tabs" id="navTabs">
         <li><a href="#questionTab" data-toggle="tab">Questions</a></li>
         <li><a href="#preferenceTab" data-toggle="tab">Preferences</a></li>
@@ -92,5 +101,9 @@
 
       </div>
     </div>
-  </div>
+
+</div>
+  <div user-movies-modal></div>
+  <div user-music-modal></div>
+
 </section>
