@@ -13,6 +13,7 @@ angular.module('rm.getMutual.service', [])
 
   var mutualInfoCalc = function(roommate, userQuestions, userQAIndex, userFacebook) {
     var newMutualInfo = {};
+    newMutualInfo.likes = findIntersect(roommate, 'likes', userFacebook);
     newMutualInfo.music = findIntersect(roommate, 'music', userFacebook);
     newMutualInfo.movies = findIntersect(roommate, 'movies', userFacebook);
     newMutualInfo.friends = findIntersect(roommate, 'friends', userFacebook);

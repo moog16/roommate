@@ -34,6 +34,13 @@ angular.module('rm.roommates.controller', [])
       $scope.friendsPic = $scope.roommateInfo.mutualRoommateInfo[0].friends[0].picture.data.url;
       $scope.friendsName = $scope.roommateInfo.mutualRoommateInfo[0].friends[0].name;
     }
+    if($scope.roommateInfo.mutualRoommateInfo[0].likes.length === 0) {
+      $scope.likePic = '/img/nothing.jpg';
+      $scope.likeName = 'none';
+    } else {
+      $scope.likePic = $scope.roommateInfo.mutualRoommateInfo[0].likes[0].picture.data.url;
+      $scope.likeName = $scope.roommateInfo.mutualRoommateInfo[0].likes[0].name;
+    }
   };
 
   $scope.mutualMoviesModal = function() {
@@ -46,6 +53,10 @@ angular.module('rm.roommates.controller', [])
 
   $scope.mutualFriendsModal = function() {
     $('#mutualFriendsModal').modal('toggle');
+  };
+
+  $scope.mutualLikesModal = function() {
+    $('#mutualLikesModal').modal('toggle');
   };
 
   $scope.likeButton = function(roommate) {
@@ -65,9 +76,7 @@ angular.module('rm.roommates.controller', [])
       promise.then(function(roommateInfo) {
         $scope.roommateInfo = roommateInfo;
         setNoMutualInfo();
-        // var picHeight = document.getElementById('picHeight').style.height;
-        // console.log('picheight', picHeight);
-        // document.getElementById('sidebarHeight').style.height = picHeight+'px';
+        console.log('roommatee', roommateInfo);
       }, function(reason) {
         console.log('Failed ', reason);
       }, function(update) {

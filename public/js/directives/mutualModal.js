@@ -16,4 +16,10 @@ angular.module('rm.mutualModal.directive', [])
     Restrict: 'A',
     templateUrl: '../views/mutualModals/friends.html'
   };
+})
+.directive('mutualLikes', function() {
+  return {
+    Restrict: 'A',
+    templateUrl: '../views/mutualModals/likes.html'
+  };
 });
