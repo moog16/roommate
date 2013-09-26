@@ -11,8 +11,6 @@ module.exports = function(req, res) {
     }, function(err, user) {
       if(err) {
         throw err;
-      } else if(!user) {
-        res.redirect('/signup');
       } else {
         Question.findOne({
         }, function(err, question) {

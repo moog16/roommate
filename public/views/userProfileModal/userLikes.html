@@ -1,0 +1,15 @@
+<div id="userLikeModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">likes you like...</h3>
+  </div>
+  <div class="modal-body">
+    <div ng-repeat="like in userInfo.likes.data" class="mediaDiv">
+      <a href="{{like.link}}"><img src="{{like.picture.data.url}}" class="mediaImg"></a>
+      <h4 class="mediaName">{{like.name}}</h4>
+    </div>
+  </div>
+  <div class="modal-footer fixedFoot">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+  </div>
+</div>

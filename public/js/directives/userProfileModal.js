@@ -13,4 +13,9 @@ angular.module('rm.userProfile.directive', [])
   return {
     templateUrl: '../views/userQuestions.html'
   };
+})
+.directive('userLikeModal', function() {
+  return {
+    templateUrl: '../views/userProfileModal/userLikes.html'
+  };
 });

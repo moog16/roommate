@@ -8,12 +8,12 @@ angular.module('rm.system').controller('HeaderController', ['$scope', 'Global', 
     "title": "Roommates!",
     "link": "roommates"
   }, {
-    "title": "Questions",
-    "link": "questions"
-  }, {
-    "title": "Create New Questions",
-    "link": "questions/create"
-  }, {
+  //   "title": "Questions",
+  //   "link": "questions"
+  // }, {
+  //   "title": "Create New Questions",
+  //   "link": "questions/create"
+  // }, {
     "title": "Checkout Your Faves",
     "link": "favorites"
   }];

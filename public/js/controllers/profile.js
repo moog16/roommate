@@ -116,6 +116,10 @@ angular.module('rm.users', [])
   $scope.openMusic = function() {
     $('#userMusicModal').modal('toggle');
   };
+  $scope.openLikes = function() {
+    console.log('like);');
+    $('#userLikeModal').modal('toggle');
+  };
 
   /***************************************  preferences  *****************************************/
 

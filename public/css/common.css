@@ -41,6 +41,12 @@ footer p {
   width: 100%;
 }
 
+img.userProfile {
+  width: 165px;
+  height: 100%;
+  background: white;
+}
+
 .mediaImg h3 {
   position: absolute;
   top: 60%;

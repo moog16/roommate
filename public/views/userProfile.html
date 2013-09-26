@@ -3,40 +3,45 @@
 <div class="row">
 
   <div class="span3">
-    <img class="row" src="{{userInfo.picture.data.url}}"/>
+    <img class="row userProfile" src="{{userInfo.picture.data.url}}"/>
 
     <div class="row">
       <div class="mediaImg">
-        <img src="{{userInfo.movies.data[0].picture.data.url}}" ng-click="openMovies()">
+        <img class="userProfile" src="{{userInfo.movies.data[0].picture.data.url}}" ng-click="openMovies()">
         <h3><span class="mediaCat">movies</span></h3>
       </div>
     </div>
 
     <div class="row mediaImg">
-      <img src="{{userInfo.music.data[0].picture.data.url}}" ng-click="openMusic()">
+      <img class="userProfile" src="{{userInfo.music.data[0].picture.data.url}}" ng-click="openMusic()">
       <h3><span class="mediaCat">music</span></h3>
     </div>
 
+    <div class="row mediaImg">
+      <img class="userProfile" src="{{userInfo.likes.data[0].picture.data.url}}" ng-click="openLikes()">
+      <h3><span class="mediaCat">likes</span></h3>
+    </div>
 
-        <div class="row">
-          <h4>work</h4>
-          <ul class="unstyled">
-            <li ng-repeat="work in userInfo.work">
-              <span class="label">{{work.position.name}}</span>
-              <span class="label label-info">{{work.employer.name}}</span>
-            </li>
-          </ul>
-        </div>
 
-        <div class="row">
-          <h4>education</h4>
-          <ul class="unstyled">
-            <li ng-repeat="school in userInfo.education">
-              <span class="label">{{school.type}}</span>
-              <span class="label label-info employerName">{{school.school.name}}</span>
-            </li>
-          </ul>
-        </div>
+    <div class="row">
+      <h4>work</h4>
+      <ul class="unstyled">
+        <li ng-repeat="work in userInfo.work">
+          <span class="label">{{work.position.name}}</span>
+          <span class="label label-info">{{work.employer.name}}</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="row">
+      <h4>education</h4>
+      <ul class="unstyled">
+        <li ng-repeat="school in userInfo.education">
+          <span class="label">{{school.type}}</span>
+          <span class="label label-info employerName">{{school.school.name}}</span>
+        </li>
+      </ul>
+    </div>
 
 
   </div>
@@ -111,5 +116,6 @@
 </div>
   <div user-movies-modal></div>
   <div user-music-modal></div>
+  <div user-like-modal></div>
 
 </section>
