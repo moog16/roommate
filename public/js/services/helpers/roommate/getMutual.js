@@ -26,7 +26,11 @@ angular.module('rm.getMutual.service', [])
   };
 
   var findIntersect = function(roommate, infoCategory, userFacebook) {
-    return intersection.objects(userFacebook[infoCategory].data, roommate.facebook[infoCategory].data);
+    if(userFacebook[infoCategory] === undefined || roommate.facebook[infoCategory] === undefined) {
+      return null;
+    } else {
+      return intersection.objects(userFacebook[infoCategory].data, roommate.facebook[infoCategory].data);
+    }
   };
   
   return {

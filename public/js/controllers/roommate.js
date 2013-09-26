@@ -13,28 +13,36 @@ angular.module('rm.roommates.controller', [])
   };
 
   var setNoMutualInfo = function() {
-    if($scope.roommateInfo.mutualRoommateInfo[0].movies.length === 0 ) {
+    if( $scope.roommateInfo.mutualRoommateInfo[0].movies === undefined ||
+        $scope.roommateInfo.mutualRoommateInfo[0].movies === null ||
+        $scope.roommateInfo.mutualRoommateInfo[0].movies.length === 0 ) {
       $scope.moviePic = '/img/nothing.jpg';
       $scope.movieName = 'none';
     } else {
       $scope.moviePic = $scope.roommateInfo.mutualRoommateInfo[0].movies[0].picture.data.url;
       $scope.movieName = $scope.roommateInfo.mutualRoommateInfo[0].movies[0].name;
     }
-    if($scope.roommateInfo.mutualRoommateInfo[0].music.length === 0) {
+    if( $scope.roommateInfo.mutualRoommateInfo[0].music === undefined ||
+        $scope.roommateInfo.mutualRoommateInfo[0].music === null ||
+        $scope.roommateInfo.mutualRoommateInfo[0].music.length === 0 ) {
       $scope.musicPic = '/img/nothing.jpg';
       $scope.musicName = 'none';
     } else {
       $scope.musicPic = $scope.roommateInfo.mutualRoommateInfo[0].music[0].picture.data.url;
       $scope.musicName = $scope.roommateInfo.mutualRoommateInfo[0].music[0].name;
     }
-    if($scope.roommateInfo.mutualRoommateInfo[0].friends.length === 0) {
+    if( $scope.roommateInfo.mutualRoommateInfo[0].friends === undefined ||
+        $scope.roommateInfo.mutualRoommateInfo[0].friends === null ||
+        $scope.roommateInfo.mutualRoommateInfo[0].friends.length === 0) {
       $scope.friendsPic = '/img/nothing.jpg';
       $scope.friendsName = 'none';
     } else {
       $scope.friendsPic = $scope.roommateInfo.mutualRoommateInfo[0].friends[0].picture.data.url;
       $scope.friendsName = $scope.roommateInfo.mutualRoommateInfo[0].friends[0].name;
     }
-    if($scope.roommateInfo.mutualRoommateInfo[0].likes.length === 0) {
+    if( $scope.roommateInfo.mutualRoommateInfo[0].likes === undefined ||
+        $scope.roommateInfo.mutualRoommateInfo[0].likes === null ||
+        $scope.roommateInfo.mutualRoommateInfo[0].likes.length === 0 ) {
       $scope.likePic = '/img/nothing.jpg';
       $scope.likeName = 'none';
     } else {

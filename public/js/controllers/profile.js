@@ -22,15 +22,23 @@ angular.module('rm.users', [])
       console.log(userProfile);
         $scope.questions = userProfile.questions;
         $scope.userInfo = userProfile.userInfo;
+        var pref = userProfile.preferences;
 
-        $scope.durationMin = userProfile.preferences.durationStay[0] || 'n/a';
-        $scope.durationMax = userProfile.preferences.durationStay[1] || 'n/a';
-        $scope.budgetMin = userProfile.preferences.budget[0] || 'n/a';
-        $scope.budgetMax = userProfile.preferences.budget[1] || 'n/a';
-        $scope.place = userProfile.preferences.location;
-        $scope.setBedroom(userProfile.preferences.dwellingType.bedroom);
-        $scope.setHousing(userProfile.preferences.dwellingType.type);
-        $scope.setBath(userProfile.preferences.dwellingType.bath);
+        $scope.durationMin = pref.durationStay[0] || 'n/a';
+        $scope.durationMax = pref.durationStay[1] || 'n/a';
+        $scope.budgetMin = pref.budget[0] || 'n/a';
+        $scope.budgetMax = pref.budget[1] || 'n/a';
+        $scope.setBedroom(pref.dwellingType.bedroom);
+        $scope.setHousing(pref.dwellingType.type);
+        $scope.setBath(pref.dwellingType.bath);
+        console.log(pref.location);
+        if(pref.location === undefined) {
+          console.log('hellooo');
+          $scope.addressLocation = 'Enter a location';
+        } else {
+          $scope.addressLocation = pref.location.address_components[0].long_name + ', ' + pref.location.address_components[2].short_name;
+        }
+        // $scope.place = pref.location;
       }, function(reason) {
         console.log('Failed ', reason);
       }, function(update) {
