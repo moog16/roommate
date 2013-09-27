@@ -20,11 +20,7 @@
     "connect-mongo": "latest",
     "connect-flash": "latest",
     "passport": "latest",
-    "passport-local": "latest",
     "passport-facebook": "latest",
-    "passport-twitter": "latest",
-    "passport-github": "latest",
-    "passport-google-oauth": "latest",
     "underscore": "latest",
     "async": "latest",
     "view-helpers": "latest",
@@ -35,6 +31,8 @@
     "request": "~2.27.0"
   },
   "devDependencies": {
+    "expect.js": "~0.2.0",
+    "expect": "0.0.2"
     "supertest": "latest",
     "should": "latest",
     "mocha": "latest",

@@ -1,109 +1,53 @@
-var handler = require("../../config/routes.js");
+var expect = require('expect.js'),
+  request = require('request'),
+  spawn = require('child_process').spawn,
+  server = spawn('node', ['../../server.js']);
 
-function StubRequest(url, method, postdata) {
-  this.url = url;
-  this.method = method;
-  this._postData = postdata;
-  this.setEncoding = function(type) {
-    //ignore
-  };
-  var self = this;
-  this.addListener = this.on = function(type, callback) {
-    if (type == "data") {
-      callback(JSON.stringify(self._postData));
-    }
-    if (type == "end") {
-      callback();
-    }
-  };
-}
+describe('server', function () {
+  before(function () {
+    // server();
+  });
 
-function StubResponse() {
-  this._ended = false;
-  this._responseCode = null;
-  this._headers = null;
-  this._data = null;
-  var self = this;
-  this.writeHead = function(responseCode, headers) {
-    console.log("WriteHead called with " + responseCode);
-    self._responseCode = responseCode;
-    self._headers = headers;
-  };
-  this.end = function(data) {
-    console.log("Response.end called.");
-    self._ended = true;
-    self._data = data;
-  };
-}
+  describe('/', function () {
+    it('should return 200', function (done) {
+      request('http://goom.com:3000', function (error, res, body) {
+        expect(res).to.exist;
+        expect(res.statusCode).to.equal(200);
+        done();
+      });
+    });
+  });
 
-describe("Node Server Request Listener Function", function() {
- it("Should answer GET requests for /classes/room", function() {
-   var req = new StubRequest("http://127.0.0.1:8080/1/classes/room1",
-                             "GET");
-   var res = new StubResponse();
+  // describe('/api/userInfo', function () {
+  //   it('should return 200', function (done) {
+  //     request('http://goom.com:3000/api/userInfo', function (error, res, body) {
+  //       expect(res).to.exist;
+  //       expect(res.statusCode).to.equal(200);
+  //       done();
+  //     });
+  //   });
+  // });
 
-   handler.handleRequest(req, res);
-   setTimeout(function() {
-     expect(res._responseCode).toEqual(200);
-     expect(res._data).toEqual("[]");
-     expect(res._ended).toEqual(true);
-   }, 500);
- });
-/*
- it("Should accept posts to /classes/room", function() {
-   var req = new StubRequest("http://127.0.0.1:8080/1/classes/room1",
-                             "POST",
-                            {username: "Jono",
-                             message: "Do my bidding!"});
-   var res = new StubResponse();
-
-   handler.handleRequest(req, res);
-
-   // Expect 201 Created response status
-   expect(res._responseCode).toEqual(201);
-
-   // Testing for a newline isn't a valid test
-   // todo: Replace with with a valid test
-   // expect(res._data).toEqual(JSON.stringify("\n"));
-   setTimeout( function() {
-     expect(res._ended).toEqual(true);
-   }, 500);
-
-   // Now if we request the log for that room,
-   // the message we posted should be there:
-   req = new StubRequest("http://127.0.0.1:8080/1/classes/room1",
-                             "GET");
-   res = new StubResponse();
-
-   handler.handleRequest(req, res);
-
-   setTimeout( function() {
-     expect(res._responseCode).toEqual(200);
-     var messageLog = JSON.parse(res._data);
-     expect(messageLog.length).toEqual(1);
-     expect(messageLog[0].username).toEqual("Jono");
-     expect(messageLog[0].message).toEqual("Do my bidding!");
-     expect(res._ended).toEqual(true);
-   }, 500);
- });
+// app.post('/users', users.create);
 
 
- it("Should 404 when asked for a nonexistent file", function() {
-   var req = new StubRequest("http://127.0.0.1:8080/arglebargle",
-                             "GET");
-   var res = new StubResponse();
+//   app.get('/users/me', users.me);
+//   app.get('/users/:userId', users.show);
 
-   handler.handleRequest(req, res);
-   console.log("Res is " + res);
+//   // api interface routes
+//   app.get('/api/userInfo', getUser.info);
+//   app.get('/api/getQuestions/unanswered', getQuestions.andAnswers);
+//   app.post('/api/getQuestions/fromUser', getQuestions.fromUser);
+//   app.get('/api/getRoommate', getRoommate.info);
 
-   // Wait some time before checking results:
-   waits(1000);
+//   app.post('/api/setUserQA', setUserQA);
+//   app.post('/api/setUserRoommates', setuserRoommates);
+//   app.post('/api/setUserPref', setUserPref);
+//   app.post('/api/userArray', getUser.userArray);
 
-   runs(function() {
-     expect(res._responseCode).toEqual(404);
-     expect(res._ended).toEqual(true);
-   });
- });
-*/
 
+  after(function () {
+    // server.close();
+  });
 });
+
