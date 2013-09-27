@@ -41,5 +41,5 @@ angular.module('rm.roommate.service', [])
   return {
     init: init,
     vars: roommateInitVars
-  }
+  };
 }]);

@@ -20,5 +20,5 @@ angular.module('rm.sendRoommate.service', [])
   return {
     skip: skip,
     favorite: favorite
-  }
+  };
 }]);
