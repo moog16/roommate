@@ -31,7 +31,8 @@
     "mean-logger": "latest",
     "bower": "latest",
     "forever": "latest",
-    "foreman": "0.0.25"
+    "foreman": "0.0.25",
+    "request": "~2.27.0"
   },
   "devDependencies": {
     "supertest": "latest",

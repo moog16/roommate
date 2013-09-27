@@ -6,49 +6,35 @@ angular.module('rm.roommates.controller', [])
   var showNextRoommate = function() {
     $scope.roommateInfo.roommates.splice(0,1);
     $scope.roommateInfo.mutualRoommateInfo.splice(0,1);
-    setNoMutualInfo();
+    setInfo();
     if($scope.roommateInfo.roommates.length >= 1) {
       $scope.roommateInfo.roommates[0].isActive = true;
     }
   };
 
-  var setNoMutualInfo = function() {
-    if( $scope.roommateInfo.mutualRoommateInfo[0].movies === undefined ||
-        $scope.roommateInfo.mutualRoommateInfo[0].movies === null ||
-        $scope.roommateInfo.mutualRoommateInfo[0].movies.length === 0 ) {
-      $scope.moviePic = '/img/nothing.jpg';
-      $scope.movieName = 'none';
+  var setInfo = function() {
+    $scope.moviePic = containsMutualInfo('movies').pic;
+    $scope.movieName = containsMutualInfo('movies').name;
+    $scope.musicPic = containsMutualInfo('music').pic;
+    $scope.musicName = containsMutualInfo('music').name;
+    $scope.friendsPic = containsMutualInfo('friends').pic;
+    $scope.friendsName = containsMutualInfo('friends').name;
+    $scope.likePic = containsMutualInfo('likes').pic;
+    $scope.likeName = containsMutualInfo('likes').name;
+  };
+
+  var containsMutualInfo = function(category) {
+    var result = {};
+    if( $scope.roommateInfo.mutualRoommateInfo[0][category] === undefined ||
+        $scope.roommateInfo.mutualRoommateInfo[0][category] === null ||
+        $scope.roommateInfo.mutualRoommateInfo[0][category].length === 0 ) {
+      result.pic = '/img/nothing.jpg';
+      result.name = 'none';
     } else {
-      $scope.moviePic = $scope.roommateInfo.mutualRoommateInfo[0].movies[0].picture.data.url;
-      $scope.movieName = $scope.roommateInfo.mutualRoommateInfo[0].movies[0].name;
+      result.pic = $scope.roommateInfo.mutualRoommateInfo[0][category][0].picture.data.url;
+      result.name = $scope.roommateInfo.mutualRoommateInfo[0][category][0].name;
     }
-    if( $scope.roommateInfo.mutualRoommateInfo[0].music === undefined ||
-        $scope.roommateInfo.mutualRoommateInfo[0].music === null ||
-        $scope.roommateInfo.mutualRoommateInfo[0].music.length === 0 ) {
-      $scope.musicPic = '/img/nothing.jpg';
-      $scope.musicName = 'none';
-    } else {
-      $scope.musicPic = $scope.roommateInfo.mutualRoommateInfo[0].music[0].picture.data.url;
-      $scope.musicName = $scope.roommateInfo.mutualRoommateInfo[0].music[0].name;
-    }
-    if( $scope.roommateInfo.mutualRoommateInfo[0].friends === undefined ||
-        $scope.roommateInfo.mutualRoommateInfo[0].friends === null ||
-        $scope.roommateInfo.mutualRoommateInfo[0].friends.length === 0) {
-      $scope.friendsPic = '/img/nothing.jpg';
-      $scope.friendsName = 'none';
-    } else {
-      $scope.friendsPic = $scope.roommateInfo.mutualRoommateInfo[0].friends[0].picture.data.url;
-      $scope.friendsName = $scope.roommateInfo.mutualRoommateInfo[0].friends[0].name;
-    }
-    if( $scope.roommateInfo.mutualRoommateInfo[0].likes === undefined ||
-        $scope.roommateInfo.mutualRoommateInfo[0].likes === null ||
-        $scope.roommateInfo.mutualRoommateInfo[0].likes.length === 0 ) {
-      $scope.likePic = '/img/nothing.jpg';
-      $scope.likeName = 'none';
-    } else {
-      $scope.likePic = $scope.roommateInfo.mutualRoommateInfo[0].likes[0].picture.data.url;
-      $scope.likeName = $scope.roommateInfo.mutualRoommateInfo[0].likes[0].name;
-    }
+    return result;
   };
 
   $scope.mutualMoviesModal = function() {
@@ -78,13 +64,12 @@ angular.module('rm.roommates.controller', [])
   };
 
   var init = function() {
-    
     if(Object.keys(roommateInit.vars).length === 0) {
       var promise = roommateInit.init();
       promise.then(function(roommateInfo) {
         $scope.roommateInfo = roommateInfo;
-        setNoMutualInfo();
         console.log('roommatee', roommateInfo);
+        setInfo();
       }, function(reason) {
         console.log('Failed ', reason);
       }, function(update) {
@@ -92,7 +77,7 @@ angular.module('rm.roommates.controller', [])
       });
     } else {
       $scope.roommateInfo = roommateInit.vars;
-      setNoMutualInfo();
+      setInfo();
     }
   };
 

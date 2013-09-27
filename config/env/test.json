@@ -1,0 +1,10 @@
+{
+    "db": "mongodb://localhost/mean-test",
+    "port": 3001,
+    "app": {
+        "name": "okRoomie - Test"
+    },
+    "facebook": {
+        "callbackURL": "http://localhost:3000/auth/facebook/callback"
+    }
+}
