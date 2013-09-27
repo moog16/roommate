@@ -4,7 +4,7 @@ var async = require('async'),
     getRoommate = require('../app/controllers/api/getRoommate.js'),
     getQuestions = require('../app/controllers/api/getQuestions.js'),
     setUserQA = require('../app/controllers/api/setUserQA.js'),
-    setuserRoommates = require('../app/controllers/api/setuserRoommates.js'),
+    setUserRoommates = require('../app/controllers/api/setUserRoommates.js'),
     setUserPref = require('../app/controllers/api/setUserPref.js'),
     https = require('https');
 
@@ -33,7 +33,7 @@ module.exports = function(app, passport, auth) {
   app.get('/api/getRoommate', getRoommate.info);
 
   app.post('/api/setUserQA', setUserQA);
-  app.post('/api/setUserRoommates', setuserRoommates);
+  app.post('/api/setUserRoommates', setUserRoommates);
   app.post('/api/setUserPref', setUserPref);
   app.post('/api/userArray', getUser.userArray);
 
