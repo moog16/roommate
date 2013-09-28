@@ -1,9 +1,9 @@
 {
-    "db": "mongodb://localhost/mean-dev",
+    "db": "mongodb://localhost/production",
     "app": {
       "name": "Roommates"
     },
     "facebook": {
-      "callbackURL": "http://padshacker.com:3000/auth/facebook/callback"
+      "callbackURL": "http://padshacker.com/auth/facebook/callback"
     }
 }

@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "expect.js": "~0.2.0",
-    "expect": "0.0.2"
+    "expect": "0.0.2",
     "supertest": "latest",
     "should": "latest",
     "mocha": "latest",

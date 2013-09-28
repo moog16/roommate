@@ -31,9 +31,7 @@ angular.module('rm.users', [])
         $scope.setBedroom(pref.dwellingType.bedroom);
         $scope.setHousing(pref.dwellingType.type);
         $scope.setBath(pref.dwellingType.bath);
-        console.log(pref.location);
         if(pref.location === undefined) {
-          console.log('hellooo');
           $scope.addressLocation = 'Enter a location';
         } else {
           $scope.addressLocation = pref.location.address_components[0].long_name + ', ' + pref.location.address_components[2].short_name;
