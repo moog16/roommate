@@ -1,14 +1,15 @@
-# MEAN Stack
+##PadShacker
 
-MEAN is a boilerplate that provides a nice starting point for [MongoDB](http://www.mongodb.org/), [Node.js](http://www.nodejs.org/), [Express](http://expressjs.com/), and [AngularJS](http://angularjs.org/) based applications. It is designed to give you quick and organized way to start developing of MEAN based web apps with useful modules like mongoose and passport pre-bundled and configured. We mainly try to take care of the connection points between existing popular frameworks and solve common integration problems.  
+PadShacker is a web app to find your next roommate. It is a cross between Tinder and okCupid, which are two dating web applications. PadShacker uses an algorithm similar to okCupid to calculate the compatibility between two people. This app connects to each person's Facebook account and shows mutual information between the two parties. 
+
+The tech stack that this app uses is the MEAN boilerplate. This includes MongoDB, Express.js, Angular.js, and Node.js. For authentication I used passport, and mongoose to interact with my MongoDB.
 
 ## Prerequisites
 * Node.js - Download and Install [Node.js](http://www.nodejs.org/download/). You can also follow [this gist](https://gist.github.com/isaacs/579814) for a quick and easy way to install Node.js and npm
 * MongoDB - Download and Install [MongoDB](http://www.mongodb.org/downloads) - Make sure it's running on the default port (27017).
 
+
 ### Optional (Requirements for Grunt)
-* Ruby - Download and Install [Ruby](http://www.ruby-lang.org/).
-* Ruby Gems - Download and Install [Ruby Gems](http://rubygems.org).
 * Compass - an open-source CSS Authoring Framework, install via [Ruby Gems](http://rubygems.org).
 * Grunt - Download and Install [Grunt](http://gruntjs.com).
 
@@ -19,10 +20,11 @@ MEAN is a boilerplate that provides a nice starting point for [MongoDB](http://w
 * AngularJS - Defined as bower module in the [bower.json](bower.json) file.
 * Twitter Bootstrap - Defined as bower module in the [bower.json](bower.json) file.
 * UI Bootstrap - Defined as bower module in the [bower.json](bower.json) file.
+* Flatstrap - Defined as bower module in the [bower.json](bower.json) file.
 
 ## Quick Install
 
- The quickest way to get started with MEAN is to clone the project and utilize it like this:
+ The quickest way to get started with PadShacker is to clone the project and utilize it like this:
 
   Install dependencies:
 
@@ -36,37 +38,27 @@ MEAN is a boilerplate that provides a nice starting point for [MongoDB](http://w
 
   When not using grunt you can use:
 
-    $ node server
+    $ node server.js
     
   Then open a browser and go to:
 
-    http://localhost:3000
+    http://padshacker.com:3000
 
-## Quick Deployment
-4 commands to deploy your mean app to heroku,
-Before you start make sure you have <a href="https://toolbelt.heroku.com/">heroku toolbelt</a> installed and an accessible mongo db instance - you can try <a href="http://www.mongohq.com/">mongohq</a> which have an easy setup )
+  You can change the path by setting your *Port* environment variable
+	export PORT=your_port_number
 
-```bash
-git init
-git add .
-git commit -m "initial version"
-heroku apps:create
-git push heroku master
-```
 
 ## Configuration
-All configuration is specified in the [config](config/) folder, particularly the [config.js](config/config.js) file. Here you will need to specify your application name, database name, as well as hook up any social app keys if you want integration with Twitter, Facebook, GitHub or Google.
+All configuration is specified in the [config](config/) folder, particularly the [config.js](config/config.js) file. Here you will need to specify your application name, database name.
 
 ### Environmental Settings
 
 There are three environments provided by default, __development__, __test__, and __production__. Each of these environments has the following configuration options:
-* db - This is the name of the MongoDB database to use, and is set by default to __mean-dev__ for the development environment.
+
+* db - This is the name of the MongoDB database to use, and is set by default to __mean-dev__ for the development environment, and __production__ for the production environment.
 * root - This is determined automatically at the start of this file, but can be overridden here.
 * app.name - This is the name of your app or website, and can be different for each environment. You can tell which environment you are running by looking at the TITLE attribute that your app generates.
-* Social Registration - Facebook, GitHub, Google, Twitter. You can specify your own social accounts here for each social platform, with the following for each provider:
-	* clientID
-	* clientSecret
-	* callbackURL
+
 
 To run with a different environment, just specify NODE_ENV as you call grunt:
 
@@ -75,6 +67,13 @@ To run with a different environment, just specify NODE_ENV as you call grunt:
 If you are using node instead of grunt, it is very similar:
 
 	$ NODE_ENV=test node server
+
+Setup environment variables
+	$ vi ~/.bash_profile
+
+  Within the `./bash_profile` file include your Facebook API Key and APP Secret
+	export FACEBOOK_ROOMMATES_APIKEY=YOUR_FACEBOOK_APIKEY
+	export FACEBOOK_ROOMMATES_APPSECRET=YOUR_FACEBOOK_APP_SECRET
 
 > NOTE: Running Node.js applications in the __production__ environment enables caching, which is disabled by default in all other environments.
 
@@ -90,15 +89,9 @@ If you are using node instead of grunt, it is very similar:
 
 ## MEAN Modules
    Mean presents a growing eco-system of MEAN based modules in the npm repository, To write (and contribute) your own MEAN based module checkout [mean-logger](https://npmjs.org/package/mean-logger) for examples.
-  
-## More Information
-
-  * Visit our [Ninja's Zone](http://www.meanleanstartupmachine.com/) for extended support.
-  * Visit us at [Linnovate.net](http://www.linnovate.net/).
-  * Contact amos on any issue via [E-Mail](mailto:mail@amoshaviv.com), [Facebook](http://www.facebook.com/amoshaviv), or [Twitter](http://www.twitter.com/amoshaviv).
 
 ## Credits
-Inspired by the great work of [Madhusudhan Srinivasa](https://github.com/madhums/)
+MEAN Boilerplate developed by linnovate
 
 ## License
 

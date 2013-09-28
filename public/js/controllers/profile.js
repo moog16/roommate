@@ -1,6 +1,6 @@
 angular.module('rm.users', [])
-.controller('ProfileController', ['$scope','$http', 'profileInit', 'userPref',
-  function($scope, $http, profileInit, userPref) {
+.controller('ProfileController', ['$scope','$http', 'profileInit', 'userPref', '$timeout',
+  function($scope, $http, profileInit, userPref, $timeout) {
 
   var maps = function() {
     var input = (document.getElementById('searchTextField'));
@@ -130,7 +130,10 @@ angular.module('rm.users', [])
   /***************************************  preferences  *****************************************/
 
   $scope.setPrefs = function() {
-    console.log($scope.place);
+    $scope.prefCheck = true;
+    $timeout(function() {
+      $scope.prefCheck = false;
+    }, 3000);
     var budget = $('#budgetSlider').data('slider').getValue();
     var duration = $('#durationSlider').data('slider').getValue();
     var housing = {
