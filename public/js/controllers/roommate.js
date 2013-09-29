@@ -13,6 +13,7 @@ angular.module('rm.roommates.controller', [])
   };
 
   var setInfo = function() {
+    $scope.usersRemaining = !!$scope.roommateInfo.roommates.length;
     $scope.moviePic = containsMutualInfo('movies').pic;
     $scope.movieName = containsMutualInfo('movies').name;
     $scope.musicPic = containsMutualInfo('music').pic;
@@ -29,7 +30,6 @@ angular.module('rm.roommates.controller', [])
     if($scope.roommateInfo.user.questions.length > 0) {
       $scope.answerQuestions = true;
     }
-    console.log($scope.roommateInfo)
   };
 
   var containsMutualInfo = function(category) {

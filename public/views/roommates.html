@@ -1,96 +1,103 @@
 <section ng-controller="RoommatesController">
-
-  <div class="row">
-    <div class="span7" id="picHeight">
-      <a href="{{roommateInfo.roommates[0].facebook.link}}">
-        <img class="row" src="{{ roommateInfo.roommates[0].facebook.photos.data[1].source || '/img/mountain.jpg'}}" >
-        <h3 class="row banner">{{ roommateInfo.roommates[0].facebook.name }}</h3>
-      </a>
-      <div class="row">
-        <button class="btn btn-danger likeNope" ng-click="nopeButton(roommateInfo.roommates[0])">Nope</button><button class="btn btn-success likeNope" ng-click="likeButton(roommateInfo.roommates[0])">Like</button>
-      </div>
-      <br>
-    </div>
-
-
-    <div class="span3" id="sidebarHeight">
-      <div class="row" ng-show="answerQuestions">
-        <h4>compatibility</h4>
-        <span class="">You are a {{matchPercent}}% match.</span>
-        <a href="#!/roommates/mutualQuestions?{{roommateInfo.roommates[0].facebook.id}}">
-          See the questions and answers that you two had in common
+  <div ng-show="usersRemaining">
+    <div class="row">
+      <div class="span7" id="picHeight">
+        <a href="{{roommateInfo.roommates[0].facebook.link}}">
+          <img class="row" src="{{ roommateInfo.roommates[0].facebook.photos.data[1].source || '/img/mountain.jpg'}}" >
+          <h3 class="row banner">{{ roommateInfo.roommates[0].facebook.name }}</h3>
         </a>
+        <div class="row">
+          <button class="btn btn-danger likeNope" ng-click="nopeButton(roommateInfo.roommates[0])">Nope</button><button class="btn btn-success likeNope" ng-click="likeButton(roommateInfo.roommates[0])">Like</button>
+        </div>
+        <br>
       </div>
 
-      <div class="row" ng-hide="answerQuestions">
-        <h4>compatibility</h4>
-        <a href="#!/userProfile">
-          <span class="">Answer some questions to see your compatibility with {{roommateInfo.roommates[0].facebook.name}}</span>
-        </a>
-      </div>
 
-      <div class="row">
-        <h4>looking for:</h4>
-        <p ng-show="roommateInfo.user.preferences">
-          a place with a budget between <span class="label label-info">${{roommateInfo.roommates[0].preferences.budget[0]}} - ${{roommateInfo.roommates[0].preferences.budget[1]}}</span> for a duration of length <span class="label label-warning">{{roommateInfo.roommates[0].preferences.durationStay[0]}} - {{roommateInfo.roommates[0].preferences.durationStay[1]}} months</span>, in <span class="label label-important">{{roommateInfo.roommates[0].preferences.location.address_components[0].long_name}}, {{roommateInfo.roommates[0].preferences.location.address_components[2].short_name}}</span>. Ideally I would like a {{roommateInfo.roommates[0].preferences.dwellingType.bedroom}} bed, {{roommateInfo.roommates[0].preferences.dwellingType.bath}} bath {{roommateInfo.roommates[0].preferences.dwellingType.type}}.
-        </p>
-        <p ng-hide="roommateInfo.user.preferences">
-          <a href="/#!/userProfile">Fill your user preferences to see what other's are looking for around your area.</a>
-        </p>
-      </div>
-      <div class="row">
-        <h4>interests</h4>
-        <ul class="unstyled">
-          <li ng-repeat="interest in roommateInfo.roommates[0].facebook.interests.data">
-            <span class="label">{{interest.name}}</span>
-          </li>
-        </ul>
-      </div>
-      <div class="row">
-        <h4>work</h4>
-        <ul class="unstyled">
-          <li ng-repeat="work in roommateInfo.roommates[0].facebook.work">
-            <span class="label">{{work.position.name}}</span>
-            <span class="label label-info">{{work.employer.name}}</span>
-          </li>
-        </ul>
-      </div>
-      <div class="row">
-        <h4>education</h4>
-        <ul class="unstyled">
-          <li ng-repeat="school in roommateInfo.roommates[0].facebook.education">
-            <span class="label">{{school.type}}</span>
-            <span class="label label-info">{{school.school.name}}</span>
-          </li>
-        </ul>
+      <div class="span3" id="sidebarHeight">
+        <div class="row" ng-show="answerQuestions">
+          <h4>compatibility</h4>
+          <span class="">You are a {{matchPercent}}% match.</span>
+          <a href="#!/roommates/mutualQuestions?{{roommateInfo.roommates[0].facebook.id}}">
+            See the questions and answers that you two had in common
+          </a>
+        </div>
+
+        <div class="row" ng-hide="answerQuestions">
+          <h4>compatibility</h4>
+          <a href="#!/userProfile">
+            <span class="">Answer some questions to see your compatibility with {{roommateInfo.roommates[0].facebook.name}}</span>
+          </a>
+        </div>
+
+        <div class="row">
+          <h4>looking for:</h4>
+          <p ng-show="roommateInfo.user.preferences">
+            a place with a budget between <span class="label label-info">${{roommateInfo.roommates[0].preferences.budget[0]}} - ${{roommateInfo.roommates[0].preferences.budget[1]}}</span> for a duration of length <span class="label label-warning">{{roommateInfo.roommates[0].preferences.durationStay[0]}} - {{roommateInfo.roommates[0].preferences.durationStay[1]}} months</span>, in <span class="label label-important">{{roommateInfo.roommates[0].preferences.location.address_components[0].long_name}}, {{roommateInfo.roommates[0].preferences.location.address_components[2].short_name}}</span>. Ideally I would like a {{roommateInfo.roommates[0].preferences.dwellingType.bedroom}} bed, {{roommateInfo.roommates[0].preferences.dwellingType.bath}} bath {{roommateInfo.roommates[0].preferences.dwellingType.type}}.
+          </p>
+          <p ng-hide="roommateInfo.user.preferences">
+            <a href="/#!/userProfile">Fill your user preferences to see what other's are looking for around your area.</a>
+          </p>
+        </div>
+        <div class="row">
+          <h4>interests</h4>
+          <ul class="unstyled">
+            <li ng-repeat="interest in roommateInfo.roommates[0].facebook.interests.data">
+              <span class="label">{{interest.name}}</span>
+            </li>
+          </ul>
+        </div>
+        <div class="row">
+          <h4>work</h4>
+          <ul class="unstyled">
+            <li ng-repeat="work in roommateInfo.roommates[0].facebook.work">
+              <span class="label">{{work.position.name}}</span>
+              <span class="label label-info">{{work.employer.name}}</span>
+            </li>
+          </ul>
+        </div>
+        <div class="row">
+          <h4>education</h4>
+          <ul class="unstyled">
+            <li ng-repeat="school in roommateInfo.roommates[0].facebook.education">
+              <span class="label">{{school.type}}</span>
+              <span class="label label-info">{{school.school.name}}</span>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
+
+
+    <div class="row scroller">
+      <div class="mediaWheel">
+        <img src="{{friendsPic}}" ng-click="mutualFriendsModal()">
+        <h4><span class="mediaCatRm">mutual friends</span></h4>
+      </div>
+      <div class="mediaWheel">
+        <img src="{{musicPic}}" ng-click="mutualMusicModal()">
+        <h4><span class="mediaCatRm">mutual music</span></h4>
+      </div>
+      <div class="mediaWheel">
+        <img src="{{moviePic}}" ng-click="mutualMoviesModal()">
+        <h4><span class="mediaCatRm">mutual movies</span></h4>
+      </div>
+      <div class="mediaWheel">
+        <img src="{{likePic}}" ng-click="mutualLikesModal()">
+        <h4><span class="mediaCatRm">mutual likes</span></h4>
+      </div>
+    </div>
+
+    <div mutual-movies></div>
+    <div mutual-music></div>
+    <div mutual-friends></div>
+    <div mutual-likes></div>
+
   </div>
-
-
-  <div class="row scroller">
-    <div class="mediaWheel">
-      <img src="{{friendsPic}}" ng-click="mutualFriendsModal()">
-      <h4><span class="mediaCatRm">mutual friends</span></h4>
-    </div>
-    <div class="mediaWheel">
-      <img src="{{musicPic}}" ng-click="mutualMusicModal()">
-      <h4><span class="mediaCatRm">mutual music</span></h4>
-    </div>
-    <div class="mediaWheel">
-      <img src="{{moviePic}}" ng-click="mutualMoviesModal()">
-      <h4><span class="mediaCatRm">mutual movies</span></h4>
-    </div>
-    <div class="mediaWheel">
-      <img src="{{likePic}}" ng-click="mutualLikesModal()">
-      <h4><span class="mediaCatRm">mutual likes</span></h4>
-    </div>
+  <div ng-hide="usersRemaining">
+    <img src="/img/ajax_loader_blue_64.gif" class="indexPage">
   </div>
-
-  <div mutual-movies></div>
-  <div mutual-music></div>
-  <div mutual-friends></div>
-  <div mutual-likes></div>
-
-
+  <div ng-show="usersRemaining">
+    <p class="indexPage">no more users available...</p>
+    <p class="indexPage">check back later.</p>
+  </div>
 </section>
