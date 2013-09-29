@@ -25,7 +25,10 @@ angular.module('rm.roommates.controller', [])
     if(isNaN($scope.matchPercent)) {
       $scope.matchPercent = 0;
     }
-    // $scope.answerQuestions = $scope.roommateInfo.
+    $scope.answerQuestions = false;
+    if($scope.roommateInfo.user.questions.length > 0) {
+      $scope.answerQuestions = true;
+    }
     console.log($scope.roommateInfo)
   };
 
