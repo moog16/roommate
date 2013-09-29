@@ -50,7 +50,7 @@ footer p {
   margin: 0px;
   float: left;
   min-height: 1px;
-  overflow: hidden;
+  overflow: auto;
   border: 1px #7a7777 solid;
 }
 
@@ -163,4 +163,9 @@ img.userProfile {
 
 .green {
   color: green;
+}
+
+.btn.active, .btn:hover {
+  background-color: #49afcd;
+  color: white;
 }

@@ -31,7 +31,6 @@ angular.module('rm.users', [])
         $scope.setHousing(pref.dwellingType.type);
         $scope.setBath(pref.dwellingType.bath);
         $scope.addressLocation = pref.location.address_components[0].long_name + ', ' + pref.location.address_components[2].short_name;
-        // $scope.place = pref.location;
       }, function(reason) {
         console.log('Failed ', reason);
       }, function(update) {
@@ -60,6 +59,7 @@ angular.module('rm.users', [])
       accepts: this.userAccepts,
       importance: this.userImportance
     };
+    $('button').removeClass('active');
     $scope.userAccepts = [];
     $http.post('api/setUserQA', userQuestionAnswers)
     .success(function(data, status, headers, config) {

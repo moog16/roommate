@@ -22,10 +22,11 @@ angular.module('rm.roommates.controller', [])
     $scope.likePic = containsMutualInfo('likes').pic;
     $scope.likeName = containsMutualInfo('likes').name;
     $scope.matchPercent = ($scope.roommateInfo.mutualRoommateInfo[0].compatibility * 100).toFixed(2);
-    console.log($scope.matchPercent === NaN);
-    if($scope.matchPercent === NaN) {
+    if(isNaN($scope.matchPercent)) {
       $scope.matchPercent = 0;
     }
+    // $scope.answerQuestions = $scope.roommateInfo.
+    console.log($scope.roommateInfo)
   };
 
   var containsMutualInfo = function(category) {

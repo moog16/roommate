@@ -14,11 +14,18 @@
 
 
     <div class="span3" id="sidebarHeight">
-      <div class="row">
+      <div class="row" ng-show="answerQuestions">
         <h4>compatibility</h4>
         <span class="">You are a {{matchPercent}}% match.</span>
         <a href="#!/roommates/mutualQuestions?{{roommateInfo.roommates[0].facebook.id}}">
           See the questions and answers that you two had in common
+        </a>
+      </div>
+
+      <div class="row" ng-hide="answerQuestions">
+        <h4>compatibility</h4>
+        <a href="#!/userProfile">
+          <span class="">Answer some questions to see your compatibility with {{roommateInfo.roommates[0].facebook.name}}</span>
         </a>
       </div>
 
