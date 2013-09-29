@@ -3,7 +3,7 @@
   <div class="row">
     <div class="span7" id="picHeight">
       <a href="{{roommateInfo.roommates[0].facebook.link}}">
-        <img class="row" src="{{ roommateInfo.roommates[0].facebook.photos.data[1].source }}" >
+        <img class="row" src="{{ roommateInfo.roommates[0].facebook.photos.data[1].source || '/img/mountain.jpg'}}" >
         <h3 class="row banner">{{ roommateInfo.roommates[0].facebook.name }}</h3>
       </a>
       <div class="row">
@@ -16,7 +16,7 @@
     <div class="span3" id="sidebarHeight">
       <div class="row">
         <h4>compatibility</h4>
-        <span class="">You are a {{(roommateInfo.mutualRoommateInfo[0].compatibility * 100).toFixed(2)}}% match.</span>
+        <span class="">You are a {{matchPercent}}% match.</span>
         <a href="#!/roommates/mutualQuestions?{{roommateInfo.roommates[0].facebook.id}}">
           See the questions and answers that you two had in common
         </a>
@@ -24,8 +24,11 @@
 
       <div class="row">
         <h4>looking for:</h4>
-        <p>
+        <p ng-show="roommateInfo.user.preferences">
           a place with a budget between <span class="label label-info">${{roommateInfo.roommates[0].preferences.budget[0]}} - ${{roommateInfo.roommates[0].preferences.budget[1]}}</span> for a duration of length <span class="label label-warning">{{roommateInfo.roommates[0].preferences.durationStay[0]}} - {{roommateInfo.roommates[0].preferences.durationStay[1]}} months</span>, in <span class="label label-important">{{roommateInfo.roommates[0].preferences.location.address_components[0].long_name}}, {{roommateInfo.roommates[0].preferences.location.address_components[2].short_name}}</span>. Ideally I would like a {{roommateInfo.roommates[0].preferences.dwellingType.bedroom}} bed, {{roommateInfo.roommates[0].preferences.dwellingType.bath}} bath {{roommateInfo.roommates[0].preferences.dwellingType.type}}.
+        </p>
+        <p ng-hide="roommateInfo.user.preferences">
+          <a href="/#!/userProfile">Fill your user preferences to see what other's are looking for around your area.</a>
         </p>
       </div>
       <div class="row">

@@ -1,118 +1,114 @@
 <section ng-controller="ProfileController">
+  <div class="span6 offset1">
+    <ul class="nav nav-tabs" id="navTabs">
+      <li><a href="#questionTab" data-toggle="tab">Questions</a></li>
+      <li><a href="#preferenceTab" data-toggle="tab">Preferences</a></li>
+    </ul>
 
-<div class="row">
+    <div class="tab-content">
 
-  <div class="span3">
-    <img class="row userProfile" src="{{userInfo.picture.data.url}}"/>
-
-    <div class="row">
-      <div class="mediaImg">
-        <img class="userProfile" src="{{userInfo.movies.data[0].picture.data.url}}" ng-click="openMovies()">
-        <h3><span class="mediaCat">movies</span></h3>
+      <div class="tab-pane active" id="questionTab">
+        <div user-questions></div>
       </div>
+
+      <div class="tab-pane" id="preferenceTab">
+        <ul class="unstyled">
+          <li>
+            <h5>Budget</h5>
+            {{budgetMin}} - {{budgetMax}}
+            <div slider name="budgetSlider" maximum="{{budgetMax}}" minimum="{{budgetMin}}"></div>
+          </li>
+          <li>
+            <h5>Location</h5>
+            <div id="panel">
+              <input id="searchTextField" type="text" size="50" placeholder="{{addressLocation || 'Enter a location'}}">
+            </div>
+          </li>
+          <li>
+            <h5>Size of apartment</h5>
+            <div class="btn-group">
+              <a class="btn btn-small dropdown-toggle" data-toggle="dropdown">
+                {{housingType || 'Type:'}}<span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a tabindex="-1" ng-repeat="type in housingTypes" ng-click="setHousing(type)">{{type}}</a></li>
+              </ul>
+            </div>
+            <div class="btn-group">
+              <a class="btn btn-small dropdown-toggle" data-toggle="dropdown">
+                {{bedroomValue || 'Bedrooms:'}}<span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a tabindex="-1" ng-repeat="room in bedroomRange" ng-click="setBedroom(room)">{{room}}</a></li>
+              </ul>
+            </div>
+            <div class="btn-group">
+              <a class="btn btn-small dropdown-toggle" data-toggle="dropdown">
+                {{bathValue || 'Baths:'}}<span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a tabindex="-1" ng-repeat="room in bathRange" ng-click="setBath(room)">{{room}}</a></li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <h5>Duration of stay</h5>
+            {{durationMin}} - {{durationMax}}
+            <div slider name="durationSlider" maximum="{{durationMin}}" minimum="{{durationMax}}"></div>
+          </li>
+        </ul>
+        <button ng-mouseup="setPrefs()">set</button>
+        <i class="icon-ok green" ng-show="prefCheck"></i>
+      </div>
+
     </div>
-
-    <div class="row mediaImg">
-      <img class="userProfile" src="{{userInfo.music.data[0].picture.data.url}}" ng-click="openMusic()">
-      <h3><span class="mediaCat">music</span></h3>
-    </div>
-
-    <div class="row mediaImg">
-      <img class="userProfile" src="{{userInfo.likes.data[0].picture.data.url}}" ng-click="openLikes()">
-      <h3><span class="mediaCat">likes</span></h3>
-    </div>
-
-
-    <div class="row">
-      <h4>work</h4>
-      <ul class="unstyled">
-        <li ng-repeat="work in userInfo.work">
-          <span class="label">{{work.position.name}}</span>
-          <span class="label label-info">{{work.employer.name}}</span>
-        </li>
-      </ul>
-    </div>
-
-    <div class="row">
-      <h4>education</h4>
-      <ul class="unstyled">
-        <li ng-repeat="school in userInfo.education">
-          <span class="label">{{school.type}}</span>
-          <span class="label label-info employerName">{{school.school.name}}</span>
-        </li>
-      </ul>
-    </div>
-
-
   </div>
 
 
-    <div class="span6">
-      <ul class="nav nav-tabs" id="navTabs">
-        <li><a href="#questionTab" data-toggle="tab">Questions</a></li>
-        <li><a href="#preferenceTab" data-toggle="tab">Preferences</a></li>
-      </ul>
 
-      <div class="tab-content">
-
-        <div class="tab-pane active" id="questionTab">
-          <div user-questions></div>
+    <div class="customSpan2-5 mediaSidebar">
+        <div class="row mediaImg">
+          <img class="userProfile" src="{{userInfo.picture.data.url || '/img/nothing.jpg'}}"/>
         </div>
 
-        <div class="tab-pane" id="preferenceTab">
-          <ul class="unstyled">
-            <li>
-              <h5>Budget</h5>
-              {{budgetMin}} - {{budgetMax}}
-              <div slider name="budgetSlider" maximum="{{budgetMax}}" minimum="{{budgetMin}}"></div>
-            </li>
-            <li>
-              <h5>Location</h5>
-              <div id="panel">
-                <input id="searchTextField" type="text" size="50" placeholder="{{addressLocation}}">
-              </div>
-            </li>
-            <li>
-              <h5>Size of apartment</h5>
-              <div class="btn-group">
-                <a class="btn btn-small dropdown-toggle" data-toggle="dropdown">
-                  {{housingType || 'Type:'}}<span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a tabindex="-1" ng-repeat="type in housingTypes" ng-click="setHousing(type)">{{type}}</a></li>
-                </ul>
-              </div>
-              <div class="btn-group">
-                <a class="btn btn-small dropdown-toggle" data-toggle="dropdown">
-                  {{bedroomValue || 'Bedrooms:'}}<span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a tabindex="-1" ng-repeat="room in bedroomRange" ng-click="setBedroom(room)">{{room}}</a></li>
-                </ul>
-              </div>
-              <div class="btn-group">
-                <a class="btn btn-small dropdown-toggle" data-toggle="dropdown">
-                  {{bathValue || 'Baths:'}}<span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a tabindex="-1" ng-repeat="room in bathRange" ng-click="setBath(room)">{{room}}</a></li>
-                </ul>
-              </div>
-            </li>
-            <li>
-              <h5>Duration of stay</h5>
-              {{durationMin}} - {{durationMax}}
-              <div slider name="durationSlider" maximum="{{durationMin}}" minimum="{{durationMax}}"></div>
-            </li>
-          </ul>
-          <button ng-mouseup="setPrefs()">set</button>
-          <i class="icon-ok green" ng-show="prefCheck"></i>
+        <div class="row mediaImg">
+          <img class="userProfile" src="{{userInfo.movies.data[0].picture.data.url || '/img/nothing.jpg'}}" ng-click="openMovies()">
+          <h3><span class="mediaCat">movies</span></h3>
         </div>
 
+        <div class="row mediaImg">
+          <img class="userProfile" src="{{userInfo.music.data[0].picture.data.url || '/img/nothing.jpg'}}" ng-click="openMusic()">
+          <h3><span class="mediaCat">music</span></h3>
+        </div>
+
+        <div class="row mediaImg">
+          <img class="userProfile" src="{{userInfo.likes.data[0].picture.data.url || '/img/nothing.jpg'}}" ng-click="openLikes()">
+          <h3><span class="mediaCat">likes</span></h3>
+        </div>
+
+
+      <div class="row mediaImg">
+        <h4>work</h4>
+        <ul class="unstyled">
+          <li ng-repeat="work in userInfo.work">
+            <span class="label">{{work.position.name}}</span>
+            <span class="label label-info">{{work.employer.name}}</span>
+          </li>
+        </ul>
       </div>
+
+      <div class="row mediaImg">
+        <h4>education</h4>
+        <ul class="unstyled">
+          <li ng-repeat="school in userInfo.education">
+            <span class="label">{{school.type}}</span>
+            <span class="label label-info employerName">{{school.school.name}}</span>
+          </li>
+        </ul>
+      </div>
+
     </div>
 
-</div>
   <div user-movies-modal></div>
   <div user-music-modal></div>
   <div user-like-modal></div>

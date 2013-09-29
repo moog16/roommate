@@ -19,7 +19,6 @@ angular.module('rm.users', [])
     maps();
     var promise = profileInit.init();
     promise.then(function(userProfile) {
-      console.log(userProfile);
         $scope.questions = userProfile.questions;
         $scope.userInfo = userProfile.userInfo;
         var pref = userProfile.preferences;
@@ -31,11 +30,7 @@ angular.module('rm.users', [])
         $scope.setBedroom(pref.dwellingType.bedroom);
         $scope.setHousing(pref.dwellingType.type);
         $scope.setBath(pref.dwellingType.bath);
-        if(pref.location === undefined) {
-          $scope.addressLocation = 'Enter a location';
-        } else {
-          $scope.addressLocation = pref.location.address_components[0].long_name + ', ' + pref.location.address_components[2].short_name;
-        }
+        $scope.addressLocation = pref.location.address_components[0].long_name + ', ' + pref.location.address_components[2].short_name;
         // $scope.place = pref.location;
       }, function(reason) {
         console.log('Failed ', reason);
@@ -70,7 +65,6 @@ angular.module('rm.users', [])
     .success(function(data, status, headers, config) {
       resetValidation();
       $scope.showNextQuestion();
-      console.log('set user question and answer ', data);
     }).error(function(err, status, headers, config) { if(err) throw err; });
   };
 
@@ -123,7 +117,6 @@ angular.module('rm.users', [])
     $('#userMusicModal').modal('toggle');
   };
   $scope.openLikes = function() {
-    console.log('like);');
     $('#userLikeModal').modal('toggle');
   };
 

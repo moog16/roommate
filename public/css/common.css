@@ -38,7 +38,20 @@ footer p {
 
 .mediaImg {
   position: relative;
-  width: 100%;
+  margin: 0px;
+}
+
+.indexPage {
+  text-align: center;
+}
+
+.customSpan2-5 {
+  width: 165px;
+  margin: 0px;
+  float: left;
+  min-height: 1px;
+  overflow: hidden;
+  border: 1px #7a7777 solid;
 }
 
 img.userProfile {
@@ -135,7 +148,7 @@ img.userProfile {
 
 .likeNope {
   margin: 0px;
-  width: 47.75%;
+  width: 48.25%;
   border: none;
   height: 90px;
 }

@@ -21,6 +21,11 @@ angular.module('rm.roommates.controller', [])
     $scope.friendsName = containsMutualInfo('friends').name;
     $scope.likePic = containsMutualInfo('likes').pic;
     $scope.likeName = containsMutualInfo('likes').name;
+    $scope.matchPercent = ($scope.roommateInfo.mutualRoommateInfo[0].compatibility * 100).toFixed(2);
+    console.log($scope.matchPercent === NaN);
+    if($scope.matchPercent === NaN) {
+      $scope.matchPercent = 0;
+    }
   };
 
   var containsMutualInfo = function(category) {
@@ -68,7 +73,6 @@ angular.module('rm.roommates.controller', [])
       var promise = roommateInit.init();
       promise.then(function(roommateInfo) {
         $scope.roommateInfo = roommateInfo;
-        console.log('roommatee', roommateInfo);
         setInfo();
       }, function(reason) {
         console.log('Failed ', reason);

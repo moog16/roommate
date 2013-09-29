@@ -19,7 +19,6 @@
           <a class="btn btn-small dropdown-toggle" data-toggle="dropdown">
             {{housingType || 'Type:'}}<span class="caret"></span>
           </a>
-  {{flavor}}
           <ul class="dropdown-menu">
             <li><a tabindex="-1" ng-repeat="type in housingTypes" ng-click="setHousing(type)">{{type}}</a></li>
           </ul>

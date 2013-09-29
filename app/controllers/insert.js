@@ -53,9 +53,13 @@ exports.user = function(accessToken, refreshToken, profile, done) {
         var userProfile = profile._json;
         userProfile.accessToken = accessToken;
         userProfile.refreshToken = refreshToken;
+        var email = '';
+        if(profile.emails) {
+          email = profile.emails[0].value;
+        }
         user = new User({
           name: profile.displayName,
-          email: profile.emails[0].value,
+          email: email,
           username: profile.username,
           provider: 'facebook',
           facebook: userProfile,
