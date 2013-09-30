@@ -408,7 +408,7 @@ angular.module('ui.bootstrap.buttons', [])
 * AngularJS version of an image carousel.
 *
 */
-angular.module('ui.bootstrap.carousel', ['ui.bootstrap.transition'])
+/*angular.module('ui.bootstrap.carousel', ['ui.bootstrap.transition'])
 .controller('CarouselController', ['$scope', '$timeout', '$transition', '$q', function ($scope, $timeout, $transition, $q) {
   var self = this,
     slides = self.slides = [],
@@ -417,7 +417,7 @@ angular.module('ui.bootstrap.carousel', ['ui.bootstrap.transition'])
   self.currentSlide = null;
 
   /* direction: "prev" or "next" */
-  self.select = function(nextSlide, direction) {
+/*  self.select = function(nextSlide, direction) {
     var nextIndex = slides.indexOf(nextSlide);
     //Decide direction if it's not given
     if (direction === undefined) {
@@ -470,7 +470,7 @@ angular.module('ui.bootstrap.carousel', ['ui.bootstrap.transition'])
   };
 
   /* Allow outside people to call indexOf on slides array */
-  self.indexOfSlide = function(slide) {
+/*  self.indexOfSlide = function(slide) {
     return slides.indexOf(slide);
   };
 
@@ -605,7 +605,7 @@ angular.module('ui.bootstrap.carousel', ['ui.bootstrap.transition'])
   </file>
 </example>
  */
-.directive('carousel', [function() {
+/*.directive('carousel', [function() {
   return {
     restrict: 'EA',
     transclude: true,
@@ -685,7 +685,7 @@ function CarouselDemoCtrl($scope) {
 </example>
 */
 
-.directive('slide', ['$parse', function($parse) {
+/*.directive('slide', ['$parse', function($parse) {
   return {
     require: '^carousel',
     restrict: 'EA',
@@ -731,6 +731,7 @@ function CarouselDemoCtrl($scope) {
     }
   };
 }]);
+*/
 
 angular.module('ui.bootstrap.datepicker', [])
 

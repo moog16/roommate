@@ -7,3 +7,7 @@
 .white {
   color: white;
 }
+
+.carousel-control:hover {
+  cursor: default;
+}
