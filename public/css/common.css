@@ -27,10 +27,6 @@ footer p {
   padding:5px 0 12px 10px
 }
 
-.signin {
-  height:300px;
-}
-
 .btn-question-choice {
   background: #6d91ff;
   color: white;
@@ -168,4 +164,8 @@ img.userProfile {
 .btn.active, .btn:hover {
   background-color: #49afcd;
   color: white;
+}
+
+.center {
+  margin: 0px 46%;
 }

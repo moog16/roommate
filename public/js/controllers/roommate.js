@@ -7,13 +7,11 @@ angular.module('rm.roommates.controller', [])
     $scope.roommateInfo.roommates.splice(0,1);
     $scope.roommateInfo.mutualRoommateInfo.splice(0,1);
     setInfo();
-    if($scope.roommateInfo.roommates.length >= 1) {
-      $scope.roommateInfo.roommates[0].isActive = true;
-    }
   };
 
   var setInfo = function() {
-    $scope.usersRemaining = !!$scope.roommateInfo.roommates.length;
+    $scope.showUsers = !!$scope.roommateInfo.roommates.length;
+    $scope.noUsersRemaining = $scope.showUsers ? false : true;
     $scope.moviePic = containsMutualInfo('movies').pic;
     $scope.movieName = containsMutualInfo('movies').name;
     $scope.musicPic = containsMutualInfo('music').pic;
@@ -73,11 +71,13 @@ angular.module('rm.roommates.controller', [])
   };
 
   var init = function() {
+    $scope.loading = true;  //show loading screen
     if(Object.keys(roommateInit.vars).length === 0) {
       var promise = roommateInit.init();
       promise.then(function(roommateInfo) {
         $scope.roommateInfo = roommateInfo;
         setInfo();
+        $scope.loading = false;
       }, function(reason) {
         console.log('Failed ', reason);
       }, function(update) {

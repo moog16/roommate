@@ -1,19 +1,21 @@
 <section ng-controller="RoommatesController">
-  <div ng-show="usersRemaining">
+  <div ng-show="showUsers">
     <div class="row">
-      <div class="span7" id="picHeight">
+      <div class="span7">
         <a href="{{roommateInfo.roommates[0].facebook.link}}">
           <img class="row" src="{{ roommateInfo.roommates[0].facebook.photos.data[1].source || '/img/mountain.jpg'}}" >
           <h3 class="row banner">{{ roommateInfo.roommates[0].facebook.name }}</h3>
         </a>
-        <div class="row">
-          <button class="btn btn-danger likeNope" ng-click="nopeButton(roommateInfo.roommates[0])">Nope</button><button class="btn btn-success likeNope" ng-click="likeButton(roommateInfo.roommates[0])">Like</button>
-        </div>
+        <a>
+          <div class="row">
+            <button class="btn btn-danger likeNope" ng-click="nopeButton(roommateInfo.roommates[0])">Nope</button><button class="btn btn-success likeNope" ng-click="likeButton(roommateInfo.roommates[0])">Like</button>
+          </div>
+        </a>
         <br>
       </div>
 
 
-      <div class="span3" id="sidebarHeight">
+      <div class="span3">
         <div class="row" ng-show="answerQuestions">
           <h4>compatibility</h4>
           <span class="">You are a {{matchPercent}}% match.</span>
@@ -93,10 +95,10 @@
     <div mutual-likes></div>
 
   </div>
-  <div ng-hide="usersRemaining">
-    <img src="/img/ajax_loader_blue_64.gif" class="indexPage">
+  <div ng-show="loading">
+    <img src="/img/ajax_loader_blue_64.gif" class="center">
   </div>
-  <div ng-show="usersRemaining">
+  <div ng-show="noUsersRemaining">
     <p class="indexPage">no more users available...</p>
     <p class="indexPage">check back later.</p>
   </div>
