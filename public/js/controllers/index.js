@@ -4,5 +4,16 @@ angular.module('rm.system')
 
   $('.carousel').carousel({
     wrap: true
-  })
+  });
+
+  $scope.check = function() {
+    console.log('test');
+    console.log($('.active img'));
+    if($('.active img').hasClass('.first')) {
+      $scope.noPrevious = false;
+    } else {
+      $scope.noPrevious = true;
+    }
+  };
+
 }]);
